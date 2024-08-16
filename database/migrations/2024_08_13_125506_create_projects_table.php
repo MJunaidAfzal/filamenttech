@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('projects', function (Blueprint $table) {
             $table->id();
-            $table->integer('order_id');
+            $table->string('order_id');
             $table->string('name');
             $table->longText('description');
             $table->date('deadline');
@@ -22,7 +22,7 @@ return new class extends Migration
             $table->integer('no_of_pages');
             $table->tinyInteger('status')->default(1);
             $table->string('price');
-            $table->integer('client_id');
+            $table->integer('user_id');
             $table->text('notes');
             $table->timestamps();
         });

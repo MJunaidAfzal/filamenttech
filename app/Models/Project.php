@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Str;
 
 class Project extends Model
 {
@@ -20,17 +21,31 @@ class Project extends Model
         'no_of_pages',
         'status',
         'price',
-        'client_id',
+        'user_id',
         'notes',
+        'developer_id',
     ];
 
-    public function client()
+    public function user()
     {
-        return parent::belongsTo(User::class)->where('id',auth()->user()->id);
+        return parent::belongsTo(User::class)->where('role_id',2);
     }
 
     public function projectType()
     {
         return $this->belongsTo(ProjectType::class);
     }
+
+    protected static function booted()
+    {
+        static::creating(function ($order) {
+            do {
+                $orderNumber = 'ODR-' . Str::upper(Str::random(6));
+            } while (self::where('order_id', $orderNumber)->exists());
+
+            $order->order_id = $orderNumber;
+        });
+    }
+
+
 }

@@ -2,7 +2,17 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Models\User;
+
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider and all of them will
+| be assigned to the "web" middleware group. Make something great!
+|
+*/
 
 Route::get('/', function () {
     return view('welcome');
@@ -18,24 +28,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-// Route::get('test' , function(){
-
-//     $recipient = User::where('name', 'admin')->first();
-//     $recipient->notify(
-
-//         \Filament\Notifications\Notification::make()
-//         ->title('Sending Test Notification')
-//         ->toDatabase($recipient)
-
-
-//     );
-
-//     \Filament\Notifications\Notification::make()
-//         ->title('Sending Test Notification')
-//         ->sendToDatabase($recipient);
-
-//         dd('done sending');
-
+require __DIR__.'/auth.php';
 
 Route::get('test' , function(){
 
@@ -47,7 +40,4 @@ Route::get('test' , function(){
         ($recipient);
 
         dd('done sending');
-
 })->middleware('auth');
-
-require __DIR__.'/auth.php';

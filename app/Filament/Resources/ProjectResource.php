@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Filament\Client\Resources;
+namespace App\Filament\Resources;
 
-use App\Filament\Client\Resources\ProjectResource\Pages;
-use App\Filament\Client\Resources\ProjectResource\RelationManagers;
+use App\Filament\Resources\ProjectResource\Pages;
+use App\Filament\Resources\ProjectResource\RelationManagers;
 use App\Models\Project;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -14,17 +14,19 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Illuminate\Support\Facades\Auth;
 
+
+
 class ProjectResource extends Resource
 {
     protected static ?string $model = Project::class;
 
-    protected static ?string $navigationGroup = 'Project Management';
-
     protected static ?string $navigationIcon = 'heroicon-o-archive-box';
 
-    public static function getEloquentQuery(): Builder
+    protected static ?string $navigationGroup = 'Project Management';
+
+    public static function getNavigationBadge(): ?string
     {
-        return parent::getEloquentQuery()->where('user_id', auth()->user()->id);
+        return static::getModel()::count();
     }
 
     public static function form(Form $form): Form
@@ -32,14 +34,12 @@ class ProjectResource extends Resource
         return $form
             ->schema([
                 Forms\Components\Select::make('user_id')
-                    ->label('User Name')
-                    ->options([
-                        Auth::user()->id => Auth::user()->name,
-                    ])
+                    ->label('Developer Name')
+                    ->relationship('user','name')
                     ->required(),
                 Forms\Components\TextInput::make('order_id')
                     ->required()
-                    ->hidden()
+                    ->disabled()
                     ->numeric(),
                 Forms\Components\Select::make('project_type_id')
                     ->label('Project type Name')
@@ -77,38 +77,43 @@ class ProjectResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('order_id')
-                    ->numeric()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('projectType.name')
-                    ->label('Property Type Name')
-                    ->searchable()
-                    ->toggleable()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('name')
-                    ->searchable(),
-                // Tables\Columns\TextColumn::make('deadline')
-                //     ->date()
-                //     ->sortable(),
-                // Tables\Columns\TextColumn::make('file')
-                //     ->searchable(),
-                // Tables\Columns\TextColumn::make('no_of_pages')
-                //     ->numeric()
-                //     ->sortable(),
-                Tables\Columns\IconColumn::make('status')
-                    ->boolean(),
-                // Tables\Columns\TextColumn::make('price')
-                //     ->searchable(),
-                // Tables\Columns\TextColumn::make('client_id')
-                //     ->numeric()
-                //     ->sortable(),
-                Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('updated_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
+                ->numeric()
+                ->sortable(),
+            Tables\Columns\TextColumn::make('projectType.name')
+                ->label('Property Type Name')
+                ->searchable()
+                ->toggleable()
+                ->sortable(),
+            Tables\Columns\TextColumn::make('user.name')
+                ->label('Developer Name')
+                ->searchable()
+                ->toggleable()
+                ->sortable(),
+            Tables\Columns\TextColumn::make('name')
+                ->searchable(),
+            // Tables\Columns\TextColumn::make('deadline')
+            //     ->date()
+            //     ->sortable(),
+            // Tables\Columns\TextColumn::make('file')
+            //     ->searchable(),
+            // Tables\Columns\TextColumn::make('no_of_pages')
+            //     ->numeric()
+            //     ->sortable(),
+            Tables\Columns\IconColumn::make('status')
+                ->boolean(),
+            // Tables\Columns\TextColumn::make('price')
+            //     ->searchable(),
+            // Tables\Columns\TextColumn::make('client_id')
+            //     ->numeric()
+            //     ->sortable(),
+            Tables\Columns\TextColumn::make('created_at')
+                ->dateTime()
+                ->sortable()
+                ->toggleable(isToggledHiddenByDefault: true),
+            Tables\Columns\TextColumn::make('updated_at')
+                ->dateTime()
+                ->sortable()
+                ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
                 //
@@ -130,6 +135,11 @@ class ProjectResource extends Resource
         return [
             //
         ];
+    }
+
+    public static function canCreate(): bool
+    {
+        return false;
     }
 
     public static function getPages(): array

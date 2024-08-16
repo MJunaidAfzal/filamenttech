@@ -28,7 +28,7 @@ class DeveloperPanelProvider extends PanelProvider
             ->path('developer')
             ->login()
             ->colors([
-                'primary' => Color::Blue,
+                'primary' => Color::Purple,
             ])
             ->discoverResources(in: app_path('Filament/Developer/Resources'), for: 'App\\Filament\\Developer\\Resources')
             ->discoverPages(in: app_path('Filament/Developer/Pages'), for: 'App\\Filament\\Developer\\Pages')
@@ -54,6 +54,8 @@ class DeveloperPanelProvider extends PanelProvider
             ->authMiddleware([
                 Authenticate::class,
                 IsDeveloper::class,
-            ]);
+            ])
+            ->databaseNotifications()
+            ->databaseNotificationsPolling('1s');;
     }
 }

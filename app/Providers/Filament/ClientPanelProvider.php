@@ -56,7 +56,7 @@ class ClientPanelProvider extends PanelProvider
                 Authenticate::class,
                 IsClient::class,
             ])
-            ->databaseNotifications()
-            ->databaseNotificationsPolling('1s');
+            ->databaseNotifications();
+            // ->databaseNotificationsPolling('1s');
     }
 }
