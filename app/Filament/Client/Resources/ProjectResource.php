@@ -63,8 +63,11 @@ class ProjectResource extends Resource
                     ->required()
                     ->maxLength(255),
                 Forms\Components\FileUpload::make('file')
-                    ->required()
-                    ->columnSpanFull(),
+                ->required()
+    ->columnSpanFull()
+    ->lazy()
+    ->maxSize(1024 * 1024 * 5) // 5MB
+    ->acceptedFileTypes(['pdf', 'docx', 'doc', 'zip', 'rar']),
                 Forms\Components\RichEditor::make('description')
                     ->required(),
                 Forms\Components\RichEditor::make('notes')
