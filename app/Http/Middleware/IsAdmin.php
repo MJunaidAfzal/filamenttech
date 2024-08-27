@@ -4,7 +4,6 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\Auth;
 
 class IsAdmin
@@ -12,13 +11,15 @@ class IsAdmin
     /**
      * Handle an incoming request.
      *
-     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
+     * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response)  $next
      */
-    public function handle(Request $request, Closure $next): Response
+    public function handle(Request $request, Closure $next)
     {
         if(!Auth::user()->isAdmin())
         {
-            return response()->json(['message' => 'You are not an admin'], 403);
+                Auth::logout();
+            return redirect()->route('filament.admin.auth.login')->withErrors(['admin' => 'User is not permissible to enter']);
+
         }
 
         return $next($request);

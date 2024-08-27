@@ -17,13 +17,13 @@
         </div>
 
       <!-- Role id -->
-      <div class="mt-4">
+      {{-- <div class="mt-4">
         <x-input-label for="role_id" :value="__('Role')" />
         <select id="role_id" class="block mt-1 w-full" name="role_id" required disabled>
                 <option value="4">Client</option>
         </select>
         <x-input-error :messages="$errors->get('role_id')" class="mt-2" />
-    </div>
+    </div> --}}
 
         <!-- Password -->
         <div class="mt-4">
