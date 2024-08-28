@@ -56,18 +56,18 @@ class User extends Authenticatable
         return $this->role_id === 4;
     }
 
-    public function IsAdmin()
-    {
-        return $this->role_id === 1;
-    }
+    public function isAdmin()
+{
+    return $this->role_id === 1;
+}
 
-    public function IsDeveloper()
-    {
-        return $this->role_id === 2;
-    }
+public function isDeveloper()
+{
+    return $this->role_id === 2;
+}
 
-    public function IsSupport()
-    {
-        return $this->role_id === 3;
-    }
+public function isSupport()
+{
+    return $this->role_id === 3;
+}
 }

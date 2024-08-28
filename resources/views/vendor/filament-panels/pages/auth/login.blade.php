@@ -16,7 +16,14 @@
 @if ($errors->has('admin'))
     <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" style="border-color: orange" role="alert">
         <strong class="font-bold" style="color: orange;">Unauthorized Access</strong>
-        <span class="block sm:inline">For Instructor access <a style="color: orange" href="{{ route('filament.client.auth.login') }}">Login Here</a></span>
+        <span class="block sm:inline">For Client access <a style="color: orange" href="{{ route('filament.client.auth.login') }}">Login Here</a></span>
+      </div>
+    @endif
+
+    @if ($errors->has('client'))
+    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" style="border-color:#84CC16" role="alert">
+        <strong class="font-bold" style="color:#84CC16;">Unauthorized Access</strong>
+        <span class="block sm:inline">You are not a Client</span>
       </div>
     @endif
 

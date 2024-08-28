@@ -26,7 +26,7 @@ class SupportPanelProvider extends PanelProvider
         return $panel
             ->id('support')
             ->path('support')
-            ->login()
+            // ->login()
             ->colors([
                 'primary' => Color::Pink,
             ])

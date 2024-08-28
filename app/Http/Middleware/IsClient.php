@@ -18,7 +18,8 @@ class IsClient
     {
         if(!Auth::user()->IsClient())
         {
-            return response()->json(['error' => 'Unauthorized'], 401);
+            Auth::logout();
+            return redirect()->route('filament.client.auth.login')->withErrors(['client' => 'User is not permissible to enter']);
         }
         return $next($request);
     }
