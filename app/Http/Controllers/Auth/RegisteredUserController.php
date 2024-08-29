@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
+use App\Models\Country;
 
 class RegisteredUserController extends Controller
 {
@@ -19,7 +20,8 @@ class RegisteredUserController extends Controller
      */
     public function create(): View
     {
-        return view('auth.register');
+        $countries = Country::get();
+        return view('auth.register',compact('countries'));
     }
 
     /**
@@ -31,12 +33,18 @@ class RegisteredUserController extends Controller
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
+            'phone_number' => ['required', 'string', 'max:20'],
+            'country_id' => ['required', 'string', 'max:10'],
+            'company_name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
         $user = User::create([
             'name' => $request->name,
+            'phone_number' => $request->phone_number,
+            'country_id' => $request->country_id,
+            'company_name' => $request->company_name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
@@ -44,6 +52,8 @@ class RegisteredUserController extends Controller
         event(new Registered($user));
 
         Auth::login($user);
+
+
 
         return redirect(route('filament.client.pages.dashboard', absolute: false));
     }

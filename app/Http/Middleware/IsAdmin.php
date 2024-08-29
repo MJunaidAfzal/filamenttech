@@ -25,21 +25,4 @@ class IsAdmin
         return $next($request);
     }
 
-    // public function handle(Request $request, Closure $next)
-    // {
-    //     if (Auth::check()) {
-    //         $user = Auth::user();
-    //         if ($user->isAdmin()) {
-    //             return redirect()->route('filament.admin.pages.dashboard');
-    //         } elseif ($user->isDeveloper()) {
-    //             return redirect()->route('filament.developer.pages.dashboard');
-    //         } elseif ($user->isSupport()) {
-    //             return redirect()->route('filament.support.pages.dashboard');
-    //         } else {
-    //             Auth::logout();
-    //             return redirect()->route('filament.admin.auth.login')->withErrors(['admin' => 'User is not permissible to enter']);
-    //         }
-    //     }
-    //     return $next($request);
-    // }
 }

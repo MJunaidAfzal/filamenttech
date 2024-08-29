@@ -21,6 +21,9 @@ class User extends Authenticatable
         'email',
         'password',
         'role_id',
+        'country_id',
+        'phone_number',
+        'company_name',
     ];
 
     /**
@@ -70,4 +73,9 @@ public function isSupport()
 {
     return $this->role_id === 3;
 }
+
+    public function country()
+    {
+        return $this->belongsTo(Country::class);
+    }
 }

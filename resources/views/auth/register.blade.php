@@ -40,7 +40,7 @@
     </style>
 
 
-    <div style="margin-top: 150px;" class="container">
+    <div style="margin-top: 80px;" class="container">
         <div class="row justify-content-center">
             <div class="col-md-6">
                 <div style="padding: 15px;border-radius:10px" class="card">
@@ -55,7 +55,7 @@
                             <input type="hidden" name="role_id" id="role_id" value="4">
 
                             <div class="row">
-                                <div style="margin-left: 22px" class="col-md-11">
+                                <div  class="col-md-12">
                                     <label style="color: white" for="name"
                                         class=" col-form-label text-md-right"><small>{{ __('Name') }}</small></label>
                                     <input
@@ -70,7 +70,7 @@
                                         </span>
                                     @enderror
                                 </div>
-                                <div style="margin-top: 13px;margin-left:22px" class="col-md-11">
+                                <div style="margin-top: 13px;" class="col-md-12">
                                     <label style="color: white" for="email"
                                         class=" col-form-label text-md-right"><small>{{ __('E-Mail Address') }}</small></label>
 
@@ -89,27 +89,28 @@
 
                                 </div>
 
-                                <div style="margin-top: 13px;margin-left:22px" class="col-md-11">
+                                <div style="margin-top: 13px;" class="col-md-12">
+                               <div class="row">
+                                <div class="col-md-6">
                                     <label style="color: white" for="password"
-                                        class=" col-form-label text-md-right"><small>{{ __('Password') }}</small></label>
-                                    <div class="input-container">
-                                        <input
-                                            style="padding:23px;border: #99ff01 3px groove;background-color:#242427;color:white;border-radius:10px"
-                                            id="password" type="password"
-                                            class="form-control @error('password') is-invalid @enderror" name="password"
-                                            required autocomplete="new-password">
-                                        <span class="eye-icon" onclick="togglePassword('password')">
-                                            <i id="password-icon" class="fa fa-eye-slash"></i>
-                                        </span>
-                                    </div>
-                                    @error('password')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
+                                    class=" col-form-label text-md-right"><small>{{ __('Password') }}</small></label>
+                                <div class="input-container">
+                                    <input
+                                        style="padding:23px;border: #99ff01 3px groove;background-color:#242427;color:white;border-radius:10px"
+                                        id="password" type="password"
+                                        class="form-control @error('password') is-invalid @enderror" name="password"
+                                        required autocomplete="new-password">
+                                    <span class="eye-icon" onclick="togglePassword('password')">
+                                        <i id="password-icon" class="fa fa-eye-slash"></i>
+                                    </span>
                                 </div>
-
-                                <div style="margin-top: 13px;margin-left:22px" class="col-md-11">
+                                @error('password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                                </div>
+                                <div class="col-md-6">
                                     <label style="color: white" for="password-confirm"
                                         class=" col-form-label text-md-right"><small>{{ __('Confirm Password') }}</small></label>
                                     <div class="input-container">
@@ -122,11 +123,80 @@
                                         </span>
                                     </div>
                                 </div>
-                                <div style="margin-top: 13px;margin-left:22px" class="col-md-11">
+                               </div>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <div class="row">
+                                        <div style="margin-top: 13px;" class="col-md-6">
+                                            <label style="color: white" for="phone_number"
+                                                class=" col-form-label text-md-right"><small>{{ __('Phone Number') }}</small></label>
+
+
+                                            <input
+                                                style="padding:23px;border: #99ff01 3px groove;background-color:#242427;color:white;border-radius:10px"
+                                                id="phone_number" type="number"
+                                                class="form-control @error('phone_number') is-invalid @enderror" name="phone_number"
+                                                value="{{ old('phone_number') }}" required autocomplete="phone_number">
+
+                                            @error('phone_number')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+
+                                        </div>
+                                        <div style="margin-top: 13px;" class="col-md-6">
+                                            <label style="color: white" for="country_id"
+                                                class=" col-form-label text-md-right"><small>{{ __('Country') }}</small></label>
+                                            <select style="height:50px;border: #99ff01 3px groove;background-color:#242427;color:white;border-radius:10px"
+                                            id="country_id"
+                                             class="form-control @error('country_id') is-invalid @enderror"  name="country_id"
+                                            value="{{ old('country_id') }}" required autocomplete="country_id">
+                                                <option value="">Select Country</option>
+                                                @forelse ($countries as $country)
+                                                <option value="{{ $country->id }}">{{ $country->name }}</option>
+                                                @empty
+                                                <option value="">No Country Found</option>
+                                                @endforelse
+                                            </select>
+                                            @error('country_id')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+
+                                    </div>
+                                </div>
+
+
+
+
+
+                                <div style="margin-top: 13px;" class="col-md-12">
+                                    <label style="color: white" for="company_name"
+                                        class=" col-form-label text-md-right"><small>{{ __('Company Name') }}</small></label>
+
+
+                                    <input
+                                        style="padding:23px;border: #99ff01 3px groove;background-color:#242427;color:white;border-radius:10px"
+                                        id="company_name" type="text"
+                                        class="form-control @error('company_name') is-invalid @enderror" name="company_name"
+                                        value="{{ old('company_name') }}" required autocomplete="company_name">
+
+                                    @error('company_name')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+
+                                </div>
+                                <div style="margin-top: 13px;" class="col-md-11">
                                     <a style="text-decoration: none;color:#99ff01" href="{{ route('login') }}">I have
                                         an Already Account</a>
                                 </div>
-                                <div style="margin-top: 13px;margin-left:25px" class="col-md-11">
+                                <div style="margin-top: 13px;" class="col-md-12">
                                     <button style="background-color: #99ff01;color:#09090B" style="submit"
                                         class="btn btn-success w-100"><b>Sign up</b></button>
                                 </div>

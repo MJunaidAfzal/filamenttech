@@ -13,6 +13,9 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Illuminate\Support\Facades\Auth;
+use Filament\Forms\Components\Tabs;
+use Filament\Support\Enums\IconPosition;
+use App\Models\Service;
 
 class ProjectResource extends Resource
 {
@@ -29,8 +32,69 @@ class ProjectResource extends Resource
 
     public static function form(Form $form): Form
     {
+        $services = Service::get()->pluck('id')->toArray();
+
+        $tabs = [];
+
+        foreach ($services as $serviceId) {
+            $serviceName = Service::find($serviceId)->name;
+            $tab = Tabs\Tab::make($serviceName)
+                ->schema([]);
+
+            if ($serviceId == 1) {
+                $tab->schema([
+                    Forms\Components\Select::make('user_id')
+                    ->label('User Name')
+                    ->options([
+                        Auth::user()->id => Auth::user()->name,
+                    ])
+                    ->required(),
+                Forms\Components\TextInput::make('order_id')
+                    ->required()
+                    ->hidden()
+                    ->numeric(),
+                ])
+                ->icon('heroicon-o-folder')
+                ->iconPosition(IconPosition::After);
+            } elseif ($serviceId == 2) {
+                $tab->schema([
+                    Forms\Components\DatePicker::make('date')
+                    ->required(),
+                Forms\Components\TextInput::make('pages')
+                    ->required()
+                    ->numeric(),
+                Forms\Components\Select::make('status')
+                    ->options([
+                        '1' => 'Active',
+                        '2' => 'Un Active',
+                    ])
+                ])
+                ->icon('heroicon-o-computer-desktop')
+                ->iconPosition(IconPosition::After);
+            } elseif ($serviceId == 3) {
+                $tab->schema([
+                    Forms\Components\RichEditor::make('detail')
+                        ->required(),
+                     Forms\Components\RichEditor::make('about')
+                        ->required(),
+                ])
+                ->icon('heroicon-o-clipboard-document-list')
+                ->iconPosition(IconPosition::After);
+            }
+            else{
+                // for next id
+            }
+
+            $tabs[] = $tab;
+        }
+
         return $form
             ->schema([
+
+                Tabs::make('Tabs')
+                    ->tabs($tabs)
+                    ->columnSpanFull(),
+
                 Forms\Components\Select::make('user_id')
                     ->label('User Name')
                     ->options([
