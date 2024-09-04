@@ -17,11 +17,11 @@ class IsSupport
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(!Auth::user()->IsSupport())
+        if(!Auth::user()->isSupport())
         {
-            return response()->json(['error' => 'You are not allowed'], 403);
+            Auth::logout();
+            return redirect()->route('filament.support.auth.login')->withErrors(['support' => 'User is not permissible to enter']);
         }
-
         return $next($request);
     }
 }

@@ -18,6 +18,10 @@ use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 use App\Http\Middleware\IsClient;
+use Filament\Navigation\NavigationBuilder;
+use Filament\Navigation\NavigationGroup;
+use App\Filament\Client\Resources\PlatformResource;
+use App\Filament\Client\Resources\ProjectResource;
 
 class ClientPanelProvider extends PanelProvider
 {
@@ -32,6 +36,15 @@ class ClientPanelProvider extends PanelProvider
             ->colors([
                 'primary' => Color::Lime,
             ])
+            // ->navigation(function (NavigationBuilder $builder): NavigationBuilder {
+            //     return $builder->groups([
+            //         NavigationGroup::make('Website')
+            //             ->items([
+            //                 ...PlatformResource::getNavigationItems(),
+            //                 ...ProjectResource::getNavigationItems(),
+            //             ]),
+            //     ]);
+            // })
             ->discoverResources(in: app_path('Filament/Client/Resources'), for: 'App\\Filament\\Client\\Resources')
             ->discoverPages(in: app_path('Filament/Client/Pages'), for: 'App\\Filament\\Client\\Pages')
             ->pages([

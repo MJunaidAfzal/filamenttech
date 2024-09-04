@@ -27,6 +27,20 @@
       </div>
     @endif
 
+    @if ($errors->has('developer'))
+    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" style="border-color:#C084FC" role="alert">
+        <strong class="font-bold" style="color:#C084FC;">Unauthorized Access</strong>
+        <span class="block sm:inline">You are not a Developer</span>
+      </div>
+    @endif
+
+    @if ($errors->has('support'))
+    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" style="border-color:#60A5FA" role="alert">
+        <strong class="font-bold" style="color:#60A5FA;">Unauthorized Access</strong>
+        <span class="block sm:inline">You are not a Support</span>
+      </div>
+    @endif
+
 
     {{ \Filament\Support\Facades\FilamentView::renderHook(\Filament\View\PanelsRenderHook::AUTH_LOGIN_FORM_BEFORE, scopes: $this->getRenderHookScopes()) }}
 

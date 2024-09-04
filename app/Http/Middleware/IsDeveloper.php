@@ -16,11 +16,11 @@ class IsDeveloper
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(!Auth::user()->IsDeveloper())
+        if(!Auth::user()->isDeveloper())
         {
-            return response()->json(['error' => 'You are not a developer'], 403);
+            Auth::logout();
+            return redirect()->route('filament.developer.auth.login')->withErrors(['developer' => 'User is not permissible to enter']);
         }
-
         return $next($request);
     }
 }
