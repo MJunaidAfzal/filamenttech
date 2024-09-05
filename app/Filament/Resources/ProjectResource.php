@@ -39,7 +39,7 @@ class ProjectResource extends Resource
                     ->required(),
                 Forms\Components\TextInput::make('order_id')
                     ->required()
-                    ->disabled()
+                    ->hidden()
                     ->numeric(),
                 Forms\Components\Select::make('project_type_id')
                     ->label('Project type Name')

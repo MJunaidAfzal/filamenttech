@@ -1,5 +1,8 @@
 <?php
 
+use App\Filament\Resources\PlatformResource;
+// use Filament\Facades\Filament;
+
 return [
 
     /*
@@ -14,11 +17,10 @@ return [
     |
     */
 
-  'database_notifications' => [
+    'database_notifications' => [
         'enabled' => true,
         'polling_interval' => '30s',
     ],
-
 
 
     'broadcasting' => [
@@ -94,4 +96,8 @@ return [
 
     'livewire_loading_delay' => 'default',
 
+    // Register the routes for the PlatformResource
+    // Filament::register_routes([
+    //     PlatformResource::class,
+    // ]),
 ];

@@ -109,6 +109,14 @@ class ProjectResource extends Resource
                     ->label('Project type Name')
                     ->relationship('projectType','name')
                     ->required(),
+                // Forms\Components\Select::make('platform_id')
+                //     ->label('Platform Name')
+                //     ->relationship('platform','website_name')
+                //     ->required(),
+                Forms\Components\Select::make('category_id')
+                    ->label('Category Name')
+                    ->relationship('category','category')
+                    ->required(),
                 Forms\Components\TextInput::make('name')
                     ->required()
                     ->maxLength(255),
@@ -129,9 +137,9 @@ class ProjectResource extends Resource
                 Forms\Components\FileUpload::make('file')
                 ->required()
     ->columnSpanFull()
-    ->lazy()
-    ->maxSize(1024 * 1024 * 5) // 5MB
-    ->acceptedFileTypes(['pdf', 'docx', 'doc', 'zip', 'rar']),
+    ->lazy(),
+    // ->maxSize(1024 * 1024 * 5) // 5MB
+    // ->acceptedFileTypes(['pdf', 'docx', 'doc', 'zip', 'rar']),
                 Forms\Components\RichEditor::make('description')
                     ->required(),
                 Forms\Components\RichEditor::make('notes')

@@ -31,7 +31,7 @@ class CreateProject extends CreateRecord
 
         $name = Auth::user()->name;
          Notification::make()
-            ->title('Project Created By'.$name)
+            ->title('Project Created By '.$name)
             ->body('New Project Has Been Saved')
             ->sendToDatabase(User::where('name', 'admin')->first());
 

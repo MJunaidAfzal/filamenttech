@@ -24,6 +24,8 @@ class Project extends Model
         'user_id',
         'notes',
         'developer_id',
+        'platform_id',
+        'category_id',
     ];
 
     public function user()
@@ -45,6 +47,16 @@ class Project extends Model
 
             $order->order_id = $orderNumber;
         });
+    }
+
+    public function platform()
+    {
+        return $this->belongsTo(Platform::class);
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(GraphicDesign::class);
     }
 
 

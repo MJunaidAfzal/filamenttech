@@ -20,6 +20,12 @@ class PermissionResource extends Resource
     protected static ?string $navigationIcon = 'heroicon-o-academic-cap';
 
     protected static ?string $navigationGroup = 'System Management';
+    
+
+    public static function shouldRegisterNavigation(): bool
+{
+    return true;
+}
 
     public static function getNavigationBadge(): ?string
     {
