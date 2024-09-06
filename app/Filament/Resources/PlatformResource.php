@@ -17,7 +17,7 @@ class PlatformResource extends Resource
 {
     protected static ?string $model = Platform::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-computer-desktop';
+    protected static ?string $navigationIcon = 'heroicon-s-computer-desktop';
 
     protected static ?string $navigationGroup = 'System Management';
 
@@ -28,7 +28,7 @@ class PlatformResource extends Resource
 
     public static function shouldRegisterNavigation(): bool
     {
-        return true;
+        return false;
     }
 
     public static function getNavigationBadge(): ?string

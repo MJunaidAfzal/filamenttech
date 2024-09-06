@@ -20,7 +20,7 @@ class ProjectResource extends Resource
 {
     protected static ?string $model = Project::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-archive-box';
+    protected static ?string $navigationIcon = 'heroicon-s-archive-box';
 
     protected static ?string $navigationGroup = 'Project Management';
 
@@ -41,11 +41,7 @@ class ProjectResource extends Resource
                     ->required()
                     ->hidden()
                     ->numeric(),
-                Forms\Components\Select::make('project_type_id')
-                    ->label('Project type Name')
-                    ->relationship('projectType','name')
-                    ->required(),
-                Forms\Components\TextInput::make('name')
+                Forms\Components\TextInput::make('title')
                     ->required()
                     ->maxLength(255),
                 Forms\Components\DatePicker::make('deadline')
@@ -79,17 +75,12 @@ class ProjectResource extends Resource
                 Tables\Columns\TextColumn::make('order_id')
                 ->numeric()
                 ->sortable(),
-            Tables\Columns\TextColumn::make('projectType.name')
-                ->label('Property Type Name')
-                ->searchable()
-                ->toggleable()
-                ->sortable(),
             Tables\Columns\TextColumn::make('user.name')
                 ->label('Developer Name')
                 ->searchable()
                 ->toggleable()
                 ->sortable(),
-            Tables\Columns\TextColumn::make('name')
+            Tables\Columns\TextColumn::make('title')
                 ->searchable(),
             // Tables\Columns\TextColumn::make('deadline')
             //     ->date()
@@ -119,9 +110,9 @@ class ProjectResource extends Resource
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make(),
-                Tables\Actions\ViewAction::make(),
+                Tables\Actions\EditAction::make()->button(),
+                Tables\Actions\DeleteAction::make()->button(),
+                Tables\Actions\ViewAction::make()->button(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 use Str;
 
 class Project extends Model
@@ -13,19 +14,16 @@ class Project extends Model
 
     protected $fillable = [
         'order_id',
-        'name',
+        'title',
         'description',
         'deadline',
         'file',
-        'project_type_id',
         'no_of_pages',
         'status',
         'price',
         'user_id',
         'notes',
         'developer_id',
-        'platform_id',
-        'category_id',
     ];
 
     public function user()
@@ -40,24 +38,16 @@ class Project extends Model
 
     protected static function booted()
     {
-        static::creating(function ($order) {
+        static::creating(function ($project) {
             do {
                 $orderNumber = 'ODR-' . Str::upper(Str::random(6));
             } while (self::where('order_id', $orderNumber)->exists());
 
-            $order->order_id = $orderNumber;
+            $project->order_id = $orderNumber;
+            $project->user_id = Auth::user()->id;
         });
     }
 
-    public function platform()
-    {
-        return $this->belongsTo(Platform::class);
-    }
-
-    public function category()
-    {
-        return $this->belongsTo(GraphicDesign::class);
-    }
 
 
 

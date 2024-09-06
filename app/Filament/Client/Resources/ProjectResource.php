@@ -100,24 +100,15 @@ class ProjectResource extends Resource
                     ->options([
                         Auth::user()->id => Auth::user()->name,
                     ])
+                    ->default(Auth::id())
+                    ->disabled()
+                    ->hidden()
                     ->required(),
                 Forms\Components\TextInput::make('order_id')
                     ->required()
                     ->hidden()
                     ->numeric(),
-                Forms\Components\Select::make('project_type_id')
-                    ->label('Project type Name')
-                    ->relationship('projectType','name')
-                    ->required(),
-                // Forms\Components\Select::make('platform_id')
-                //     ->label('Platform Name')
-                //     ->relationship('platform','website_name')
-                //     ->required(),
-                Forms\Components\Select::make('category_id')
-                    ->label('Category Name')
-                    ->relationship('category','category')
-                    ->required(),
-                Forms\Components\TextInput::make('name')
+                Forms\Components\TextInput::make('title')
                     ->required()
                     ->maxLength(255),
                 Forms\Components\DatePicker::make('deadline')
@@ -154,12 +145,7 @@ class ProjectResource extends Resource
                 Tables\Columns\TextColumn::make('order_id')
                     ->numeric()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('projectType.name')
-                    ->label('Property Type Name')
-                    ->searchable()
-                    ->toggleable()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('name')
+                Tables\Columns\TextColumn::make('title')
                     ->searchable(),
                 // Tables\Columns\TextColumn::make('deadline')
                 //     ->date()
@@ -189,9 +175,9 @@ class ProjectResource extends Resource
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make(),
-                Tables\Actions\ViewAction::make(),
+                Tables\Actions\EditAction::make()->button(),
+                Tables\Actions\DeleteAction::make()->button(),
+                Tables\Actions\ViewAction::make()->button(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

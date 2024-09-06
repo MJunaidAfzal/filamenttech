@@ -11,16 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('graphic_designs', function (Blueprint $table) {
+        Schema::create('designs', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->text('description');
+            $table->foreignId('designer_id')->constrained('users')->onDelete('cascade');
+            $table->string('title');
             $table->string('category');
+            $table->enum('status', ['In Progress', 'Completed']);
             $table->string('file');
-            $table->string('format');
-            $table->string('size');
-            $table->integer('revision');
-            $table->integer('concept');
+            $table->string('feedback');
+            $table->date('deadline');
+            $table->text('description');
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('graphic_designs');
+        Schema::dropIfExists('designs');
     }
 };

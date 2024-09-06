@@ -44,12 +44,7 @@ class ProjectResource extends Resource
                     ->required()
                     ->disabled()
                     ->numeric(),
-                Forms\Components\Select::make('project_type_id')
-                    ->label('Project type Name')
-                    ->relationship('projectType','name')
-                    ->required()
-                    ->disabled(),
-                Forms\Components\TextInput::make('name')
+                Forms\Components\TextInput::make('title')
                     ->required()
                     ->maxLength(255)
                     ->disabled(),
@@ -86,16 +81,10 @@ class ProjectResource extends Resource
                 ->searchable()
                 ->toggleable()
                 ->sortable(),
-                Tables\Columns\TextColumn::make('order_id')
+            Tables\Columns\TextColumn::make('order_id')
                 ->numeric()
                 ->sortable(),
-            Tables\Columns\TextColumn::make('projectType.name')
-                ->label('Project Type Name')
-                ->searchable()
-                ->toggleable()
-                ->sortable(),
-
-            Tables\Columns\TextColumn::make('name')
+            Tables\Columns\TextColumn::make('title')
                 ->searchable(),
             // Tables\Columns\TextColumn::make('deadline')
             //     ->date()
@@ -125,9 +114,9 @@ class ProjectResource extends Resource
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
-                // Tables\Actions\DeleteAction::make(),
-                Tables\Actions\ViewAction::make(),
+                Tables\Actions\EditAction::make()->button(),
+                // Tables\Actions\DeleteAction::make()->button(),
+                Tables\Actions\ViewAction::make()->button(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

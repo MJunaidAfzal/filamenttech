@@ -17,10 +17,10 @@ class PermissionResource extends Resource
 {
     protected static ?string $model = Permission::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-academic-cap';
+    protected static ?string $navigationIcon = 'heroicon-s-academic-cap';
 
     protected static ?string $navigationGroup = 'System Management';
-    
+
 
     public static function shouldRegisterNavigation(): bool
 {
