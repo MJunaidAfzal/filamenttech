@@ -33,15 +33,11 @@ class RoleResource extends Resource
         return $form
             ->schema([
                 Forms\Components\TextInput::make('name')->required()->unique(ignoreRecord: true),
-                Forms\Components\Select::make('permission_id')
-                        ->multiple()
-                        ->relationship('permission', 'name')
-                        ->preload()
-                        ->required(),
-                    //
-                // Forms\Components\TextInput::make('guard_name')
-                //     ->required()
-                //     ->maxLength(255),
+                Forms\Components\Select::make('permissions')
+                    ->multiple()
+                    ->relationship('permissions', 'name')
+                    ->preload()
+                    ->required(),
             ]);
     }
 
@@ -53,11 +49,9 @@ class RoleResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('name')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('permission_id')
-                    ->counts('permission')
+                Tables\Columns\TextColumn::make('permissions_count')
+                    ->counts('permissions')
                     ->label('Permissions Count'),
-                // Tables\Columns\TextColumn::make('guard_name')
-                //     ->searchable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -71,9 +65,9 @@ class RoleResource extends Resource
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make(),
-                Tables\Actions\ViewAction::make(),
+                Tables\Actions\EditAction::make()->button(),
+                Tables\Actions\DeleteAction::make()->button(),
+                Tables\Actions\ViewAction::make()->button(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

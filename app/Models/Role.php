@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Role extends Model
 {
@@ -12,8 +13,8 @@ class Role extends Model
     protected $fillable = ['name','guard_name','permission_id'];
 
 
-    public function permission()
+    public function permissions(): BelongsToMany
     {
-        return $this->belongsto(Permission::class);
+        return $this->belongsToMany(Permission::class, 'permission_role', 'role_id', 'permission_id');
     }
 }

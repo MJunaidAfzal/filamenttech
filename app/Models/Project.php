@@ -24,6 +24,9 @@ class Project extends Model
         'user_id',
         'notes',
         'developer_id',
+        'payment_status',
+        'service_id',
+        'service_type',
     ];
 
     public function user()
@@ -46,6 +49,22 @@ class Project extends Model
             $project->order_id = $orderNumber;
             $project->user_id = Auth::user()->id;
         });
+    }
+
+    public function setServiceIdAttribute($value)
+    {
+        $this->attributes['service_id'] = $value;
+        $this->attributes['service_type'] = $this->getServiceType($value);
+    }
+
+    protected function getServiceType($serviceId)
+    {
+        $models = [
+            'development' => 'App\\Models\\Development',
+            'design' => 'App\\Models\\Design',
+        ];
+
+        return $models[$serviceId] ?? null;
     }
 
 

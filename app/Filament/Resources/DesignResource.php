@@ -64,7 +64,8 @@ class DesignResource extends Resource
                 Forms\Components\FileUpload::make('file')
                     ->required()
                     ->lazy()
-                    ->downloadable(),
+                    ->downloadable()
+                    ->columnSpanFull(),
                 Forms\Components\RichEditor::make('description')
                     ->required()
                     ->columnSpanFull(),

@@ -31,8 +31,19 @@ class CreateProject extends CreateRecord
 
         $name = Auth::user()->name;
          Notification::make()
-            ->title('Project Created By '.$name)
-            ->body('New Project Has Been Saved')
+            ->title('New Project!')
+            ->body($name.' create a new project.')
+            ->actions([
+            Actions::make([
+                Action::make('View')
+                    ->button()
+                    ->icon('heroicon-o-folder')
+                    ->iconPosition(IconPosition::After)
+                    ->url(route('filament.admin.resources.projects.view', ['record' => $this->record]))
+                    ->color('primary')
+                    ->label('View Project'),
+            ])
+            ])
             ->sendToDatabase(User::where('name', 'admin')->first());
 
         return $this->previousUrl ?? $this->getResource()::getUrl('index');

@@ -17,7 +17,7 @@ class ProjectResource extends Resource
 {
     protected static ?string $model = Project::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-archive-box';
+    protected static ?string $navigationIcon = 'heroicon-s-archive-box';
 
     protected static ?string $navigationGroup = 'Project Management';
 
@@ -48,6 +48,14 @@ class ProjectResource extends Resource
                     ->required()
                     ->maxLength(255)
                     ->disabled(),
+                Forms\Components\Select::make('service_id')
+                    ->options([
+                        'development' => 'Development',
+                        'design' => 'Design',
+                    ])
+                    ->required()
+                    ->label('Service')
+                    ->disabled(),
                 Forms\Components\DatePicker::make('deadline')
                     ->required(),
                 Forms\Components\TextInput::make('no_of_pages')
@@ -62,6 +70,15 @@ class ProjectResource extends Resource
                 Forms\Components\TextInput::make('price')
                     ->required()
                     ->maxLength(255),
+
+                Forms\Components\Select::make('payment_status')
+                    ->options([
+                        'pending' => 'Pending',
+                        'completed' => 'Completed',
+                        'failed' => 'Failed',
+                        'refunded' => 'Refunded',
+                    ])
+                    ->required(),
                 Forms\Components\FileUpload::make('file')
                     ->required()
                     ->columnSpanFull(),
@@ -76,15 +93,13 @@ class ProjectResource extends Resource
     {
         return $table
             ->columns([
-            Tables\Columns\TextColumn::make('user.name')
-                ->label('Developer Name')
-                ->searchable()
-                ->toggleable()
-                ->sortable(),
             Tables\Columns\TextColumn::make('order_id')
                 ->numeric()
                 ->sortable(),
             Tables\Columns\TextColumn::make('title')
+                ->searchable(),
+            Tables\Columns\TextColumn::make('service_id')
+                ->label('Service')
                 ->searchable(),
             // Tables\Columns\TextColumn::make('deadline')
             //     ->date()

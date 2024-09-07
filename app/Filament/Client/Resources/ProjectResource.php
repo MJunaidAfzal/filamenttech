@@ -23,7 +23,7 @@ class ProjectResource extends Resource
 
     protected static ?string $navigationGroup = 'Project Management';
 
-    protected static ?string $navigationIcon = 'heroicon-o-archive-box';
+    protected static ?string $navigationIcon = 'heroicon-s-archive-box';
 
     public static function getEloquentQuery(): Builder
     {
@@ -32,109 +32,94 @@ class ProjectResource extends Resource
 
     public static function form(Form $form): Form
     {
-        // $services = Service::get()->pluck('id')->toArray();
-
-        // $tabs = [];
-
-        // foreach ($services as $serviceId) {
-        //     $serviceName = Service::find($serviceId)->name;
-        //     $tab = Tabs\Tab::make($serviceName)
-        //         ->schema([]);
-
-        //     if ($serviceId == 1) {
-        //         $tab->schema([
-        //             Forms\Components\Select::make('user_id')
-        //             ->label('User Name')
-        //             ->options([
-        //                 Auth::user()->id => Auth::user()->name,
-        //             ])
-        //             ->required(),
-        //         Forms\Components\TextInput::make('order_id')
-        //             ->required()
-        //             ->hidden()
-        //             ->numeric(),
-        //         ])
-        //         ->icon('heroicon-o-folder')
-        //         ->iconPosition(IconPosition::After);
-        //     } elseif ($serviceId == 2) {
-        //         $tab->schema([
-        //             Forms\Components\DatePicker::make('date')
-        //             ->required(),
-        //         Forms\Components\TextInput::make('pages')
-        //             ->required()
-        //             ->numeric(),
-        //         Forms\Components\Select::make('status')
-        //             ->options([
-        //                 '1' => 'Active',
-        //                 '2' => 'Un Active',
-        //             ])
-        //         ])
-        //         ->icon('heroicon-o-computer-desktop')
-        //         ->iconPosition(IconPosition::After);
-        //     } elseif ($serviceId == 3) {
-        //         $tab->schema([
-        //             Forms\Components\RichEditor::make('detail')
-        //                 ->required(),
-        //              Forms\Components\RichEditor::make('about')
-        //                 ->required(),
-        //         ])
-        //         ->icon('heroicon-o-clipboard-document-list')
-        //         ->iconPosition(IconPosition::After);
-        //     }
-        //     else{
-        //         // for next id
-        //     }
-
-        //     $tabs[] = $tab;
-        // }
-
         return $form
             ->schema([
+                Forms\Components\Card::make('Project Details')
+                    ->schema([
+                        Forms\Components\Grid::make(2)
+                            ->schema([
+                                Forms\Components\Select::make('user_id')
+                                    ->label('User Name')
+                                    ->options([
+                                        Auth::user()->id => Auth::user()->name,
+                                    ])
+                                    ->default(Auth::id())
+                                    ->disabled()
+                                    ->hidden()
+                                    ->required(),
+                                Forms\Components\TextInput::make('order_id')
+                                    ->required()
+                                    ->hidden()
+                                    ->numeric(),
+                                Forms\Components\TextInput::make('title')
+                                    ->required()
+                                    ->maxLength(255),
+                                Forms\Components\Select::make('service_id')
+                                    ->options([
+                                        'development' => 'Development',
+                                        'design' => 'Design',
+                                    ])
+                                    ->required()
+                                    ->label('Service')
+                                    ->reactive()
+                                    ->afterStateUpdated(function (callable $set, $state) {
+                                        $set('service_type', static::getServiceType($state));
+                                    }),
+                                Forms\Components\TextInput::make('service_type')
+                                    ->label('Service Type')
+                                    ->hidden()
+                                    ->disabled(),
+                            ]),
 
-                // Tabs::make('Tabs')
-                //     ->tabs($tabs)
-                //     ->columnSpanFull(),
+                        Forms\Components\Grid::make(2)
+                            ->schema([
+                                Forms\Components\DatePicker::make('deadline')
+                                    ->required(),
+                                Forms\Components\TextInput::make('no_of_pages')
+                                    ->required()
+                                    ->numeric(),
 
-                Forms\Components\Select::make('user_id')
-                    ->label('User Name')
-                    ->options([
-                        Auth::user()->id => Auth::user()->name,
-                    ])
-                    ->default(Auth::id())
-                    ->disabled()
-                    ->hidden()
-                    ->required(),
-                Forms\Components\TextInput::make('order_id')
-                    ->required()
-                    ->hidden()
-                    ->numeric(),
-                Forms\Components\TextInput::make('title')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\DatePicker::make('deadline')
-                    ->required(),
-                Forms\Components\TextInput::make('no_of_pages')
-                    ->required()
-                    ->numeric(),
-                Forms\Components\Select::make('status')
-                    ->options([
-                        '1' => 'Active',
-                        '2' => 'Un Active',
-                    ])
-                    ->required(),
-                Forms\Components\TextInput::make('price')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\FileUpload::make('file')
-                ->required()
-    ->columnSpanFull()
-    ->lazy(),
-    // ->maxSize(1024 * 1024 * 5) // 5MB
-    // ->acceptedFileTypes(['pdf', 'docx', 'doc', 'zip', 'rar']),
-                Forms\Components\RichEditor::make('description')
-                    ->required(),
-                Forms\Components\RichEditor::make('notes')
-                    ->required(),
+                            ]),
+                            Forms\Components\Grid::make(3)
+                            ->schema([
+
+                                Forms\Components\Select::make('status')
+                                    ->options([
+                                        '1' => 'Active',
+                                        '2' => 'Un Active',
+                                    ])
+                                    ->required(),
+                                Forms\Components\TextInput::make('price')
+                                    ->required()
+                                    ->numeric(),
+                                Forms\Components\Select::make('payment_status')
+                                    ->options([
+                                        'pending' => 'Pending',
+                                        'completed' => 'Completed',
+                                        'failed' => 'Failed',
+                                        'refunded' => 'Refunded',
+                                    ])
+                                    ->required(),
+                            ]),
+
+                    ]),
+                Forms\Components\Card::make('File and Description')
+                    ->schema([
+                        Forms\Components\FileUpload::make('file')
+                            ->required()
+                            ->columnSpanFull()
+                            ->lazy(),
+                            Forms\Components\Grid::make(2)
+                            ->schema([
+                                Forms\Components\RichEditor::make('description')
+                                ->required(),
+                            Forms\Components\RichEditor::make('notes')
+                                ->required(),
+                            ]),
+
+
+
+                    ]),
             ]);
     }
 
@@ -147,21 +132,11 @@ class ProjectResource extends Resource
                     ->sortable(),
                 Tables\Columns\TextColumn::make('title')
                     ->searchable(),
-                // Tables\Columns\TextColumn::make('deadline')
-                //     ->date()
-                //     ->sortable(),
-                // Tables\Columns\TextColumn::make('file')
-                //     ->searchable(),
-                // Tables\Columns\TextColumn::make('no_of_pages')
-                //     ->numeric()
-                //     ->sortable(),
+                Tables\Columns\TextColumn::make('service_id')
+                    ->label('Service')
+                    ->searchable(),
                 Tables\Columns\IconColumn::make('status')
                     ->boolean(),
-                // Tables\Columns\TextColumn::make('price')
-                //     ->searchable(),
-                // Tables\Columns\TextColumn::make('client_id')
-                //     ->numeric()
-                //     ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -201,4 +176,14 @@ class ProjectResource extends Resource
             'edit' => Pages\EditProject::route('/{record}/edit'),
         ];
     }
+
+    protected static function getServiceType($service)
+{
+    $models = [
+        'development' => 'App\\Models\\Development',
+        'design' => 'App\\Models\\Design',
+    ];
+
+    return $models[$service] ?? null;
+}
 }

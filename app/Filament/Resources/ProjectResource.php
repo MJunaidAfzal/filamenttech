@@ -36,7 +36,8 @@ class ProjectResource extends Resource
                 Forms\Components\Select::make('user_id')
                     ->label('Developer Name')
                     ->relationship('user','name')
-                    ->required(),
+                    ->required()
+                    ->multiple(),
                 Forms\Components\TextInput::make('order_id')
                     ->required()
                     ->hidden()
@@ -44,6 +45,21 @@ class ProjectResource extends Resource
                 Forms\Components\TextInput::make('title')
                     ->required()
                     ->maxLength(255),
+                Forms\Components\Select::make('service_id')
+                    ->options([
+                        'development' => 'Development',
+                        'design' => 'Design',
+                    ])
+                    ->required()
+                    ->label('Service')
+                    ->reactive()
+                    ->afterStateUpdated(function (callable $set, $state) {
+                        $set('service_type', static::getServiceType($state));
+                    }),
+                Forms\Components\TextInput::make('service_type')
+                    ->label('Service Type')
+                    ->hidden()
+                    ->disabled(),
                 Forms\Components\DatePicker::make('deadline')
                     ->required(),
                 Forms\Components\TextInput::make('no_of_pages')
@@ -58,6 +74,14 @@ class ProjectResource extends Resource
                 Forms\Components\TextInput::make('price')
                     ->required()
                     ->maxLength(255),
+                Forms\Components\Select::make('payment_status')
+                    ->options([
+                        'pending' => 'Pending',
+                        'completed' => 'Completed',
+                        'failed' => 'Failed',
+                        'refunded' => 'Refunded',
+                    ])
+                    ->required(),
                 Forms\Components\FileUpload::make('file')
                     ->required()
                     ->columnSpanFull(),
@@ -75,28 +99,13 @@ class ProjectResource extends Resource
                 Tables\Columns\TextColumn::make('order_id')
                 ->numeric()
                 ->sortable(),
-            Tables\Columns\TextColumn::make('user.name')
-                ->label('Developer Name')
-                ->searchable()
-                ->toggleable()
-                ->sortable(),
             Tables\Columns\TextColumn::make('title')
                 ->searchable(),
-            // Tables\Columns\TextColumn::make('deadline')
-            //     ->date()
-            //     ->sortable(),
-            // Tables\Columns\TextColumn::make('file')
-            //     ->searchable(),
-            // Tables\Columns\TextColumn::make('no_of_pages')
-            //     ->numeric()
-            //     ->sortable(),
+            Tables\Columns\TextColumn::make('service_id')
+                ->label('Service')
+                ->searchable(),
             Tables\Columns\IconColumn::make('status')
                 ->boolean(),
-            // Tables\Columns\TextColumn::make('price')
-            //     ->searchable(),
-            // Tables\Columns\TextColumn::make('client_id')
-            //     ->numeric()
-            //     ->sortable(),
             Tables\Columns\TextColumn::make('created_at')
                 ->dateTime()
                 ->sortable()
@@ -139,6 +148,17 @@ class ProjectResource extends Resource
             'index' => Pages\ListProjects::route('/'),
             'create' => Pages\CreateProject::route('/create'),
             'edit' => Pages\EditProject::route('/{record}/edit'),
+            'view' => Pages\ViewProject::route('/{record}'),
         ];
+    }
+
+    protected static function getServiceType($service)
+    {
+        $models = [
+            'development' => 'App\\Models\\Development',
+            'design' => 'App\\Models\\Design',
+        ];
+
+        return $models[$service] ?? null;
     }
 }
