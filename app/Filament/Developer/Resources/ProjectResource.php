@@ -12,6 +12,7 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use DB;
 
 class ProjectResource extends Resource
 {
@@ -21,14 +22,21 @@ class ProjectResource extends Resource
 
     protected static ?string $navigationGroup = 'Project Management';
 
-    public static function getNavigationBadge(): ?string
-    {
-        return static::getModel()::count();
-    }
+    // public static function getNavigationBadge(): ?string
+    // {
+    //     return static::getModel()::count();
+    // }
 
     public static function getEloquentQuery(): Builder
     {
-        return parent::getEloquentQuery()->where('user_id', auth()->user()->id);
+        return parent::getEloquentQuery()
+            ->where('user_id', auth()->user()->id)
+            ->orWhereExists(function ($query) {
+                $query->select(DB::raw(1))
+                    ->from('project_assignees')
+                    ->whereColumn('project_assignees.project_id', 'projects.id')
+                    ->where('project_assignees.user_id', auth()->user()->id);
+            });
     }
 
     public static function form(Form $form): Form
@@ -43,7 +51,8 @@ class ProjectResource extends Resource
                 Forms\Components\TextInput::make('order_id')
                     ->required()
                     ->disabled()
-                    ->numeric(),
+                    ->numeric()
+                    ->hidden(),
                 Forms\Components\TextInput::make('title')
                     ->required()
                     ->maxLength(255)

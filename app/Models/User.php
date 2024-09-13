@@ -54,6 +54,10 @@ class User extends Authenticatable
         return $this->belongsTo(Role::class)->whereIn('name', ['developer', 'support', 'client']);
     }
 
+    public function isRole()
+    {
+        return auth()->user()->role->name;
+    }
     public function IsClient()
     {
         return $this->role_id === 4;
@@ -78,4 +82,9 @@ public function isSupport()
     {
         return $this->belongsTo(Country::class);
     }
+    
+    public function projects()
+{
+    return $this->belongsToMany(Project::class, 'project_assignees', 'user_id', 'project_id');
+}
 }

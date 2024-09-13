@@ -19,8 +19,8 @@ use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\FileUpload;
 use Illuminate\Database\Eloquent\Model;
-use Filament\Forms\Components\Actions;
-use Filament\Forms\Components\Actions\Action;
+use Filament\Actions;
+use Filament\Notifications\Actions\Action;
 
 class CreateProject extends CreateRecord
 {
@@ -34,7 +34,6 @@ class CreateProject extends CreateRecord
             ->title('New Project!')
             ->body($name.' create a new project.')
             ->actions([
-            Actions::make([
                 Action::make('View')
                     ->button()
                     ->icon('heroicon-o-folder')
@@ -42,7 +41,6 @@ class CreateProject extends CreateRecord
                     ->url(route('filament.admin.resources.projects.view', ['record' => $this->record]))
                     ->color('primary')
                     ->label('View Project'),
-            ])
             ])
             ->sendToDatabase(User::where('name', 'admin')->first());
 

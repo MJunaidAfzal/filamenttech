@@ -18,18 +18,18 @@ use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 use App\Http\Middleware\IsAdmin;
-
-
+use Filament\Enums\ThemeMode;
 
 class AdminPanelProvider extends PanelProvider
 {
     public function panel(Panel $panel): Panel
     {
         return $panel
+        ->defaultThemeMode(ThemeMode::Dark)
             ->default()
             ->id('admin')
             ->path('admin')
-            ->login()
+            // ->login()
             ->colors([
                 'primary' => Color::Yellow,
             ])

@@ -13,6 +13,7 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 
 
@@ -34,10 +35,15 @@ class ProjectResource extends Resource
         return $form
             ->schema([
                 Forms\Components\Select::make('user_id')
-                    ->label('Developer Name')
+                    ->label('User Name')
                     ->relationship('user','name')
-                    ->required()
-                    ->multiple(),
+                    ->disabled(),
+                // Forms\Components\Hidden::make('user_id')->default(Auth::id()),
+
+                Forms\Components\Select::make('assignees')
+                    ->multiple()
+                    ->relationship('assignees', 'name')
+                    ->required(),
                 Forms\Components\TextInput::make('order_id')
                     ->required()
                     ->hidden()

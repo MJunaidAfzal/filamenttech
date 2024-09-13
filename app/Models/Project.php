@@ -31,7 +31,7 @@ class Project extends Model
 
     public function user()
     {
-        return parent::belongsTo(User::class)->where('role_id',2);
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function projectType()
@@ -67,7 +67,13 @@ class Project extends Model
         return $models[$serviceId] ?? null;
     }
 
-
+    public function assignees()
+    {
+        return $this->belongsToMany(User::class, 'project_assignees', 'project_id', 'user_id')
+            ->whereHas('role', function ($query) {
+                $query->where('id', 2);
+            });
+    }
 
 
 }
