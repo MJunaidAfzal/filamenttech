@@ -51,22 +51,6 @@ class Project extends Model
         });
     }
 
-    public function setServiceIdAttribute($value)
-    {
-        $this->attributes['service_id'] = $value;
-        $this->attributes['service_type'] = $this->getServiceType($value);
-    }
-
-    protected function getServiceType($serviceId)
-    {
-        $models = [
-            'development' => 'App\\Models\\Development',
-            'design' => 'App\\Models\\Design',
-        ];
-
-        return $models[$serviceId] ?? null;
-    }
-
     public function assignees()
     {
         return $this->belongsToMany(User::class, 'project_assignees', 'project_id', 'user_id')
@@ -75,5 +59,9 @@ class Project extends Model
             });
     }
 
+    public function service()
+    {
+        return $this->belongsTo(Service::class);
+    }
 
 }

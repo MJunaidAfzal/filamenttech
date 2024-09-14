@@ -54,21 +54,34 @@ class ProjectResource extends Resource
                                 Forms\Components\TextInput::make('title')
                                     ->required()
                                     ->maxLength(255),
+                                // Forms\Components\Select::make('service_id')
+                                //     ->relationship('service','name')
+                                //     ->required()
+                                //     ->label('Service')
+                                //     ->reactive()
+                                //     ->afterStateUpdated(function (callable $set, $state) {
+                                //         $set('service_type', static::getServiceType($state));
+                                //     }),
+                                // Forms\Components\TextInput::make('service_type')
+                                //     ->label('Service Type')
+                                //     ->hidden()
+                                //     ->disabled(),
                                 Forms\Components\Select::make('service_id')
-                                    ->options([
-                                        'development' => 'Development',
-                                        'design' => 'Design',
-                                    ])
-                                    ->required()
-                                    ->label('Service')
-                                    ->reactive()
-                                    ->afterStateUpdated(function (callable $set, $state) {
-                                        $set('service_type', static::getServiceType($state));
-                                    }),
-                                Forms\Components\TextInput::make('service_type')
-                                    ->label('Service Type')
-                                    ->hidden()
-                                    ->disabled(),
+                                ->relationship('service', 'name')
+                                ->required()
+                                ->label('Service')
+                                ->reactive()
+                                ->afterStateUpdated(function ($set, $state) {
+                                    $service = Service::find($state);
+                                    if ($service) {
+                                        $set('service_type', $service->type);
+                                    } else {
+                                        $set('service_type', null);
+                                    }
+                                }),
+
+                            Forms\Components\TextInput::make('service_type')
+                                ->label('Service Type'),
                             ]),
 
                         Forms\Components\Grid::make(2)
@@ -177,13 +190,5 @@ class ProjectResource extends Resource
         ];
     }
 
-    protected static function getServiceType($service)
-{
-    $models = [
-        'development' => 'App\\Models\\Development',
-        'design' => 'App\\Models\\Design',
-    ];
 
-    return $models[$service] ?? null;
-}
 }

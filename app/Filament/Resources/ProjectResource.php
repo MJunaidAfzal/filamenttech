@@ -35,11 +35,14 @@ class ProjectResource extends Resource
         return $form
             ->schema([
                 Forms\Components\Select::make('user_id')
-                    ->label('User Name')
-                    ->relationship('user','name')
-                    ->disabled(),
-                // Forms\Components\Hidden::make('user_id')->default(Auth::id()),
-
+                ->label('User Name')
+                ->options([
+                    Auth::user()->id => Auth::user()->name,
+                ])
+                ->default(Auth::id())
+                ->disabled()
+                ->hidden()
+                ->required(),
                 Forms\Components\Select::make('assignees')
                     ->multiple()
                     ->relationship('assignees', 'name')
@@ -102,11 +105,12 @@ class ProjectResource extends Resource
     {
         return $table
             ->columns([
+            Tables\Columns\TextColumn::make('user.name')
+            ->label('Project Creator')
+            ->searchable(),
                 Tables\Columns\TextColumn::make('order_id')
                 ->numeric()
                 ->sortable(),
-            Tables\Columns\TextColumn::make('title')
-                ->searchable(),
             Tables\Columns\TextColumn::make('service_id')
                 ->label('Service')
                 ->searchable(),
@@ -145,7 +149,7 @@ class ProjectResource extends Resource
 
     public static function canCreate(): bool
     {
-        return false;
+        return true;
     }
 
     public static function getPages(): array
