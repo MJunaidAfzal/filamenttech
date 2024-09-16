@@ -79,9 +79,6 @@ class ProjectResource extends Resource
                                         $set('service_type', null);
                                     }
                                 }),
-
-                            Forms\Components\TextInput::make('service_type')
-                                ->label('Service Type'),
                             ]),
 
                         Forms\Components\Grid::make(2)
@@ -145,7 +142,7 @@ class ProjectResource extends Resource
                     ->sortable(),
                 Tables\Columns\TextColumn::make('title')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('service_id')
+                Tables\Columns\TextColumn::make('service.name')
                     ->label('Service')
                     ->searchable(),
                 Tables\Columns\IconColumn::make('status')

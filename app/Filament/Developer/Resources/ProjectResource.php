@@ -57,13 +57,19 @@ class ProjectResource extends Resource
                     ->required()
                     ->maxLength(255)
                     ->disabled(),
-                Forms\Components\Select::make('service_id')
-                    ->options([
-                        'development' => 'Development',
-                        'design' => 'Design',
-                    ])
+                    Forms\Components\Select::make('service_id')
+                    ->relationship('service', 'name')
                     ->required()
                     ->label('Service')
+                    ->reactive()
+                    ->afterStateUpdated(function ($set, $state) {
+                        $service = Service::find($state);
+                        if ($service) {
+                            $set('service_type', $service->type);
+                        } else {
+                            $set('service_type', null);
+                        }
+                    })
                     ->disabled(),
                 Forms\Components\DatePicker::make('deadline')
                     ->required(),
@@ -107,7 +113,7 @@ class ProjectResource extends Resource
                 ->sortable(),
             Tables\Columns\TextColumn::make('title')
                 ->searchable(),
-            Tables\Columns\TextColumn::make('service_id')
+            Tables\Columns\TextColumn::make('service.name')
                 ->label('Service')
                 ->searchable(),
             // Tables\Columns\TextColumn::make('deadline')

@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use App\Models\Service;
 
 
 
@@ -55,20 +56,18 @@ class ProjectResource extends Resource
                     ->required()
                     ->maxLength(255),
                 Forms\Components\Select::make('service_id')
-                    ->options([
-                        'development' => 'Development',
-                        'design' => 'Design',
-                    ])
+                    ->relationship('service', 'name')
                     ->required()
                     ->label('Service')
                     ->reactive()
-                    ->afterStateUpdated(function (callable $set, $state) {
-                        $set('service_type', static::getServiceType($state));
+                    ->afterStateUpdated(function ($set, $state) {
+                        $service = Service::find($state);
+                        if ($service) {
+                            $set('service_type', $service->type);
+                        } else {
+                            $set('service_type', null);
+                        }
                     }),
-                Forms\Components\TextInput::make('service_type')
-                    ->label('Service Type')
-                    ->hidden()
-                    ->disabled(),
                 Forms\Components\DatePicker::make('deadline')
                     ->required(),
                 Forms\Components\TextInput::make('no_of_pages')
@@ -111,7 +110,7 @@ class ProjectResource extends Resource
                 Tables\Columns\TextColumn::make('order_id')
                 ->numeric()
                 ->sortable(),
-            Tables\Columns\TextColumn::make('service_id')
+            Tables\Columns\TextColumn::make('service.name')
                 ->label('Service')
                 ->searchable(),
             Tables\Columns\IconColumn::make('status')
@@ -160,15 +159,5 @@ class ProjectResource extends Resource
             'edit' => Pages\EditProject::route('/{record}/edit'),
             'view' => Pages\ViewProject::route('/{record}'),
         ];
-    }
-
-    protected static function getServiceType($service)
-    {
-        $models = [
-            'development' => 'App\\Models\\Development',
-            'design' => 'App\\Models\\Design',
-        ];
-
-        return $models[$service] ?? null;
     }
 }

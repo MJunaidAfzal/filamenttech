@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 09, 2024 at 11:29 AM
+-- Generation Time: Sep 16, 2024 at 11:17 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -38,10 +38,18 @@ CREATE TABLE `cache` (
 --
 
 INSERT INTO `cache` (`key`, `value`, `expiration`) VALUES
-('laravel_cache_1b6453892473a467d07372d45eb05abc2031647a', 'i:2;', 1725873875),
-('laravel_cache_1b6453892473a467d07372d45eb05abc2031647a:timer', 'i:1725873875;', 1725873875),
-('laravel_cache_a17961fa74e9275d529f489537f179c05d50c2f3', 'i:2;', 1725873529),
-('laravel_cache_a17961fa74e9275d529f489537f179c05d50c2f3:timer', 'i:1725873529;', 1725873529);
+('laravel_cache_1b6453892473a467d07372d45eb05abc2031647a', 'i:1;', 1726477752),
+('laravel_cache_1b6453892473a467d07372d45eb05abc2031647a:timer', 'i:1726477752;', 1726477752),
+('laravel_cache_356a192b7913b04c54574d18c28d46e6395428ab', 'i:1;', 1726475523),
+('laravel_cache_356a192b7913b04c54574d18c28d46e6395428ab:timer', 'i:1726475523;', 1726475523),
+('laravel_cache_a17961fa74e9275d529f489537f179c05d50c2f3', 'i:2;', 1726477483),
+('laravel_cache_a17961fa74e9275d529f489537f179c05d50c2f3:timer', 'i:1726477483;', 1726477483),
+('laravel_cache_jobahy@mailinator.com|127.0.0.1', 'i:1;', 1726235636),
+('laravel_cache_jobahy@mailinator.com|127.0.0.1:timer', 'i:1726235636;', 1726235636),
+('laravel_cache_mugi@mailinator.com|127.0.0.1', 'i:1;', 1726235762),
+('laravel_cache_mugi@mailinator.com|127.0.0.1:timer', 'i:1726235762;', 1726235762),
+('laravel_cache_qofecyhu@mailinator.com|127.0.0.1', 'i:1;', 1726235717),
+('laravel_cache_qofecyhu@mailinator.com|127.0.0.1:timer', 'i:1726235717;', 1726235717);
 
 -- --------------------------------------------------------
 
@@ -554,14 +562,16 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (19, '2024_08_29_134110_create_services_table', 4),
 (20, '2024_08_30_080011_create_attachments_table', 5),
 (24, '2024_09_04_133340_create_platforms_table', 6),
-(25, '2024_09_05_110656_add_column_to_projects_table', 7),
 (26, '2024_09_05_114935_create_graphic_designs_table', 8),
 (27, '2024_09_06_102358_create_designs_table', 9),
 (28, '2024_09_06_115155_create_developments_table', 10),
 (29, '2024_09_06_154322_create_menus_table', 11),
-(30, '2024_09_07_074113_add_columns_to_projects_table', 12),
 (31, '2024_09_07_094539_create_permission_role_table', 13),
-(32, '2024_09_07_105556_create_customers_table', 14);
+(32, '2024_09_07_105556_create_customers_table', 14),
+(33, '2024_09_13_123701_create_project_assignees_table', 15),
+(34, '2024_09_13_125105_create_project_assignees_table', 16),
+(35, '2024_09_14_135614_create_services_table', 17),
+(36, '2024_09_14_140703_add_columns_to_projects_table', 18);
 
 -- --------------------------------------------------------
 
@@ -585,13 +595,16 @@ CREATE TABLE `notifications` (
 --
 
 INSERT INTO `notifications` (`id`, `type`, `notifiable_type`, `notifiable_id`, `data`, `read_at`, `created_at`, `updated_at`) VALUES
-('031b84a3-d7e9-49b0-b104-19aba232f9e8', 'Filament\\Notifications\\DatabaseNotification', 'App\\Models\\User', 2, '{\"actions\":[{\"name\":\"markAsUnread\",\"color\":null,\"event\":null,\"eventData\":[],\"dispatchDirection\":false,\"dispatchToComponent\":null,\"extraAttributes\":[],\"icon\":null,\"iconPosition\":\"before\",\"iconSize\":null,\"isOutlined\":false,\"isDisabled\":false,\"label\":\"Mark as unread\",\"shouldClose\":false,\"shouldMarkAsRead\":false,\"shouldMarkAsUnread\":true,\"shouldOpenUrlInNewTab\":false,\"size\":\"sm\",\"tooltip\":null,\"url\":null,\"view\":\"filament-actions::button-action\"}],\"body\":\"Admin asign you for this Project\",\"color\":null,\"duration\":\"persistent\",\"icon\":null,\"iconColor\":null,\"status\":null,\"title\":\"You are Asign By admin\",\"view\":\"filament-notifications::notification\",\"viewData\":[],\"format\":\"filament\"}', NULL, '2024-09-07 03:14:31', '2024-09-07 03:14:31'),
-('055266a6-1993-4b24-8ccc-7fbd4042b737', 'Filament\\Notifications\\DatabaseNotification', 'App\\Models\\User', 2, '{\"actions\":[{\"name\":\"markAsUnread\",\"color\":null,\"event\":null,\"eventData\":[],\"dispatchDirection\":false,\"dispatchToComponent\":null,\"extraAttributes\":[],\"icon\":null,\"iconPosition\":\"before\",\"iconSize\":null,\"isOutlined\":false,\"isDisabled\":false,\"label\":\"Mark as unread\",\"shouldClose\":false,\"shouldMarkAsRead\":false,\"shouldMarkAsUnread\":true,\"shouldOpenUrlInNewTab\":false,\"size\":\"sm\",\"tooltip\":null,\"url\":null,\"view\":\"filament-actions::button-action\"}],\"body\":\"Admin asign you for this Project\",\"color\":null,\"duration\":\"persistent\",\"icon\":null,\"iconColor\":null,\"status\":null,\"title\":\"You are Asign By admin\",\"view\":\"filament-notifications::notification\",\"viewData\":[],\"format\":\"filament\"}', NULL, '2024-09-05 08:54:22', '2024-09-05 08:54:22'),
-('440aeca6-4f2d-49d9-82b5-c12baaa903c4', 'Filament\\Notifications\\DatabaseNotification', 'App\\Models\\User', 5, '{\"actions\":[{\"name\":\"markAsUnread\",\"color\":null,\"event\":null,\"eventData\":[],\"dispatchDirection\":false,\"dispatchToComponent\":null,\"extraAttributes\":[],\"icon\":null,\"iconPosition\":\"before\",\"iconSize\":null,\"isOutlined\":false,\"isDisabled\":false,\"label\":\"Mark as unread\",\"shouldClose\":false,\"shouldMarkAsRead\":false,\"shouldMarkAsUnread\":true,\"shouldOpenUrlInNewTab\":false,\"size\":\"sm\",\"tooltip\":null,\"url\":null,\"view\":\"filament-actions::button-action\"}],\"body\":\"Admin asign you for this Project\",\"color\":null,\"duration\":\"persistent\",\"icon\":null,\"iconColor\":null,\"status\":null,\"title\":\"You are Asign By admin\",\"view\":\"filament-notifications::notification\",\"viewData\":[],\"format\":\"filament\"}', NULL, '2024-09-05 10:34:26', '2024-09-05 10:34:26'),
-('643c04a4-b315-429d-b025-b972baca3978', 'Filament\\Notifications\\DatabaseNotification', 'App\\Models\\User', 2, '{\"actions\":[{\"name\":\"markAsUnread\",\"color\":null,\"event\":null,\"eventData\":[],\"dispatchDirection\":false,\"dispatchToComponent\":null,\"extraAttributes\":[],\"icon\":null,\"iconPosition\":\"before\",\"iconSize\":null,\"isOutlined\":false,\"isDisabled\":false,\"label\":\"Mark as unread\",\"shouldClose\":false,\"shouldMarkAsRead\":false,\"shouldMarkAsUnread\":true,\"shouldOpenUrlInNewTab\":false,\"size\":\"sm\",\"tooltip\":null,\"url\":null,\"view\":\"filament-actions::button-action\"}],\"body\":\"Admin asign you for this Project\",\"color\":null,\"duration\":\"persistent\",\"icon\":null,\"iconColor\":null,\"status\":null,\"title\":\"You are Asign By admin\",\"view\":\"filament-notifications::notification\",\"viewData\":[],\"format\":\"filament\"}', NULL, '2024-09-07 04:16:20', '2024-09-07 04:16:20'),
+('099b4109-8230-45a5-b994-4c8693fe94cf', 'Filament\\Notifications\\DatabaseNotification', 'App\\Models\\User', 1, '{\"actions\":[{\"name\":\"View\",\"color\":\"primary\",\"event\":null,\"eventData\":[],\"dispatchDirection\":false,\"dispatchToComponent\":null,\"extraAttributes\":[],\"icon\":\"heroicon-o-folder\",\"iconPosition\":\"after\",\"iconSize\":null,\"isOutlined\":false,\"isDisabled\":false,\"label\":\"View Project\",\"shouldClose\":false,\"shouldMarkAsRead\":false,\"shouldMarkAsUnread\":false,\"shouldOpenUrlInNewTab\":false,\"size\":\"sm\",\"tooltip\":null,\"url\":\"http:\\/\\/127.0.0.1:8000\\/admin\\/projects\\/29\",\"view\":\"filament-actions::button-action\"}],\"body\":\"client create a new project.\",\"color\":null,\"duration\":\"persistent\",\"icon\":null,\"iconColor\":null,\"status\":null,\"title\":\"New Project!\",\"view\":\"filament-notifications::notification\",\"viewData\":[],\"format\":\"filament\"}', NULL, '2024-09-14 10:07:43', '2024-09-14 10:07:43'),
+('0fc475cc-4dde-4b74-8462-a14689c50817', 'Filament\\Notifications\\DatabaseNotification', 'App\\Models\\User', 1, '{\"actions\":[{\"name\":\"View\",\"color\":\"primary\",\"event\":null,\"eventData\":[],\"dispatchDirection\":false,\"dispatchToComponent\":null,\"extraAttributes\":[],\"icon\":\"heroicon-s-folder\",\"iconPosition\":\"after\",\"iconSize\":null,\"isOutlined\":false,\"isDisabled\":false,\"label\":\"View Project\",\"shouldClose\":false,\"shouldMarkAsRead\":false,\"shouldMarkAsUnread\":false,\"shouldOpenUrlInNewTab\":false,\"size\":\"sm\",\"tooltip\":null,\"url\":\"http:\\/\\/127.0.0.1:8000\\/admin\\/projects\\/32\",\"view\":\"filament-actions::button-action\"}],\"body\":\"admin create a new project.\",\"color\":null,\"duration\":\"persistent\",\"icon\":null,\"iconColor\":null,\"status\":null,\"title\":\"New Project!\",\"view\":\"filament-notifications::notification\",\"viewData\":[],\"format\":\"filament\"}', NULL, '2024-09-16 03:31:34', '2024-09-16 03:31:34'),
+('1d7a89f2-cd61-4173-baa8-9575bba1eec8', 'Filament\\Notifications\\DatabaseNotification', 'App\\Models\\User', 2, '{\"actions\":[{\"name\":\"View\",\"color\":\"primary\",\"event\":null,\"eventData\":[],\"dispatchDirection\":false,\"dispatchToComponent\":null,\"extraAttributes\":[],\"icon\":\"heroicon-s-folder\",\"iconPosition\":\"before\",\"iconSize\":null,\"isOutlined\":false,\"isDisabled\":false,\"label\":\"View Project\",\"shouldClose\":false,\"shouldMarkAsRead\":false,\"shouldMarkAsUnread\":false,\"shouldOpenUrlInNewTab\":false,\"size\":\"sm\",\"tooltip\":null,\"url\":\"http:\\/\\/127.0.0.1:8000\\/developer\\/projects\\/31\\/edit\",\"view\":\"filament-actions::button-action\"}],\"body\":\"admin assigned a project to you\",\"color\":null,\"duration\":\"persistent\",\"icon\":null,\"iconColor\":null,\"status\":null,\"title\":\"Project assigned!\",\"view\":\"filament-notifications::notification\",\"viewData\":[],\"format\":\"filament\"}', NULL, '2024-09-16 03:12:28', '2024-09-16 03:12:28'),
+('5c9bd124-4976-4afa-a0c2-2533b4fe6fb1', 'Filament\\Notifications\\DatabaseNotification', 'App\\Models\\User', 2, '{\"actions\":[{\"name\":\"View\",\"color\":\"primary\",\"event\":null,\"eventData\":[],\"dispatchDirection\":false,\"dispatchToComponent\":null,\"extraAttributes\":[],\"icon\":\"heroicon-s-folder\",\"iconPosition\":\"before\",\"iconSize\":null,\"isOutlined\":false,\"isDisabled\":false,\"label\":\"View Project\",\"shouldClose\":false,\"shouldMarkAsRead\":false,\"shouldMarkAsUnread\":false,\"shouldOpenUrlInNewTab\":false,\"size\":\"sm\",\"tooltip\":null,\"url\":\"http:\\/\\/127.0.0.1:8000\\/developer\\/projects\\/32\\/edit\",\"view\":\"filament-actions::button-action\"}],\"body\":\"admin assigned a project to you\",\"color\":null,\"duration\":\"persistent\",\"icon\":null,\"iconColor\":null,\"status\":null,\"title\":\"Project assigned!\",\"view\":\"filament-notifications::notification\",\"viewData\":[],\"format\":\"filament\"}', NULL, '2024-09-16 03:31:34', '2024-09-16 03:31:34'),
+('83933e12-47b4-47d0-8507-240592b5d529', 'Filament\\Notifications\\DatabaseNotification', 'App\\Models\\User', 1, '{\"actions\":[{\"name\":\"View\",\"color\":\"primary\",\"event\":null,\"eventData\":[],\"dispatchDirection\":false,\"dispatchToComponent\":null,\"extraAttributes\":[],\"icon\":\"heroicon-o-folder\",\"iconPosition\":\"after\",\"iconSize\":null,\"isOutlined\":false,\"isDisabled\":false,\"label\":\"View Project\",\"shouldClose\":false,\"shouldMarkAsRead\":false,\"shouldMarkAsUnread\":false,\"shouldOpenUrlInNewTab\":false,\"size\":\"sm\",\"tooltip\":null,\"url\":\"http:\\/\\/127.0.0.1:8000\\/admin\\/projects\\/30\",\"view\":\"filament-actions::button-action\"}],\"body\":\"client create a new project.\",\"color\":null,\"duration\":\"persistent\",\"icon\":null,\"iconColor\":null,\"status\":null,\"title\":\"New Project!\",\"view\":\"filament-notifications::notification\",\"viewData\":[],\"format\":\"filament\"}', NULL, '2024-09-14 10:26:37', '2024-09-14 10:26:37'),
+('903ef794-737e-43b1-a041-349ec9184e31', 'Filament\\Notifications\\DatabaseNotification', 'App\\Models\\User', 2, '{\"actions\":[{\"name\":\"View\",\"color\":\"primary\",\"event\":null,\"eventData\":[],\"dispatchDirection\":false,\"dispatchToComponent\":null,\"extraAttributes\":[],\"icon\":\"heroicon-s-folder\",\"iconPosition\":\"before\",\"iconSize\":null,\"isOutlined\":false,\"isDisabled\":false,\"label\":\"View Project\",\"shouldClose\":false,\"shouldMarkAsRead\":false,\"shouldMarkAsUnread\":false,\"shouldOpenUrlInNewTab\":false,\"size\":\"sm\",\"tooltip\":null,\"url\":\"http:\\/\\/127.0.0.1:8000\\/developer\\/projects\\/28\\/edit\",\"view\":\"filament-actions::button-action\"}],\"body\":\"admin assigned a project to you\",\"color\":null,\"duration\":\"persistent\",\"icon\":null,\"iconColor\":null,\"status\":null,\"title\":\"Project assigned!\",\"view\":\"filament-notifications::notification\",\"viewData\":[],\"format\":\"filament\"}', NULL, '2024-09-14 03:59:58', '2024-09-14 03:59:58'),
 ('afb10c61-1db5-44a9-85f7-d51e51ea1026', 'Filament\\Notifications\\DatabaseNotification', 'App\\Models\\User', 19, '{\"actions\":[{\"name\":\"markAsUnread\",\"color\":null,\"event\":null,\"eventData\":[],\"dispatchDirection\":false,\"dispatchToComponent\":null,\"extraAttributes\":[],\"icon\":null,\"iconPosition\":\"before\",\"iconSize\":null,\"isOutlined\":false,\"isDisabled\":false,\"label\":\"Mark as unread\",\"shouldClose\":false,\"shouldMarkAsRead\":false,\"shouldMarkAsUnread\":true,\"shouldOpenUrlInNewTab\":false,\"size\":\"sm\",\"tooltip\":null,\"url\":null,\"view\":\"filament-actions::button-action\"}],\"body\":\"Admin asign you for this Project\",\"color\":null,\"duration\":\"persistent\",\"icon\":null,\"iconColor\":null,\"status\":null,\"title\":\"You are Asign By admin\",\"view\":\"filament-notifications::notification\",\"viewData\":[],\"format\":\"filament\"}', NULL, '2024-09-05 10:28:14', '2024-09-05 10:28:14'),
+('bf164255-3437-4cc2-823a-2b1fb3f9784d', 'Filament\\Notifications\\DatabaseNotification', 'App\\Models\\User', 1, '{\"actions\":[{\"name\":\"View\",\"color\":\"primary\",\"event\":null,\"eventData\":[],\"dispatchDirection\":false,\"dispatchToComponent\":null,\"extraAttributes\":[],\"icon\":\"heroicon-s-folder\",\"iconPosition\":\"after\",\"iconSize\":null,\"isOutlined\":false,\"isDisabled\":false,\"label\":\"View Project\",\"shouldClose\":false,\"shouldMarkAsRead\":false,\"shouldMarkAsUnread\":false,\"shouldOpenUrlInNewTab\":false,\"size\":\"sm\",\"tooltip\":null,\"url\":\"http:\\/\\/127.0.0.1:8000\\/admin\\/projects\\/31\",\"view\":\"filament-actions::button-action\"}],\"body\":\"admin create a new project.\",\"color\":null,\"duration\":\"persistent\",\"icon\":null,\"iconColor\":null,\"status\":null,\"title\":\"New Project!\",\"view\":\"filament-notifications::notification\",\"viewData\":[],\"format\":\"filament\"}', NULL, '2024-09-16 03:12:28', '2024-09-16 03:12:28'),
 ('c80f687b-9c8b-43d6-86c4-37faabb5fb87', 'Filament\\Notifications\\DatabaseNotification', 'App\\Models\\User', 19, '{\"actions\":[{\"name\":\"markAsUnread\",\"color\":null,\"event\":null,\"eventData\":[],\"dispatchDirection\":false,\"dispatchToComponent\":null,\"extraAttributes\":[],\"icon\":null,\"iconPosition\":\"before\",\"iconSize\":null,\"isOutlined\":false,\"isDisabled\":false,\"label\":\"Mark as unread\",\"shouldClose\":false,\"shouldMarkAsRead\":false,\"shouldMarkAsUnread\":true,\"shouldOpenUrlInNewTab\":false,\"size\":\"sm\",\"tooltip\":null,\"url\":null,\"view\":\"filament-actions::button-action\"}],\"body\":\"Admin asign you for this Project\",\"color\":null,\"duration\":\"persistent\",\"icon\":null,\"iconColor\":null,\"status\":null,\"title\":\"You are Asign By admin\",\"view\":\"filament-notifications::notification\",\"viewData\":[],\"format\":\"filament\"}', NULL, '2024-09-05 09:14:27', '2024-09-05 09:14:27'),
-('ebb0a444-1457-41c0-ae72-2b3efd74dc29', 'Filament\\Notifications\\DatabaseNotification', 'App\\Models\\User', 2, '{\"actions\":[{\"name\":\"markAsUnread\",\"color\":null,\"event\":null,\"eventData\":[],\"dispatchDirection\":false,\"dispatchToComponent\":null,\"extraAttributes\":[],\"icon\":null,\"iconPosition\":\"before\",\"iconSize\":null,\"isOutlined\":false,\"isDisabled\":false,\"label\":\"Mark as unread\",\"shouldClose\":false,\"shouldMarkAsRead\":false,\"shouldMarkAsUnread\":true,\"shouldOpenUrlInNewTab\":false,\"size\":\"sm\",\"tooltip\":null,\"url\":null,\"view\":\"filament-actions::button-action\"}],\"body\":\"Admin asign you for this Project\",\"color\":null,\"duration\":\"persistent\",\"icon\":null,\"iconColor\":null,\"status\":null,\"title\":\"You are Asign By admin\",\"view\":\"filament-notifications::notification\",\"viewData\":[],\"format\":\"filament\"}', NULL, '2024-09-05 10:27:00', '2024-09-05 10:27:00');
+('f238eb2b-5553-4bee-af80-c62f13870d94', 'Filament\\Notifications\\DatabaseNotification', 'App\\Models\\User', 1, '{\"actions\":[{\"name\":\"View\",\"color\":\"primary\",\"event\":null,\"eventData\":[],\"dispatchDirection\":false,\"dispatchToComponent\":null,\"extraAttributes\":[],\"icon\":\"heroicon-o-folder\",\"iconPosition\":\"after\",\"iconSize\":null,\"isOutlined\":false,\"isDisabled\":false,\"label\":\"View Project\",\"shouldClose\":false,\"shouldMarkAsRead\":false,\"shouldMarkAsUnread\":false,\"shouldOpenUrlInNewTab\":false,\"size\":\"sm\",\"tooltip\":null,\"url\":\"http:\\/\\/127.0.0.1:8000\\/admin\\/projects\\/33\",\"view\":\"filament-actions::button-action\"}],\"body\":\"client create a new project.\",\"color\":null,\"duration\":\"persistent\",\"icon\":null,\"iconColor\":null,\"status\":null,\"title\":\"New Project!\",\"view\":\"filament-notifications::notification\",\"viewData\":[],\"format\":\"filament\"}', NULL, '2024-09-16 04:08:28', '2024-09-16 04:08:28');
 
 -- --------------------------------------------------------
 
@@ -741,16 +754,36 @@ CREATE TABLE `projects` (
 --
 
 INSERT INTO `projects` (`id`, `order_id`, `title`, `description`, `deadline`, `file`, `no_of_pages`, `status`, `price`, `user_id`, `notes`, `created_at`, `updated_at`, `payment_status`, `service_id`, `service_type`) VALUES
-(10, 'ODR-8JPJYM', 'Website Redesign', '<p>Redesign of the corporate website with new features and UI enhancements.&nbsp;</p>', '2024-09-12', '01J76454WE06XAWX0J746KPXR0.jpg', 15, 1, '1500.00', '4', '<p>&nbsp;Initial design approved.&nbsp;</p>', '2024-09-07 06:33:20', '2024-09-07 06:33:20', 'pending', 'development', 'App\\Models\\Development'),
-(11, 'ODR-IZAXRS', 'Mobile App Development', '<p>Development of a mobile application for iOS and Android platforms.&nbsp;</p>', '2024-09-15', '01J764CCQS1R98TZ9QA24Y98ES.webp', 30, 1, '3000.00', '4', '<p>&nbsp;Waiting for project kick-off meeting.&nbsp;</p>', '2024-09-07 06:37:18', '2024-09-07 06:37:18', 'pending', 'development', 'App\\Models\\Development'),
-(12, 'ODR-MLFCVL', 'Logo Design', '<p>&nbsp;Creation of a new company logo.&nbsp;</p>', '2024-09-11', '01J764H84R4XPGD7VT6QSXXGH7.jpg', 5, 2, '500.00', '4', '<p>&nbsp;Client satisfied with final design.&nbsp;</p>', '2024-09-07 06:39:57', '2024-09-07 06:39:57', 'completed', 'design', 'App\\Models\\Design'),
-(13, 'ODR-VIKNS0', 'Marketing Brochure', '<p>Design of a marketing brochure for the upcoming product launch.&nbsp;</p>', '2024-09-10', '01J764QVXV7PDTCVH7TAZ5DZ15.png', 10, 1, '800.00', '4', '<p>Draft sent to client for review.&nbsp;</p>', '2024-09-07 06:43:34', '2024-09-07 06:43:34', 'pending', 'design', 'App\\Models\\Design'),
-(14, 'ODR-CMDQFW', 'E-commerce Website', '<p>Development of an e-commerce website with payment gateway integration.&nbsp;</p>', '2024-09-12', '01J764XGRR5VH5G23EAYD6YMFD.jpg', 25, 1, '2500.00', '4', '<p>Design phase completed.&nbsp;</p>', '2024-09-07 06:46:39', '2024-09-07 06:46:39', 'pending', 'development', 'App\\Models\\Development'),
-(15, 'ODR-ISHF2D', 'Social Media Graphics', '<p>Creation of social media graphics for various platforms.&nbsp;</p>', '2024-09-11', '01J7652DJRDWX3P2F5PQ6EMDPH.jpeg', 5, 1, '300.00', '4', '<p>Client requested minor revisions.\'&nbsp;</p>', '2024-09-07 06:49:20', '2024-09-07 06:49:20', 'completed', 'design', 'App\\Models\\Design'),
-(16, 'ODR-LVNARM', 'API Integration', '<p>Integration of third-party API into existing application.&nbsp;</p>', '2024-09-11', '01J7657VWPMX8CFN2VJ088Q24F.png', 10, 1, '1200.00', '4', '<p>Awaiting API documentation from client.&nbsp;</p>', '2024-09-07 06:52:18', '2024-09-07 06:52:18', 'pending', 'development', 'App\\Models\\Development'),
-(17, 'ODR-J3WDBT', 'Business Card Design', '<p>Design of business cards for a new startup.&nbsp;</p>', '2024-09-10', '01J765CE681G823RH4QS6XQ45B.jpg', 2, 1, '150.00', '4', '<p>Final proofs approved&nbsp;</p>', '2024-09-07 06:54:48', '2024-09-07 06:54:48', 'completed', 'design', 'App\\Models\\Design'),
-(18, 'ODR-PGUKNI', 'Content Management System', '<p>Development of a content management system for managing website content.&nbsp;</p>', '2024-09-16', '01J765GSX8MMYRT10YEZY4P7JP.webp', 20, 1, '2000.00', '4', '<p>Initial setup completed.&nbsp;</p>', '2024-09-07 06:57:11', '2024-09-07 06:57:11', 'pending', 'development', 'App\\Models\\Development'),
-(19, 'ODR-3XSTZ4', 'Annual Report Design', '<p>Design of the annual financial report for the client.&nbsp;</p>', '2024-09-12', '01J765RSNSWTWTXM5QXWR7SSEX.jpeg', 50, 1, '1000.00', '4', '<p>Draft in progress.&nbsp;</p>', '2024-09-07 07:01:33', '2024-09-07 07:01:33', 'pending', 'design', 'App\\Models\\Design');
+(10, 'ODR-8JPJYM', 'Website Redesign', '<p>Redesign of the corporate website with new features and UI enhancements.&nbsp;</p>', '2024-09-12', '01J76454WE06XAWX0J746KPXR0.jpg', 15, 1, '1500.00', '4', '<p>&nbsp;Initial design approved.&nbsp;</p>', '2024-09-07 06:33:20', '2024-09-07 06:33:20', 'pending', '1', 'App\\Models\\Design'),
+(11, 'ODR-IZAXRS', 'Mobile App Development', '<p>Development of a mobile application for iOS and Android platforms.&nbsp;</p>', '2024-09-15', '01J764CCQS1R98TZ9QA24Y98ES.webp', 30, 1, '3000.00', '4', '<p>&nbsp;Waiting for project kick-off meeting.&nbsp;</p>', '2024-09-07 06:37:18', '2024-09-07 06:37:18', 'pending', '2', 'App\\Models\\Development'),
+(12, 'ODR-MLFCVL', 'Logo Design', '<p>&nbsp;Creation of a new company logo.&nbsp;</p>', '2024-09-11', '01J764H84R4XPGD7VT6QSXXGH7.jpg', 5, 2, '500.00', '4', '<p>&nbsp;Client satisfied with final design.&nbsp;</p>', '2024-09-07 06:39:57', '2024-09-07 06:39:57', 'pending', '1', 'App\\Models\\Design'),
+(13, 'ODR-VIKNS0', 'Marketing Brochure', '<p>Design of a marketing brochure for the upcoming product launch.&nbsp;</p>', '2024-09-10', '01J764QVXV7PDTCVH7TAZ5DZ15.png', 10, 1, '800.00', '4', '<p>Draft sent to client for review.&nbsp;</p>', '2024-09-07 06:43:34', '2024-09-07 06:43:34', 'pending', '2', 'App\\Models\\Development\r\n'),
+(14, 'ODR-CMDQFW', 'E-commerce Website', '<p>Development of an e-commerce website with payment gateway integration.&nbsp;</p>', '2024-09-12', '01J764XGRR5VH5G23EAYD6YMFD.jpg', 25, 1, '2500.00', '4', '<p>Design phase completed.&nbsp;</p>', '2024-09-07 06:46:39', '2024-09-07 06:46:39', 'pending', '2', 'App\\Models\\Development\r\n'),
+(15, 'ODR-ISHF2D', 'Social Media Graphics', '<p>Creation of social media graphics for various platforms.&nbsp;</p>', '2024-09-11', '01J7652DJRDWX3P2F5PQ6EMDPH.jpeg', 5, 1, '300.00', '4', '<p>Client requested minor revisions.\'&nbsp;</p>', '2024-09-07 06:49:20', '2024-09-07 06:49:20', 'pending', '1', 'App\\Models\\Design'),
+(16, 'ODR-LVNARM', 'API Integration', '<p>Integration of third-party API into existing application.&nbsp;</p>', '2024-09-11', '01J7657VWPMX8CFN2VJ088Q24F.png', 10, 1, '1200.00', '4', '<p>Awaiting API documentation from client.&nbsp;</p>', '2024-09-07 06:52:18', '2024-09-07 06:52:18', 'pending', '2', 'App\\Models\\Development\r\n'),
+(17, 'ODR-J3WDBT', 'Business Card Design', '<p>Design of business cards for a new startup.&nbsp;</p>', '2024-09-10', '01J765CE681G823RH4QS6XQ45B.jpg', 2, 1, '150.00', '4', '<p>Final proofs approved&nbsp;</p>', '2024-09-07 06:54:48', '2024-09-07 06:54:48', 'pending', '1', 'App\\Models\\Design'),
+(18, 'ODR-PGUKNI', 'Content Management System', '<p>Development of a content management system for managing website content.&nbsp;</p>', '2024-09-16', '01J765GSX8MMYRT10YEZY4P7JP.webp', 20, 1, '2000.00', '4', '<p>Initial setup completed.&nbsp;</p>', '2024-09-07 06:57:11', '2024-09-07 06:57:11', 'pending', '2', 'App\\Models\\Development'),
+(19, 'ODR-3XSTZ4', 'Annual Report Design', '<p>Design of the annual financial report for the client.&nbsp;</p>', '2024-09-12', '01J765RSNSWTWTXM5QXWR7SSEX.jpeg', 50, 1, '1000.00', '4', '<p>Draft in progress.&nbsp;</p>', '2024-09-07 07:01:33', '2024-09-07 07:01:33', 'pending', '1', 'App\\Models\\Design');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `project_assignees`
+--
+
+CREATE TABLE `project_assignees` (
+  `project_id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` bigint(20) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `project_assignees`
+--
+
+INSERT INTO `project_assignees` (`project_id`, `user_id`) VALUES
+(12, 2),
+(16, 2),
+(17, 5);
 
 -- --------------------------------------------------------
 
@@ -798,6 +831,28 @@ INSERT INTO `roles` (`id`, `name`, `guard_name`, `created_at`, `updated_at`) VAL
 (2, 'Developer', 'developer', NULL, NULL),
 (3, 'Support', 'support', NULL, NULL),
 (4, 'Client', 'client', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `services`
+--
+
+CREATE TABLE `services` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `type` varchar(255) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `services`
+--
+
+INSERT INTO `services` (`id`, `name`, `type`, `created_at`, `updated_at`) VALUES
+(1, 'Design', 'App\\Models\\Design', '2024-09-14 13:58:26', '2024-09-14 13:58:26'),
+(2, 'Development', 'App\\Models\\Development', '2024-09-14 13:58:26', '2024-09-14 13:58:26');
 
 -- --------------------------------------------------------
 
@@ -852,8 +907,9 @@ INSERT INTO `users` (`id`, `name`, `email`, `is_admin`, `is_system_admin`, `emai
 (1, 'admin', 'admin@gmail.com', 1, 1, NULL, '$2y$12$waNzHExiB3eQ3KcbyVlvG.g1wH38ZJ8lqqST812Zlen4IwLJ0uLHG', NULL, NULL, '2024-08-27 08:52:28', 1, NULL, NULL, NULL),
 (2, 'developer', 'developer@gmail.com', 0, 0, NULL, '$2y$12$IAgUGAFXqRhXO.oayUImY.i4tsfC2S7/HFhxybyS2wYBJ9.F22cuK', NULL, NULL, '2024-08-27 09:55:32', 2, NULL, NULL, NULL),
 (3, 'support', 'support@gmail.com', 0, 0, NULL, '$2y$12$oxC6PphLOj2ZAQ8ReXmavOeZL3N3HTr7zRVJBPVrVSa/32qE5.fX2', NULL, NULL, '2024-08-27 10:11:41', 3, NULL, NULL, NULL),
-(4, 'client', 'client@gmail.com', 0, 0, NULL, '$2y$12$66NeEGyFYmL/sYhlTAsg9O0z4ET9TlMchHZdJB7MGvQyk1VUUvUJK', 'Uiv3lkkoriJc2vI1UDvM6NN6vJxz4W5kMaBrbbABfG3xXvWWv0ZRRaJVvBK7', NULL, '2024-08-27 09:40:02', 4, NULL, NULL, NULL),
-(5, 'developer2', 'developer2@gmail.com', 0, 0, NULL, '$2y$12$TlQDefuzJg04GnArbLEWDe1amt144RVqUg62O9hmmAjXlAv/kkZKG', NULL, '2024-09-05 09:12:20', '2024-09-05 09:12:20', 2, '03454645667', 15, 'vision tech');
+(4, 'client', 'client@gmail.com', 0, 0, NULL, '$2y$12$66NeEGyFYmL/sYhlTAsg9O0z4ET9TlMchHZdJB7MGvQyk1VUUvUJK', 'mIRfayS965G8e3Tiq5xKnPq8JBBTn5dGW8KPyRuZHafAGxgeOtvXgBLmIaYH', NULL, '2024-08-27 09:40:02', 4, NULL, NULL, NULL),
+(5, 'developer2', 'developer2@gmail.com', 0, 0, NULL, '$2y$12$3f2VzbKFHVcwCUnNUi8XoudFOA8uqVRQHbi.oeTX92qd4gKCX46Gq', 'u5fhp7NlUQE2PkIlByKRVGgieIB0bZ9ufUpTPs2eEsaGcQ3jGrLkzswd0WbX', '2024-09-05 09:12:20', '2024-09-14 04:04:16', 2, '03454645667', 15, 'vision tech'),
+(20, 'Hilel Smith', 'cyfop@mailinator.com', 0, 0, NULL, '$2y$12$Q7oG1OL8vZcGuXc2MJ2f7.mV0aomHTEPPTxdeEPhTw5gRpW8M8Miy', NULL, '2024-09-14 02:55:34', '2024-09-14 02:55:34', 4, '442', 76, 'Barrera Marshall LLC');
 
 --
 -- Indexes for dumped tables
@@ -980,6 +1036,13 @@ ALTER TABLE `projects`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `project_assignees`
+--
+ALTER TABLE `project_assignees`
+  ADD PRIMARY KEY (`project_id`,`user_id`),
+  ADD KEY `project_assignees_user_id_foreign` (`user_id`);
+
+--
 -- Indexes for table `project_types`
 --
 ALTER TABLE `project_types`
@@ -989,6 +1052,12 @@ ALTER TABLE `project_types`
 -- Indexes for table `roles`
 --
 ALTER TABLE `roles`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `services`
+--
+ALTER TABLE `services`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -1068,7 +1137,7 @@ ALTER TABLE `jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT for table `permissions`
@@ -1086,7 +1155,7 @@ ALTER TABLE `permission_role`
 -- AUTO_INCREMENT for table `projects`
 --
 ALTER TABLE `projects`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT for table `project_types`
@@ -1101,10 +1170,16 @@ ALTER TABLE `roles`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
+-- AUTO_INCREMENT for table `services`
+--
+ALTER TABLE `services`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- Constraints for dumped tables
@@ -1146,6 +1221,13 @@ ALTER TABLE `imports`
 ALTER TABLE `permission_role`
   ADD CONSTRAINT `permission_role_permission_id_foreign` FOREIGN KEY (`permission_id`) REFERENCES `permissions` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `permission_role_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `project_assignees`
+--
+ALTER TABLE `project_assignees`
+  ADD CONSTRAINT `project_assignees_project_id_foreign` FOREIGN KEY (`project_id`) REFERENCES `projects` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `project_assignees_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -42,6 +42,15 @@ class Project extends Model
     protected static function booted()
     {
         static::creating(function ($project) {
+            if ($project->service_id) {
+                $service = Service::find($project->service_id);
+                if ($service) {
+                    $project->service_type = $service->type;
+                } else {
+                    $project->service_type = null;
+                }
+            }
+
             do {
                 $orderNumber = 'ODR-' . Str::upper(Str::random(6));
             } while (self::where('order_id', $orderNumber)->exists());
@@ -63,5 +72,7 @@ class Project extends Model
     {
         return $this->belongsTo(Service::class);
     }
+
+//
 
 }
