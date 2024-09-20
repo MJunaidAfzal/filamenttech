@@ -13,6 +13,7 @@ class Design extends Model
 
     protected $fillable = [
         'designer_id',
+        'project_id',
         'title',
         'category',
         'status',
@@ -32,5 +33,10 @@ class Design extends Model
         static::creating(function ($design) {
             $design->designer_id = Auth::user()->id;
         });
+    }
+
+    public function order()
+    {
+        return $this->belongsTo(Order::class);
     }
 }

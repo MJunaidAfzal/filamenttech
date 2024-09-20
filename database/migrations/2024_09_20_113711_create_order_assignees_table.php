@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('projects', function (Blueprint $table) {
-            $table->enum('payment_status', ['pending', 'completed', 'failed', 'refunded'])->default('pending');
-            $table->string('service_id');
-            $table->string('service_type');
+        Schema::create('order_assignees', function (Blueprint $table) {
+            $table->foreignId('order_id')->constrained()->onDelete('cascade');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->primary(['order_id', 'user_id']);
         });
     }
 
@@ -23,8 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('projects', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('order_assignees');
     }
 };

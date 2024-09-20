@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('designs', function (Blueprint $table) {
             $table->id();
             $table->foreignId('designer_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('project_id')->constrained('orders')->onDelete('cascade');
             $table->string('title');
             $table->string('category');
             $table->enum('status', ['In Progress', 'Completed']);

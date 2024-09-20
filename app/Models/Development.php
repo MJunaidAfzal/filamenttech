@@ -12,9 +12,11 @@ class Development extends Model
 
     protected $fillable = [
         'developer_id',
+        'project_id',
         'title',
         'status',
         'version',
+        'file',
         'feedback',
         'deadline',
         'code_repository_url',
@@ -31,5 +33,10 @@ class Development extends Model
         static::creating(function ($design) {
             $design->developer_id = Auth::user()->id;
         });
+    }
+
+    public function order()
+    {
+        return $this->belongsTo(Order::class);
     }
 }

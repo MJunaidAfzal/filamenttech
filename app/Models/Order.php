@@ -4,40 +4,21 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Auth;
 use Str;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
-class Project extends Model
+class Order extends Model
 {
     use HasFactory;
 
-
     protected $fillable = [
-        'order_id',
-        'title',
-        'description',
-        'deadline',
-        'file',
-        'no_of_pages',
-        'status',
-        'price',
         'user_id',
-        'notes',
-        'developer_id',
-        'payment_status',
+        'order_id',
         'service_id',
         'service_type',
+        'notes',
     ];
-
-    public function user()
-    {
-        return $this->belongsTo(User::class, 'user_id');
-    }
-
-    public function projectType()
-    {
-        return $this->belongsTo(ProjectType::class);
-    }
 
     protected static function booted()
     {
@@ -62,10 +43,15 @@ class Project extends Model
 
     public function assignees()
     {
-        return $this->belongsToMany(User::class, 'project_assignees', 'project_id', 'user_id')
+        return $this->belongsToMany(User::class, 'order_assignees', 'order_id', 'user_id')
             ->whereHas('role', function ($query) {
                 $query->where('id', 2);
             });
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 
     public function service()
@@ -73,6 +59,6 @@ class Project extends Model
         return $this->belongsTo(Service::class);
     }
 
-//
+
 
 }
