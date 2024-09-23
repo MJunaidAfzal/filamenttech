@@ -75,11 +75,11 @@ class DevelopmentResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('title')
                     ->searchable(),
-                Tables\Columns\BadgeColumn::make('status')
-                    ->getStateUsing(fn (Development $record) => $record->status)
+                    Tables\Columns\BadgeColumn::make('status')
+                    ->label('Status')
                     ->colors([
-                        'In Progress' => 'success',
-                        'Completed' => 'primary',
+                        'primary' => 'In Progress',
+                        'success' => 'Completed',
                     ]),
                 Tables\Columns\TextColumn::make('version')
                     ->searchable(),

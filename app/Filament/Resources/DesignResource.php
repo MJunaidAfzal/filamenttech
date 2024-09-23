@@ -80,11 +80,11 @@ class DesignResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('category')
                     ->searchable(),
-                Tables\Columns\BadgeColumn::make('status')
-                    ->getStateUsing(fn (Design $record) => $record->status)
+                    Tables\Columns\BadgeColumn::make('status')
+                    ->label('Status')
                     ->colors([
-                        'In Progress' => 'success',
-                        'Completed' => 'primary',
+                        'primary' => 'In Progress',
+                        'success' => 'Completed',
                     ]),
                 Tables\Columns\TextColumn::make('deadline')
                     ->date()

@@ -59,6 +59,14 @@ class Order extends Model
         return $this->belongsTo(Service::class);
     }
 
+    public function design() {
+        return $this->hasOne(Design::class, 'project_id');
+    }
+
+    public function development() {
+        return $this->hasOne(Development::class, 'project_id');
+    }
+
 
 
 }

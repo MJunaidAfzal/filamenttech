@@ -34,7 +34,7 @@ class Design extends Model
             $design->designer_id = Auth::user()->id;
         });
     }
-
+ 
     public function order()
     {
         return $this->belongsTo(Order::class);

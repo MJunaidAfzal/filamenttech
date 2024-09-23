@@ -18,6 +18,8 @@ use App\Models\Service;
 use App\Models\Design;
 use App\Models\Development;
 use Filament\Notifications\Notification;
+use Filament\Forms\Components\RichEditor;
+use Filament\Forms\Components\Textarea;
 use DB;
 
 
@@ -89,10 +91,10 @@ class OrderResource extends Resource
                                         ->required(),
                                     Forms\Components\Select::make('status')
                                         ->label('Design Status')
-                                        ->options([
-                                            '1' => 'In Progress',
-                                            '2' => 'Completed',
-                                        ])
+                                                 ->options([
+                                                    'In Progress' => 'In Progress',
+                                                    'Completed' => 'Completed',
+                                                ])
                                         ->required(),
                                     Forms\Components\DatePicker::make('deadline')
                                         ->label('Design Deadline')
@@ -108,10 +110,10 @@ class OrderResource extends Resource
                                         ->required(),
                                     Forms\Components\Select::make('status')
                                         ->label('Development Status')
-                                        ->options([
-                                            '1' => 'In Progress',
-                                            '2' => 'Completed',
-                                        ])
+                                                 ->options([
+                                                    'In Progress' => 'In Progress',
+                                                    'Completed' => 'Completed',
+                                                ])
                                         ->required(),
                                     Forms\Components\TextInput::make('version')
                                         ->label('Development Version')
@@ -137,8 +139,9 @@ class OrderResource extends Resource
                                 ->label('Order File')
                                 ->required()
                                 ->columnSpanFull(),
-                            Forms\Components\RichEditor::make('notes'),
-                                // ->required(),
+                                Textarea::make('notes')
+                                ->label('Order Notes')
+                                ->required(),
                             Forms\Components\RichEditor::make('description')
                                 ->label('Description'),
                         ])->columns(2),
@@ -154,12 +157,40 @@ class OrderResource extends Resource
                 Tables\Columns\TextColumn::make('user.name')
                 ->label('Project Creator')
                 ->searchable(),
-                    Tables\Columns\TextColumn::make('order_id')
+                Tables\Columns\TextColumn::make('order_id')
+                    ->label('Order Name')
                     ->numeric()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('service.name')
+                    // Tables\Columns\TextColumn::make('title')
+                    // ->label('Title')
+                    // ->formatStateUsing(function ($record) {
+                    //     if ($record->service_id == 1 && $record->design) {
+                    //         return $record->design->title; // Fetch title from Design
+                    //     } elseif ($record->service_id == 2 && $record->development) {
+                    //         return $record->development->title; // Fetch title from Development
+                    //     }
+                    //     return '-'; // Default value if no title is found
+                    // })
+                    // ->searchable(),
+                    // Tables\Columns\BadgeColumn::make('status')
+                    // ->label('Status')
+                    // ->formatStateUsing(function ($record) {
+                    //     if ($record->service_id == 1 && $record->design) {
+                    //         return $record->design->status; // Fetch status from Design
+                    //     } elseif ($record->service_id == 2 && $record->development) {
+                    //         return $record->development->status; // Fetch status from Development
+                    //     }
+                    //     return '-'; // Default value if no status is found
+                    // })
+                    // ->colors([
+                    //     'primary' => 'In Progress',
+                    //     'success' => 'Completed',
+                    // ]),
+
+                Tables\Columns\TextColumn::make('service_id')
                     ->label('Service')
-                    ->searchable(),
+                    ->formatStateUsing(fn ($state) => $state == 1 ? 'Design' : 'Development'),
+
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
