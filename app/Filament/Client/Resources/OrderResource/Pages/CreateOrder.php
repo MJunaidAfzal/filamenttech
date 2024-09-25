@@ -60,7 +60,7 @@ class CreateOrder extends CreateRecord
            ->title('New Order!')
            ->body($name.' create a new order.')
            ->actions([
-               Action::make('View')
+               Action::make('View Order')
                    ->button()
                    ->icon('heroicon-s-folder')
                    ->iconPosition(IconPosition::After)

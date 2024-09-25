@@ -2,6 +2,11 @@
 
 return [
 
+
+//   'providers' => [
+//     // ...
+//     Spatie\Permission\PermissionServiceProvider::class,
+//   ],
     /*
     |--------------------------------------------------------------------------
     | Application Name

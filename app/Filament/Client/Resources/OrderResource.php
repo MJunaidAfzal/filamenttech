@@ -18,11 +18,25 @@ use App\Models\Service;
 use App\Models\Design;
 use App\Models\Development;
 use Filament\Notifications\Notification;
+use Filament\Tables\Actions\Action;
+use App\Filament\Client\Resources\OrderQuotationResource\Pages\CreateOrderQuotation;
+use App\Filament\Client\Resources\OrderQuotationResource\Pages\EditOrderQuotation;
+use App\Filament\Client\Resources\OrderQuotationResource\Pages\ListOrderQuotations;
+use App\Filament\Resources\OrderQuotationResource\Pages\ViewOrderQuotation;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Contracts\Support\Htmlable;
+use Illuminate\Database\Eloquent\Model;
 use DB;
+use App\Models\Permission;
 
 class OrderResource extends Resource
 {
     protected static ?string $model = Order::class;
+
+    public static function getRecordTitle(?Model $record): string|null|Htmlable
+    {
+        return $record->name;
+    }
 
     protected static ?string $navigationGroup = 'Order Management';
 
@@ -168,6 +182,16 @@ class OrderResource extends Resource
                 //
             ])
             ->actions([
+                Action::make('Manage Quotation')
+                ->visible(fn () => Permission::where('name','view-order-quotation')->first())
+                ->label('')
+                ->color('warning')
+                ->icon('heroicon-o-document-text')
+                ->url(
+                    fn (Order $record): string => static::getUrl('order-quotations.index', [
+                        'parent' => $record->id,
+                    ])
+                )->button(),
                 Tables\Actions\ViewAction::make()->button(),
                 Tables\Actions\EditAction::make()->button(),
                 Tables\Actions\DeleteAction::make()->button(),
@@ -182,7 +206,7 @@ class OrderResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+         //
         ];
     }
 
@@ -193,6 +217,11 @@ class OrderResource extends Resource
             'create' => Pages\CreateOrder::route('/create'),
             'edit' => Pages\EditOrder::route('/{record}/edit'),
             'view' => Pages\ViewOrder::route('/{record}/view'),
+
+            'order-quotations.index' => ListOrderQuotations::route('/{parent}/order-quotations'),
+            'order-quotations.create' => CreateOrderQuotation::route('/{parent}/order-quotations/create'),
+            'order-quotations.edit' => EditOrderQuotation::route('/{parent}/order-quotations/{record}/edit'),
+            'order-quotations.view' => ViewOrderQuotation::route('/{parent}/order-quotations/{record}/view'),
         ];
     }
 }

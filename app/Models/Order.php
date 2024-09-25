@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Str;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -67,6 +68,15 @@ class Order extends Model
         return $this->hasOne(Development::class, 'project_id');
     }
 
+    public function quotations(): HasMany
+    {
+        return $this->hasMany(OrderQuotation::class);
+    }
+
+    // public function permissions(): BelongsToMany
+    // {
+    //     return $this->belongsToMany(Permission::class, 'role_has_permissions', 'role_id', 'permission_id');
+    // }
 
 
 }
