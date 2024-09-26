@@ -219,13 +219,13 @@ class OrderResource extends Resource
                 ->visible(fn () => Permission::where('name','create-order-quotation')->first())
                 ->label('Order Quotation')
                 ->color('success')
-                ->icon('heroicon-o-document-text')
+                ->icon('heroicon-s-document-text')
                 ->url(
                     fn (Order $record): string => static::getUrl('order-quotations.index', [
                         'parent' => $record->id,
                     ])
                 )->button(),
-                Tables\Actions\ViewAction::make()->button()->label(""),
+                Tables\Actions\ViewAction::make()->button()->label("")->color('info'),
                 Tables\Actions\EditAction::make()->button()->label(""),
                 Tables\Actions\DeleteAction::make()->button()->label(""),
             ])

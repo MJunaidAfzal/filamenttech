@@ -215,7 +215,7 @@ class OrderResource extends Resource
                 ->visible(fn () => Permission::where('name','create-order-quotation')->first())
                 ->label('Order Quotation')
                 ->color('warning')
-                ->icon('heroicon-o-document-text')
+                ->icon('heroicon-s-document-text')
                 ->url(
                     fn (Order $record): string => static::getUrl('order-quotations.index', [
                         'parent' => $record->id,
