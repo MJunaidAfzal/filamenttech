@@ -17,6 +17,8 @@ use Filament\Tables\Actions\Action;
 use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Order;
+use Filament\Notifications\Notification;
+use Filament\Tables\Actions\DeleteAction;
 
 
 class OrderQuotationResource extends Resource
@@ -149,8 +151,8 @@ class OrderQuotationResource extends Resource
                         'parent' => request()->route('parent'),
                     ])
                 ),
-                // Tables\Actions\DeleteAction::make()->button(),
-            ])
+                // Tables\Actions\DeleteAction::make()->button()
+                ])
             ->bulkActions([
                 Tables\Actions\DeleteBulkAction::make(),
             ]);

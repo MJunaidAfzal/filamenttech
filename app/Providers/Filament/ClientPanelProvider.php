@@ -32,7 +32,7 @@ class ClientPanelProvider extends PanelProvider
             ->path('client')
             ->login()
             ->passwordReset()
-            // ->registration()
+            // ->registerRoute(route('register'))
             ->colors([
                 'primary' => Color::Lime,
             ])
@@ -51,7 +51,7 @@ class ClientPanelProvider extends PanelProvider
                 Pages\Dashboard::class,
             ])
             ->discoverWidgets(in: app_path('Filament/Client/Widgets'), for: 'App\\Filament\\Client\\Widgets')
-            ->widgets([
+            ->widgets([ 
                 Widgets\AccountWidget::class,
                 Widgets\FilamentInfoWidget::class,
             ])
@@ -72,5 +72,6 @@ class ClientPanelProvider extends PanelProvider
             ])
             ->databaseNotifications();
             // ->databaseNotificationsPolling('1s');
+
     }
 }

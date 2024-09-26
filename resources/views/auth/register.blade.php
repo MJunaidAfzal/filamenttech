@@ -193,7 +193,7 @@
 
                                 </div>
                                 <div style="margin-top: 13px;" class="col-md-11">
-                                    <a style="text-decoration: none;color:#99ff01" href="{{ route('login') }}">I have
+                                    <a style="text-decoration: none;color:#99ff01" href="{{ url('client/login') }}">I have
                                         an Already Account</a>
                                 </div>
                                 <div style="margin-top: 13px;" class="col-md-12">

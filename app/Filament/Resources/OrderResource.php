@@ -147,9 +147,8 @@ class OrderResource extends Resource
                                 ->label('Order File')
                                 ->required()
                                 ->columnSpanFull(),
-                                Textarea::make('notes')
-                                ->label('Order Notes')
-                                ->required(),
+                            Forms\Components\RichEditor::make('notes')
+                                ->label('Order Notes'),
                             Forms\Components\RichEditor::make('description')
                                 ->label('Description'),
                         ])->columns(2),
@@ -162,21 +161,51 @@ class OrderResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('user.name')
-                ->label('Project Creator')
-                ->searchable(),
+                // Tables\Columns\TextColumn::make('user.name')
+                // ->label('Project Creator')
+                // ->searchable(),
+
                 Tables\Columns\TextColumn::make('order_id')
                     ->label('Order Name')
                     ->numeric()
                     ->sortable(),
+
+                Tables\Columns\TextColumn::make('title')
+                    ->label('Title')
+                    ->getStateUsing(function ($record) {
+                        if ($record->service_id == 1) {
+                            return $record->design->title ?? '';
+                        } elseif ($record->service_id == 2) {
+                            return $record->development->title ?? '';
+                        }
+                        return '';
+                    }),
+
                 Tables\Columns\TextColumn::make('service_id')
                     ->label('Service')
                     ->formatStateUsing(fn ($state) => $state == 1 ? 'Design' : 'Development'),
+
+                    Tables\Columns\BadgeColumn::make('status')
+                    ->label('Status')
+                    ->colors([
+                        'primary' => 'In Progress',
+                        'success' => 'Completed',
+                    ])
+                    ->getStateUsing(function ($record) {
+                        if ($record->service_id == 1) {
+                            return $record->design->status ?? '';
+                        } elseif ($record->service_id == 2) {
+                            return $record->development->status ?? '';
+                        }
+                        return '';
+                    }),
+
 
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
+
                 Tables\Columns\TextColumn::make('updated_at')
                     ->dateTime()
                     ->sortable()
@@ -188,7 +217,7 @@ class OrderResource extends Resource
             ->actions([
                 Action::make('Manage Quotation')
                 ->visible(fn () => Permission::where('name','create-order-quotation')->first())
-                ->label('')
+                ->label('Order Quotation')
                 ->color('success')
                 ->icon('heroicon-o-document-text')
                 ->url(
@@ -196,9 +225,9 @@ class OrderResource extends Resource
                         'parent' => $record->id,
                     ])
                 )->button(),
-                Tables\Actions\ViewAction::make()->button(),
-                Tables\Actions\EditAction::make()->button(),
-                Tables\Actions\DeleteAction::make()->button(),
+                Tables\Actions\ViewAction::make()->button()->label(""),
+                Tables\Actions\EditAction::make()->button()->label(""),
+                Tables\Actions\DeleteAction::make()->button()->label(""),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

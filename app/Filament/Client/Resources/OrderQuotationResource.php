@@ -18,6 +18,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Filament\Client\Resources\OrderQuotationResource\Pages\CreateOrderQuotation;
 use App\Filament\Client\Resources\OrderQuotationResource\Pages\EditOrderQuotation;
 use App\Filament\Client\Resources\OrderQuotationResource\Pages\ListOrderQuotations;
+use App\Models\Permission;
 // use App\Filament\Client\Resources\OrderQuotationResource\Pages\ViewOrderDelivery;
 use Auth;
 
@@ -95,16 +96,15 @@ class OrderQuotationResource extends Resource
                     Forms\Components\Select::make('approved_by')
                     ->label('Approved Quotation')
                     ->relationship('approver', 'name')
+                    ->disabled()
                     ->nullable(),
 
                     Forms\Components\RichEditor::make('notes')
                         ->label('Notes')
-                        ->disabled()
                         ->nullable(),
 
                         Forms\Components\RichEditor::make('description')
                         ->label('Description')
-                        ->disabled()
                         ->nullable(),
                 ]);
     }

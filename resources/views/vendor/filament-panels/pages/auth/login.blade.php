@@ -46,7 +46,9 @@
 
     <x-filament-panels::form id="form" wire:submit="authenticate">
         {{ $this->form }}
-
+        <a href="{{ route('register') }}" class="text-sm text-primary-600 hover:text-primary-900">
+            Don't have an account? Register here
+        </a>
         <x-filament-panels::form.actions
             :actions="$this->getCachedFormActions()"
             :full-width="$this->hasFullWidthFormActions()"
@@ -55,3 +57,5 @@
 
     {{ \Filament\Support\Facades\FilamentView::renderHook(\Filament\View\PanelsRenderHook::AUTH_LOGIN_FORM_AFTER, scopes: $this->getRenderHookScopes()) }}
 </x-filament-panels::page.simple>
+
+
