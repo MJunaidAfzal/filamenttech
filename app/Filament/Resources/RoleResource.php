@@ -12,6 +12,10 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use App\Models\User;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\Actions\Action;
+
 
 class RoleResource extends Resource
 {
@@ -41,8 +45,19 @@ class RoleResource extends Resource
                 ->relationship('permissions', 'name')
                 ->preload()
                 ->required()
-                ->label('Permissions'),
-        ]);
+                ->label('Permissions')
+//                 ->hintAction(
+//                     Action::make('updateAuthor')
+//                     ->button()
+//                     ->icon('heroicon-s-users')
+//                     ->form([
+//                         Forms\Components\Select::make('user_id')
+//                             ->label('User Name')
+//                             ->options(User::pluck('name', 'id'))
+//                             ->required(),
+//                     ]),
+// )
+            ]);
     }
 
     public static function table(Table $table): Table

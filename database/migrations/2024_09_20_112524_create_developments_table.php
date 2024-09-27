@@ -16,12 +16,11 @@ return new class extends Migration
             $table->foreignId('developer_id')->constrained('users')->onDelete('cascade');
             $table->foreignId('project_id')->constrained('orders')->onDelete('cascade');
             $table->string('title');
-            $table->enum('status', ['In Progress', 'Completed']);
-            $table->string('version');
+            $table->enum('status', ['Pending','In Progress', 'Completed'])->default('Pending');
             $table->string('file');
             $table->string('feedback');
             $table->date('deadline');
-            $table->string('code_repository_url');
+            $table->string('code_repository_url')->nullable();
             $table->text('description');
             $table->timestamps();
         });

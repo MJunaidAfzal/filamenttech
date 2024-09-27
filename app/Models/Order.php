@@ -8,10 +8,15 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Str;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Parallax\FilamentComments\Models\Traits\HasFilamentComments;
 
 class Order extends Model
 {
     use HasFactory;
+
+    use HasFilamentComments;
+
+
 
     protected $fillable = [
         'user_id',
@@ -73,10 +78,15 @@ class Order extends Model
         return $this->hasMany(OrderQuotation::class);
     }
 
+    
+
     // public function permissions(): BelongsToMany
     // {
     //     return $this->belongsToMany(Permission::class, 'role_has_permissions', 'role_id', 'permission_id');
     // }
-
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
 
 }

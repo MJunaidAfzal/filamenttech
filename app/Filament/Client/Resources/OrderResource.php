@@ -28,6 +28,9 @@ use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\Database\Eloquent\Model;
 use DB;
 use App\Models\Permission;
+use Filament\Support\Enums\ActionSize;
+use Parallax\FilamentComments\Tables\Actions\CommentsAction;
+
 
 class OrderResource extends Resource
 {
@@ -91,48 +94,44 @@ class OrderResource extends Resource
                             if ($serviceType === 'design') {
                                 return [
                                     Forms\Components\TextInput::make('title')
-                                        ->label('Design Title')
+                                        ->label('Project Title')
                                         ->required(),
-                                    Forms\Components\TextInput::make('category')
-                                        ->label('Design Category')
+                                    Forms\Components\Select::make('design.category_id')
+                                        ->relationship('design.category', 'name')
+                                        ->label('Project Category')
                                         ->required(),
-                                    Forms\Components\Select::make('status')
-                                        ->label('Design Status')
+                                        Forms\Components\Select::make('status')
+                                        ->label('Status')
+                                        ->default('Pending')
                                         ->options([
-                                            '1' => 'In Progress',
-                                            '2' => 'Completed',
-                                        ])
-                                        ->required(),
+                                            'Pending' => 'Pending',
+                                            'In Progress' => 'In Progress',
+                                            'Completed' => 'Completed',
+                                        ]),
                                     Forms\Components\DatePicker::make('deadline')
-                                        ->label('Design Deadline')
+                                        ->label('Expented Daytime Date')
                                         ->required(),
-                                    Forms\Components\Textarea::make('feedback')
-                                        ->label('Design Feedback')
-                                        ->columnSpanFull(),
                                 ];
                             } elseif ($serviceType === 'development') {
                                 return [
                                     Forms\Components\TextInput::make('title')
-                                        ->label('Development Title')
+                                        ->label('Project Title')
                                         ->required(),
                                     Forms\Components\Select::make('status')
-                                        ->label('Development Status')
+                                        ->label('Status')
+                                        ->default('Pending')
                                         ->options([
-                                            '1' => 'In Progress',
-                                            '2' => 'Completed',
-                                        ])
-                                        ->required(),
-                                    Forms\Components\TextInput::make('version')
-                                        ->label('Development Version')
-                                        ->required(),
+                                            'Pending' => 'Pending',
+                                            'In Progress' => 'In Progress',
+                                            'Completed' => 'Completed',
+                                        ]),
                                     Forms\Components\TextInput::make('code_repository_url')
                                         ->label('Code Repository URL')
-                                        ->required(),
+                                        ->required()
+                                        ->nullable(),
                                     Forms\Components\DatePicker::make('deadline')
-                                        ->label('Development Deadline')
+                                        ->label('Expented Daytime Date')
                                         ->required(),
-                                    Forms\Components\Textarea::make('feedback')
-                                        ->label('Development Feedback'),
                                 ];
                             }
 
@@ -143,13 +142,15 @@ class OrderResource extends Resource
                     Wizard\Step::make('Details')
                         ->schema([
                             Forms\Components\FileUpload::make('file')
-                                ->label('Order File')
+                                ->label('Reference File')
                                 ->required()
                                 ->columnSpanFull(),
-                            Forms\Components\RichEditor::make('notes'),
-                                // ->required(),
                             Forms\Components\RichEditor::make('description')
-                                ->label('Description'),
+                                ->label('Project Description'),
+                            Forms\Components\RichEditor::make('notes')
+                                ->label('Additional Notes'),
+                                // ->required(),
+
                         ])->columns(2),
                 ])->columnSpanFull()
             ]);
@@ -184,11 +185,12 @@ class OrderResource extends Resource
                 ->formatStateUsing(fn ($state) => $state == 1 ? 'Design' : 'Development'),
 
                 Tables\Columns\BadgeColumn::make('status')
-                ->label('Status')
-                ->colors([
-                    'warning' => 'In Progress',
-                    'success' => 'Completed',
-                ])
+                    ->label('Status')
+                    ->colors([
+                        'primary' => 'In Progress',
+                        'success' => 'Completed',
+                        'info' => 'Pending',
+                    ])
                 ->getStateUsing(function ($record) {
                     if ($record->service_id == 1) {
                         return $record->design->status ?? '';
@@ -206,25 +208,55 @@ class OrderResource extends Resource
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
-                ])
+                ])->defaultSort('created_at', 'desc')
             ->filters([
                 //
             ])
-            ->actions([
-                Action::make('Manage Quotation')
-                ->visible(fn () => Permission::where('name','create-order-quotation')->first())
-                ->label('Order Quotation')
-                ->color('warning')
-                ->icon('heroicon-s-document-text')
-                ->url(
-                    fn (Order $record): string => static::getUrl('order-quotations.index', [
-                        'parent' => $record->id,
-                    ])
-                )->button(),
-                Tables\Actions\ViewAction::make()->button()->label(""),
-                Tables\Actions\EditAction::make()->button()->label(""),
-                Tables\Actions\DeleteAction::make()->button()->label(""),
-            ])
+                ->actions([
+                    Action::make('Manage Quotation')
+                    ->outlined()
+                      ->badge(fn (Order $record) => $record->quotations()->count())
+                      ->badgeColor('success')
+                    ->visible(fn () => Permission::where('name','create-order-quotation')->first())
+                    ->label('Order Quotations')
+                    ->size(ActionSize::Small)
+                    ->color('warning')
+                    ->icon('heroicon-s-document-text')
+                    ->url(
+                        fn (Order $record): string => static::getUrl('order-quotations.index', [
+                            'parent' => $record->id,
+                        ])
+                    )->button(),
+                    CommentsAction::make()->button()->color('info')
+                    ->label('')
+                    ->size(ActionSize::Medium),
+                    // Tables\Actions\ActionGroup::make([
+                    //     Tables\Actions\ViewAction::make()
+                    //     ->button()
+                    //     ->color('info')
+                    //     ->size(ActionSize::Small),
+                    // Tables\Actions\EditAction::make()
+                    //     ->button()->color('warning')
+                    //     ->size(ActionSize::Small),
+                    // Tables\Actions\DeleteAction::make()
+                    //     ->button()
+                    //     ->size(ActionSize::Small),
+                    // ])->button()->color('primary')->label('')
+                    Tables\Actions\ViewAction::make()
+                    ->button()
+                    ->color('success')
+                    ->size(ActionSize::Medium)
+                    ->label(''),
+                Tables\Actions\EditAction::make()
+                    ->button()->color('warning')
+                    ->size(ActionSize::Medium)
+                    ->label(''),
+                Tables\Actions\DeleteAction::make()
+                    ->button()
+                    ->size(ActionSize::Medium)
+                    ->label(''),
+
+                ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),

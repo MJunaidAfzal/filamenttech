@@ -27,7 +27,8 @@ use App\Filament\Resources\OrderQuotationResource\Pages\EditOrderQuotation;
 use App\Filament\Resources\OrderQuotationResource\Pages\ListOrderQuotations;
 use App\Filament\Resources\OrderQuotationResource\Pages\ViewOrderQuotation;
 use App\Models\Permission;
-
+use Filament\Support\Enums\ActionSize;
+use Parallax\FilamentComments\Tables\Actions\CommentsAction;
 
 
 
@@ -92,49 +93,45 @@ class OrderResource extends Resource
                             if ($serviceType === 'design') {
                                 return [
                                     Forms\Components\TextInput::make('title')
-                                        ->label('Design Title')
+                                        ->label('Project Title')
                                         ->required(),
-                                    Forms\Components\TextInput::make('category')
-                                        ->label('Design Category')
+                                    Forms\Components\Select::make('design.category_id')
+                                        ->relationship('design.category', 'name')
+                                        ->label('Project Category')
                                         ->required(),
                                     Forms\Components\Select::make('status')
-                                        ->label('Design Status')
-                                                 ->options([
-                                                    'In Progress' => 'In Progress',
-                                                    'Completed' => 'Completed',
-                                                ])
-                                        ->required(),
+                                        ->label('Status')
+                                        ->default('Pending')
+                                        ->options([
+                                            'Pending' => 'Pending',
+                                            'In Progress' => 'In Progress',
+                                            'Completed' => 'Completed',
+                                        ]),
                                     Forms\Components\DatePicker::make('deadline')
-                                        ->label('Design Deadline')
+                                        ->label('Expented Daytime Date')
                                         ->required(),
-                                    Forms\Components\Textarea::make('feedback')
-                                        ->label('Design Feedback')
-                                        ->columnSpanFull(),
                                 ];
                             } elseif ($serviceType === 'development') {
                                 return [
                                     Forms\Components\TextInput::make('title')
-                                        ->label('Development Title')
-                                        ->required(),
-                                    Forms\Components\Select::make('status')
-                                        ->label('Development Status')
-                                                 ->options([
-                                                    'In Progress' => 'In Progress',
-                                                    'Completed' => 'Completed',
-                                                ])
-                                        ->required(),
-                                    Forms\Components\TextInput::make('version')
-                                        ->label('Development Version')
-                                        ->required(),
-                                    Forms\Components\TextInput::make('code_repository_url')
-                                        ->label('Code Repository URL')
-                                        ->required(),
-                                    Forms\Components\DatePicker::make('deadline')
-                                        ->label('Development Deadline')
-                                        ->required(),
-                                    Forms\Components\Textarea::make('feedback')
-                                        ->label('Development Feedback'),
-                                ];
+                                    ->label('Project Title')
+                                    ->required(),
+                                Forms\Components\Select::make('status')
+                                    ->label('Status')
+                                    ->default('Pending')
+                                    ->options([
+                                        'Pending' => 'Pending',
+                                        'In Progress' => 'In Progress',
+                                        'Completed' => 'Completed',
+                                    ]),
+                                Forms\Components\TextInput::make('code_repository_url')
+                                    ->label('Code Repository URL')
+                                    ->required()
+                                    ->nullable(),
+                                Forms\Components\DatePicker::make('deadline')
+                                    ->label('Expented Daytime Date')
+                                    ->required(),
+                            ];
                             }
 
                             return [];
@@ -143,14 +140,15 @@ class OrderResource extends Resource
 
                     Wizard\Step::make('Details')
                         ->schema([
-                            Forms\Components\FileUpload::make('file')
-                                ->label('Order File')
-                                ->required()
-                                ->columnSpanFull(),
-                            Forms\Components\RichEditor::make('notes')
-                                ->label('Order Notes'),
-                            Forms\Components\RichEditor::make('description')
-                                ->label('Description'),
+                        Forms\Components\FileUpload::make('file')
+                            ->label('Reference File')
+                            ->required()
+                            ->columnSpanFull(),
+                        Forms\Components\RichEditor::make('description')
+                            ->label('Project Description'),
+                        Forms\Components\RichEditor::make('notes')
+                            ->label('Additional Notes'),
+                            // ->required(),
                         ])->columns(2),
                 ])->columnSpanFull()
             ]);
@@ -190,6 +188,7 @@ class OrderResource extends Resource
                     ->colors([
                         'primary' => 'In Progress',
                         'success' => 'Completed',
+                        'info' => 'Pending',
                     ])
                     ->getStateUsing(function ($record) {
                         if ($record->service_id == 1) {
@@ -210,14 +209,18 @@ class OrderResource extends Resource
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
-                ])
+                ])->defaultSort('created_at', 'desc')
             ->filters([
                 //
             ])
             ->actions([
                 Action::make('Manage Quotation')
+                ->outlined()
+                  ->badge(fn (Order $record) => $record->quotations()->count())
+                  ->badgeColor('primary')
                 ->visible(fn () => Permission::where('name','create-order-quotation')->first())
-                ->label('Order Quotation')
+                ->label('Order Quotations')
+                ->size(ActionSize::Small)
                 ->color('success')
                 ->icon('heroicon-s-document-text')
                 ->url(
@@ -225,9 +228,22 @@ class OrderResource extends Resource
                         'parent' => $record->id,
                     ])
                 )->button(),
-                Tables\Actions\ViewAction::make()->button()->label("")->color('info'),
-                Tables\Actions\EditAction::make()->button()->label(""),
-                Tables\Actions\DeleteAction::make()->button()->label(""),
+                CommentsAction::make()->button()->color('info')
+                ->label('')
+                ->size(ActionSize::Medium),
+                Tables\Actions\ViewAction::make()
+                    ->button()
+                    ->label("")
+                    ->color('success')
+                    ->size(ActionSize::Medium),
+                Tables\Actions\EditAction::make()
+                    ->button()
+                    ->label("")
+                    ->size(ActionSize::Medium),
+                Tables\Actions\DeleteAction::make()
+                    ->button()
+                    ->label("")
+                    ->size(ActionSize::Medium),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

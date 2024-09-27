@@ -28,10 +28,9 @@ class CreateOrder extends CreateRecord
                 'designer_id' => $order->user_id,
                 'project_id' => $order->id,
                 'title' => $data['title'],
-                'category' => $data['category'],
-                'status' => $data['status'],
+                'category_id' => $data['design']['category_id'],
+                'status' => $data['status'] ?? 'Pending',
                 'file' => $data['file'],
-                'feedback' => $data['feedback'],
                 'deadline' => $data['deadline'],
                 'description' => $data['description'],
             ]);
@@ -40,12 +39,10 @@ class CreateOrder extends CreateRecord
                 'developer_id' => $order->user_id,
                 'project_id' => $order->id,
                 'title' => $data['title'],
-                'status' => $data['status'],
-                'version' => $data['version'],
+                'status' => $data['status'] ?? 'Pending',
                 'file' => $data['file'],
                 'code_repository_url' => $data['code_repository_url'],
                 'deadline' => $data['deadline'],
-                'feedback' => $data['feedback'],
                 'description' => $data['description'],
             ]);
         }
@@ -69,6 +66,12 @@ class CreateOrder extends CreateRecord
                    ->label('View Order'),
            ])
            ->sendToDatabase(User::where('name', 'admin')->first());
+
+
+           Notification::make()
+            ->title('Order Brief has been created we will update you soon.')
+            ->success()
+            ->send();
 
         return $this->previousUrl ?? $this->getResource()::getUrl('index');
     }

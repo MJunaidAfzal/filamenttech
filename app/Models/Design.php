@@ -15,10 +15,9 @@ class Design extends Model
         'designer_id',
         'project_id',
         'title',
-        'category',
+        'category_id',
         'status',
         'file',
-        'feedback',
         'deadline',
         'description',
     ];
@@ -34,9 +33,14 @@ class Design extends Model
             $design->designer_id = Auth::user()->id;
         });
     }
- 
+
     public function order()
     {
         return $this->belongsTo(Order::class);
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
     }
 }

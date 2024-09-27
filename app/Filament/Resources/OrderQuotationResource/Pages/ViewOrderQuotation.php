@@ -7,6 +7,7 @@ use Filament\Actions;
 use Filament\Resources\Pages\ViewRecord;
 use App\Filament\Resources\OrderResource;
 use App\Filament\Traits\HasParentResource;
+use Parallax\FilamentComments\Actions\CommentsAction;
 
 
 class ViewOrderQuotation extends ViewRecord
@@ -20,16 +21,20 @@ class ViewOrderQuotation extends ViewRecord
     protected function getHeaderActions(): array
 {
     return [
-        Actions\EditAction::make()
-            ->label('Edit Order Quotation')
-            ->button()
-            ->url(
-                fn (\App\Models\OrderQuotation $record): string => static::$parentResource::getUrl('order-quotations.edit', [
-                    'record' => $record,
-                    'parent' => request()->route('parent'),
-                ])
-            ),
+        CommentsAction::make()->label('Comments')->color('info'),
+        // Actions\EditAction::make()
+        //     ->visible(fn () => ! request()->routeIs('filament.client.resources.orders.order-quotations.view'))
+        //     ->label('Edit Order Quotation')
+        //     ->button()
+        //     ->url(
+        //         fn (\App\Models\OrderQuotation $record): string => static::$parentResource::getUrl('order-quotations.edit', [
+        //             'record' => $record,
+        //             'parent' => request()->route('parent'),
+        //         ])
+        //     ),
     ];
 }
 
+
 }
+

@@ -7,10 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Auth;
 use Str;
+use Parallax\FilamentComments\Models\Traits\HasFilamentComments;
+
 
 class OrderQuotation extends Model
 {
     use HasFactory;
+
+    use HasFilamentComments;
+
 
     protected $fillable = [
         'quotation_number',

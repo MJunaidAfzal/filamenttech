@@ -36,6 +36,16 @@ class ViewOrder extends ViewRecord
             Section::make('Order Info')
             ->columnSpan(12)
             ->schema([
+                Infolists\Components\TextEntry::make('order_id')
+                ->label('Order Number')
+                ->formatStateUsing(function ($state) {
+                    return new \Illuminate\Support\HtmlString("
+                        <span style='color:orange' class='font-semibold'>
+                           $state
+                        </span>
+                    ");
+                }),
+
                 Infolists\Components\TextEntry::make('user.name')
                 ->label('User Name')
                 ->formatStateUsing(function ($state) {
@@ -63,16 +73,6 @@ class ViewOrder extends ViewRecord
                         </span>
                     ");
                 }),
-
-                Infolists\Components\TextEntry::make('notes')
-                ->label('Order Notes')
-                ->formatStateUsing(function ($state) {
-                    return new \Illuminate\Support\HtmlString("
-                        <span style='color:orange' class='font-semibold'>
-                            $state
-                        </span>
-                    ");
-                }),
             ])->columns(2),
 
             Section::make('Service Details')
@@ -80,53 +80,44 @@ class ViewOrder extends ViewRecord
                 ->schema(
                     $serviceType === 'design' ? [
                         Infolists\Components\TextEntry::make('design.title')
-                            ->label('Design Title')
-                            ->formatStateUsing(function ($state) {
-                    return new \Illuminate\Support\HtmlString("
-                        <span style='color:orange' class='font-semibold'>
-                            $state
-                        </span>
-                    ");
-                }),
-                            Infolists\Components\TextEntry::make('design.category')
-                            ->label('Design Category')
-                            ->formatStateUsing(function ($state) {
-                                return new \Illuminate\Support\HtmlString("
-                                    <span style='color:orange' class='font-semibold'>
-                                        $state
-                                    </span>
-                                ");
-                            }),
-                            Infolists\Components\TextEntry::make('design.status')
-                            ->label('Design Status')
-                            ->formatStateUsing(function ($state) {
-                                return new \Illuminate\Support\HtmlString("
-                                    <span style='color:orange' class='font-semibold'>
-                                        $state
-                                    </span>
-                                ");
-                            }),
-                            Infolists\Components\TextEntry::make('design.deadline')
-                            ->label('Design Deadline')
-                            ->formatStateUsing(function ($state) {
-                    return new \Illuminate\Support\HtmlString("
-                        <span style='color:orange' class='font-semibold'>
-                            $state
-                        </span>
-                    ");
-                }),
-                            Infolists\Components\TextEntry::make('design.feedback')
-                            ->label('Design Feedback')
-                            ->formatStateUsing(function ($state) {
-                                return new \Illuminate\Support\HtmlString("
-                                    <span style='color:orange' class='font-semibold'>
-                                        $state
-                                    </span>
-                                ");
-                            }),
+                        ->label('Project Title')
+                        ->formatStateUsing(function ($state) {
+                return new \Illuminate\Support\HtmlString("
+                    <span style='color:orange' class='font-semibold'>
+                        $state
+                    </span>
+                ");
+            }),
+                        Infolists\Components\TextEntry::make('design.category.name')
+                        ->label('Project Category')
+                        ->formatStateUsing(function ($state) {
+                            return new \Illuminate\Support\HtmlString("
+                                <span style='color:orange' class='font-semibold'>
+                                    $state
+                                </span>
+                            ");
+                        }),
+                        Infolists\Components\TextEntry::make('design.status')
+                        ->label('Status')
+                        ->formatStateUsing(function ($state) {
+                            return new \Illuminate\Support\HtmlString("
+                                <span style='color:orange' class='font-semibold'>
+                                    $state
+                                </span>
+                            ");
+                        }),
+                        Infolists\Components\TextEntry::make('design.deadline')
+                        ->label('Expented Daytime Date')
+                        ->formatStateUsing(function ($state) {
+                return new \Illuminate\Support\HtmlString("
+                    <span style='color:orange' class='font-semibold'>
+                        $state
+                    </span>
+                ");
+            }),
                     ] : [
                         Infolists\Components\TextEntry::make('development.title')
-                            ->label('Development Title')
+                            ->label('Project Title')
                             ->formatStateUsing(function ($state) {
                                 return new \Illuminate\Support\HtmlString("
                                     <span style='color:orange' class='font-semibold'>
@@ -135,7 +126,7 @@ class ViewOrder extends ViewRecord
                                 ");
                             }),
                             Infolists\Components\TextEntry::make('development.status')
-                            ->label('Development Status')
+                            ->label('Status')
                             ->formatStateUsing(function ($state) {
                                 return new \Illuminate\Support\HtmlString("
                                     <span style='color:orange' class='font-semibold'>
@@ -143,15 +134,7 @@ class ViewOrder extends ViewRecord
                                     </span>
                                 ");
                             }),
-                            Infolists\Components\TextEntry::make('development.version')
-                            ->label('Development Version')
-                            ->formatStateUsing(function ($state) {
-                                return new \Illuminate\Support\HtmlString("
-                                    <span style='color:orange' class='font-semibold'>
-                                        $state
-                                    </span>
-                                ");
-                            }),
+
                             Infolists\Components\TextEntry::make('development.code_repository_url')
                             ->label('Code Repository URL')
                             ->formatStateUsing(function ($state) {
@@ -162,16 +145,7 @@ class ViewOrder extends ViewRecord
                                 ");
                             }),
                             Infolists\Components\TextEntry::make('development.deadline')
-                            ->label('Development Deadline')
-                            ->formatStateUsing(function ($state) {
-                                return new \Illuminate\Support\HtmlString("
-                                    <span style='color:orange' class='font-semibold'>
-                                        $state
-                                    </span>
-                                ");
-                            }),
-                            Infolists\Components\TextEntry::make('development.feedback')
-                            ->label('Development Feedback')
+                            ->label('Expented Daytime Date')
                             ->formatStateUsing(function ($state) {
                                 return new \Illuminate\Support\HtmlString("
                                     <span style='color:orange' class='font-semibold'>
@@ -198,7 +172,7 @@ class ViewOrder extends ViewRecord
                                 </a>
                             ");
                         })
-                        ->hiddenLabel(),
+                       ->label('Reference File'),
                             Infolists\Components\TextEntry::make('design.description')
                             ->formatStateUsing(function ($state) {
                                 return new \Illuminate\Support\HtmlString("
@@ -206,7 +180,7 @@ class ViewOrder extends ViewRecord
                                         $state
                                     </span>
                                 ");
-                            })->label('Order Description'),
+                            })->label('Project Description'),
                     ] : [
                         TextEntry::make('development.file')
                         ->formatStateUsing(function ($state) {
@@ -219,7 +193,7 @@ class ViewOrder extends ViewRecord
                                 </a>
                             ");
                         })
-                        ->hiddenLabel(),
+                       ->label('Reference File'),
                             Infolists\Components\TextEntry::make('development.description')
                             ->formatStateUsing(function ($state) {
                                 return new \Illuminate\Support\HtmlString("
@@ -227,11 +201,25 @@ class ViewOrder extends ViewRecord
                                         $state
                                     </span>
                                 ");
-                            })->label('Order Description'),
+                            })->label('Project Description'),
                     ],
 
                 )->columns(2),
+                Section::make('Order Notes')
+                ->columnSpan(12)
+                ->schema([
+                    Infolists\Components\TextEntry::make('notes')
+                    ->label('Additional Notes')
+                    ->formatStateUsing(function ($state) {
+                        return new \Illuminate\Support\HtmlString("
+                            <span style='color:orange' class='font-semibold'>
+                                $state
+                            </span>
+                        ");
+                    }),
+                ])->columns(1),
         ]);
+
 }
 
 }
