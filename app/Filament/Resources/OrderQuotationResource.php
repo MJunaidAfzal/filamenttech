@@ -19,7 +19,6 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Order;
 use Filament\Notifications\Notification;
 use Filament\Tables\Actions\DeleteAction;
-use Parallax\FilamentComments\Tables\Actions\CommentsAction;
 use Filament\Support\Enums\ActionSize;
 
 
@@ -142,8 +141,7 @@ class OrderQuotationResource extends Resource
                     ]),
             ])
             ->actions([
-                CommentsAction::make()->button()->color('info')
-                ->size(ActionSize::Small),
+
                 Tables\Actions\ViewAction::make()->url(
                     fn (Model $record): string => static::$parentResource::getUrl('order-quotations.view', [
                         'record' => $record,

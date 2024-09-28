@@ -29,7 +29,6 @@ use Illuminate\Database\Eloquent\Model;
 use DB;
 use App\Models\Permission;
 use Filament\Support\Enums\ActionSize;
-use Parallax\FilamentComments\Tables\Actions\CommentsAction;
 
 
 class OrderResource extends Resource
@@ -227,9 +226,7 @@ class OrderResource extends Resource
                             'parent' => $record->id,
                         ])
                     )->button(),
-                    CommentsAction::make()->button()->color('info')
-                    ->label('')
-                    ->size(ActionSize::Medium),
+
                     // Tables\Actions\ActionGroup::make([
                     //     Tables\Actions\ViewAction::make()
                     //     ->button()
@@ -244,7 +241,7 @@ class OrderResource extends Resource
                     // ])->button()->color('primary')->label('')
                     Tables\Actions\ViewAction::make()
                     ->button()
-                    ->color('success')
+                    ->color('info')
                     ->size(ActionSize::Medium)
                     ->label(''),
                 Tables\Actions\EditAction::make()

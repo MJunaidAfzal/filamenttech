@@ -19,17 +19,30 @@ use Filament\Forms\Components\Select;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\RichEditor;
 use Auth;
+use Parallax\FilamentComments\Actions\CommentsAction;
+
 
 class ViewOrder extends ViewRecord
 {
     protected static string $resource = OrderResource::class;
+
+
+    protected function getHeaderActions(): array
+    {
+        return [
+            CommentsAction::make()->label('Comments')->color('info'),
+        ];
+    }
 
     public function infolist(Infolist $infolist): Infolist
     {
 
     $order = static::getModel()::find(request()->route('record'));
 
-    $serviceType = $order->service_id == 1 ? 'design' : 'development';
+    $serviceType = null;
+    if ($order) {
+        $serviceType = $order->service_id == 1 ? 'design' : 'development';
+    }
 
     return $infolist
         ->schema([

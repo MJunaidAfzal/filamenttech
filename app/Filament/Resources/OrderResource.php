@@ -28,7 +28,6 @@ use App\Filament\Resources\OrderQuotationResource\Pages\ListOrderQuotations;
 use App\Filament\Resources\OrderQuotationResource\Pages\ViewOrderQuotation;
 use App\Models\Permission;
 use Filament\Support\Enums\ActionSize;
-use Parallax\FilamentComments\Tables\Actions\CommentsAction;
 
 
 
@@ -228,13 +227,10 @@ class OrderResource extends Resource
                         'parent' => $record->id,
                     ])
                 )->button(),
-                CommentsAction::make()->button()->color('info')
-                ->label('')
-                ->size(ActionSize::Medium),
                 Tables\Actions\ViewAction::make()
                     ->button()
                     ->label("")
-                    ->color('success')
+                    ->color('info')
                     ->size(ActionSize::Medium),
                 Tables\Actions\EditAction::make()
                     ->button()
