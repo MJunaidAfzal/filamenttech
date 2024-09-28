@@ -14,12 +14,12 @@ class EditOrder extends EditRecord
 {
     protected static string $resource = OrderResource::class;
 
-    protected function getHeaderActions(): array
-    {
-        return [
-            Actions\DeleteAction::make(),
-        ];
-    }
+    // protected function getHeaderActions(): array
+    // {
+    //     return [
+    //         Actions\DeleteAction::make(),
+    //     ];
+    // }
 
     public function mount(string|int $record): void
     {
@@ -32,10 +32,9 @@ class EditOrder extends EditRecord
             if ($design) {
                 $this->form->fill([
                     'title' => $design->title,
-                    'category' => $design->category,
+                    'category_id' => $design->category->name,
                     'status' => $design->status,
                     'file' => $design->file,
-                    'feedback' => $design->feedback,
                     'deadline' => $design->deadline,
                     'description' => $design->description,
                     'service_type' => 'design',
@@ -47,9 +46,7 @@ class EditOrder extends EditRecord
                 $this->form->fill([
                     'title' => $development->title,
                     'status' => $development->status,
-                    'version' => $development->version,
                     'code_repository_url' => $development->code_repository_url,
-                    'feedback' => $development->feedback,
                     'deadline' => $development->deadline,
                     'file' => $development->file,
                     'description' => $development->description,
@@ -67,10 +64,9 @@ class EditOrder extends EditRecord
             if ($design) {
                 $design->update([
                     'title' => $data['title'],
-                    'category' => $data['category'],
+                    'category_id' => $data['design']['category_id'],
                     'status' => $data['status'],
                     'file' => $data['file'],
-                    'feedback' => $data['feedback'],
                     'deadline' => $data['deadline'],
                     'description' => $data['description'],
                 ]);
@@ -81,9 +77,7 @@ class EditOrder extends EditRecord
                 $development->update([
                     'title' => $data['title'],
                     'status' => $data['status'],
-                    'version' => $data['version'],
                     'code_repository_url' => $data['code_repository_url'],
-                    'feedback' => $data['feedback'],
                     'deadline' => $data['deadline'],
                     'description' => $data['description'],
                 ]);

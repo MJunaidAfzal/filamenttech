@@ -23,6 +23,8 @@ use Filament\Support\Enums\IconPosition;
 // use App\Filament\Client\Resources\OrderQuotationResource\Pages\ViewOrderDelivery;
 use Filament\Support\Enums\ActionSize;
 use Parallax\FilamentComments\Tables\Actions\CommentsAction;
+use Stripe\Stripe;
+use Stripe\Checkout\Session;
 use Auth;
 
 class OrderQuotationResource extends Resource
@@ -36,7 +38,14 @@ class OrderQuotationResource extends Resource
 
     protected static ?string $model = OrderQuotation::class;
 
+    public static function getEloquentQuery(): Builder
+    {
+        $parentId = request()->route('parent');
 
+        return parent::getEloquentQuery()
+            ->where('approved_by', auth()->user()->id)
+            ->where('order_id', $parentId);
+    }
 
     protected static ?string $navigationIcon = 'heroicon-o-document-text';
 
@@ -154,7 +163,7 @@ class OrderQuotationResource extends Resource
                     ])
                 )->button()->color('primary'),
 
-                Tables\Actions\Action::make('Start Order')->button()->color('warning')->icon('heroicon-s-arrow-right-start-on-rectangle')->iconPosition(IconPosition::After)
+                // Tables\Actions\Action::make('Start Order')->button()->color('warning')->icon('heroicon-s-arrow-right-start-on-rectangle')->iconPosition(IconPosition::After)
                 // Tables\Actions\EditAction::make()->button()
                 // ->url(
                 //     fn (Model $record): string => static::$parentResource::getUrl('order-quotations.edit', [
@@ -162,7 +171,8 @@ class OrderQuotationResource extends Resource
                 //         'parent' => request()->route('parent'),
                 //     ])
                 // ),
-               
+
+
             ])
             ->bulkActions([
                 Tables\Actions\DeleteBulkAction::make(),
@@ -182,12 +192,5 @@ class OrderQuotationResource extends Resource
             'create' => CreateOrderQuotation::route('/create'),
             'edit' => EditOrderQuotation::route('/{record}/edit'),
         ];
-    }
-
-    public static function getEloquentQuery(): \Illuminate\Database\Eloquent\Builder
-    {
-        $parentId = request()->route('parent');
-
-        return parent::getEloquentQuery()->where('order_id', $parentId);
     }
 }

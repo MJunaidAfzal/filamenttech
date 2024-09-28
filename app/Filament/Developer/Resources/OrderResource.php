@@ -4,6 +4,10 @@ namespace App\Filament\Developer\Resources;
 
 use App\Filament\Developer\Resources\OrderResource\Pages;
 use App\Filament\Developer\Resources\OrderResource\RelationManagers;
+use App\Filament\Developer\Resources\OrderDeliveryResource\Pages\CreateOrderDelivery;
+use App\Filament\Developer\Resources\OrderDeliveryResource\Pages\EditOrderDelivery;
+use App\Filament\Developer\Resources\OrderDeliveryResource\Pages\ListOrderDeliveries;
+use App\Filament\Developer\Resources\OrderDeliveryResource\Pages\ViewOrderDelivery;
 use App\Models\Order;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -18,11 +22,22 @@ use App\Models\Service;
 use App\Models\Design;
 use App\Models\Development;
 use Filament\Notifications\Notification;
+use Illuminate\Contracts\Support\Htmlable;
+use Illuminate\Database\Eloquent\Model;
 use DB;
+use App\Models\Permission;
+use Filament\Tables\Actions\Action;
+
+
 
 class OrderResource extends Resource
 {
     protected static ?string $model = Order::class;
+
+    public static function getRecordTitle(?Model $record): string|null|Htmlable
+    {
+        return $record->order_id;
+    }
 
     protected static ?string $navigationGroup = 'Order Management';
 
@@ -90,49 +105,44 @@ class OrderResource extends Resource
                             if ($serviceType === 'design') {
                                 return [
                                     Forms\Components\TextInput::make('title')
-                                        ->label('Design Title')
-                                        ->disabled()
-                                        ->required(),
-                                    Forms\Components\TextInput::make('category')
-                                        ->label('Design Category')
-                                        ->required(),
-                                    Forms\Components\Select::make('status')
-                                        ->label('Design Status')
-                                        ->options([
-                                            '1' => 'In Progress',
-                                            '2' => 'Completed',
-                                        ])
-                                        ->required(),
-                                    Forms\Components\DatePicker::make('deadline')
-                                        ->label('Design Deadline')
-                                        ->required(),
-                                    Forms\Components\Textarea::make('feedback')
-                                        ->label('Design Feedback')
-                                        ->columnSpanFull(),
+                                    ->label('Project Title')
+                                    ->required(),
+                                Forms\Components\Select::make('design.category_id')
+                                    ->relationship('design.category', 'name')
+                                    ->label('Project Category')
+                                    ->required(),
+                                Forms\Components\Select::make('status')
+                                    ->label('Status')
+                                    ->default('Pending')
+                                    ->options([
+                                        'Pending' => 'Pending',
+                                        'In Progress' => 'In Progress',
+                                        'Completed' => 'Completed',
+                                    ]),
+                                Forms\Components\DatePicker::make('deadline')
+                                    ->label('Expented Daytime Date')
+                                    ->required(),
                                 ];
                             } elseif ($serviceType === 'development') {
                                 return [
                                     Forms\Components\TextInput::make('title')
-                                        ->label('Development Title')
-                                        ->required(),
-                                    Forms\Components\Select::make('status')
-                                        ->label('Development Status')
-                                        ->options([
-                                            '1' => 'In Progress',
-                                            '2' => 'Completed',
-                                        ])
-                                        ->required(),
-                                    Forms\Components\TextInput::make('version')
-                                        ->label('Development Version')
-                                        ->required(),
-                                    Forms\Components\TextInput::make('code_repository_url')
-                                        ->label('Code Repository URL')
-                                        ->required(),
-                                    Forms\Components\DatePicker::make('deadline')
-                                        ->label('Development Deadline')
-                                        ->required(),
-                                    Forms\Components\Textarea::make('feedback')
-                                        ->label('Development Feedback'),
+                                    ->label('Project Title')
+                                    ->required(),
+                                Forms\Components\Select::make('status')
+                                    ->label('Status')
+                                    ->default('Pending')
+                                    ->options([
+                                        'Pending' => 'Pending',
+                                        'In Progress' => 'In Progress',
+                                        'Completed' => 'Completed',
+                                    ]),
+                                Forms\Components\TextInput::make('code_repository_url')
+                                    ->label('Code Repository URL')
+                                    ->required()
+                                    ->nullable(),
+                                Forms\Components\DatePicker::make('deadline')
+                                    ->label('Expented Daytime Date')
+                                    ->required(),
                                 ];
                             }
 
@@ -142,14 +152,15 @@ class OrderResource extends Resource
 
                     Wizard\Step::make('Details')
                         ->schema([
-                            Forms\Components\FileUpload::make('file')
-                                ->label('Order File')
-                                ->required()
-                                ->columnSpanFull(),
-                            Forms\Components\RichEditor::make('notes'),
-                                // ->required(),
-                            Forms\Components\RichEditor::make('description')
-                                ->label('Description'),
+                        Forms\Components\FileUpload::make('file')
+                            ->label('Reference File')
+                            ->required()
+                            ->columnSpanFull(),
+                        Forms\Components\RichEditor::make('description')
+                            ->label('Project Description'),
+                        Forms\Components\RichEditor::make('notes')
+                            ->label('Additional Notes'),
+                            // ->required(),
                         ])->columns(2),
                 ])->columnSpanFull()
             ]);
@@ -160,30 +171,70 @@ class OrderResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('user.name')
-                ->label('Project Creator')
-                ->searchable(),
-                    Tables\Columns\TextColumn::make('order_id')
+                Tables\Columns\TextColumn::make('order_id')
+                    ->label('Order Name')
                     ->numeric()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('service.name')
+
+                Tables\Columns\TextColumn::make('title')
+                    ->label('Title')
+                    ->getStateUsing(function ($record) {
+                        if ($record->service_id == 1) {
+                            return $record->design->title ?? '';
+                        } elseif ($record->service_id == 2) {
+                            return $record->development->title ?? '';
+                        }
+                        return '';
+                    }),
+
+                Tables\Columns\TextColumn::make('service_id')
                     ->label('Service')
-                    ->searchable(),
+                    ->formatStateUsing(fn ($state) => $state == 1 ? 'Design' : 'Development'),
+
+                    Tables\Columns\BadgeColumn::make('status')
+                    ->label('Status')
+                    ->colors([
+                        'warning' => 'In Progress',
+                        'success' => 'Completed',
+                        'primary' => 'Pending',
+                    ])
+                    ->getStateUsing(function ($record) {
+                        if ($record->service_id == 1) {
+                            return $record->design->status ?? '';
+                        } elseif ($record->service_id == 2) {
+                            return $record->development->status ?? '';
+                        }
+                        return '';
+                    }),
+
+
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
+
                 Tables\Columns\TextColumn::make('updated_at')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
-                ])
+                ])->defaultSort('created_at', 'desc')
             ->filters([
                 //
             ])
             ->actions([
-                Tables\Actions\ViewAction::make()->button(),
-                Tables\Actions\EditAction::make()->button(),
+                Action::make('Manage Delivery')
+                ->visible(fn () => Permission::where('name','manage-order-deliveries')->first())
+                    ->label('')
+                    ->color('success')
+                    ->icon('heroicon-o-archive-box-arrow-down')
+                    ->url(
+                        fn (Order $record): string => static::getUrl('order-deliveries.index', [
+                            'parent' => $record->id,
+                        ])
+                    )->button(),
+                Tables\Actions\ViewAction::make()->button()->color('info'),
+                Tables\Actions\EditAction::make()->button()->color('warning')
+                ->visible(fn () => Permission::where('name','edit_project')->first()),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -206,6 +257,13 @@ class OrderResource extends Resource
             'create' => Pages\CreateOrder::route('/create'),
             'edit' => Pages\EditOrder::route('/{record}/edit'),
             'view' => Pages\ViewOrder::route('/{record}/view'),
+
+
+
+            'order-deliveries.index' => ListOrderDeliveries::route('/{parent}/order-deliveries'),
+            'order-deliveries.create' => CreateOrderDelivery::route('/{parent}/order-deliveries/create'),
+            'order-deliveries.edit' => EditOrderDelivery::route('/{parent}/order-deliveries/{record}/edit'),
+            'order-deliveries.view' => ViewOrderDelivery::route('/{parent}/order-deliveries/{record}'),
         ];
     }
 

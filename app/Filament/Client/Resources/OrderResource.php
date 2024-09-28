@@ -214,7 +214,7 @@ class OrderResource extends Resource
                 ->actions([
                     Action::make('Manage Quotation')
                     ->outlined()
-                      ->badge(fn (Order $record) => $record->quotations()->count())
+                      ->badge(fn (Order $record) => $record->quotations()->where('approved_by',auth()->user()->id)->count())
                       ->badgeColor('success')
                     ->visible(fn () => Permission::where('name','create-order-quotation')->first())
                     ->label('Order Quotations')

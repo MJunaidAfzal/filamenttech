@@ -90,4 +90,17 @@ public function isSupport()
 {
     return $this->belongsToMany(Project::class, 'project_assignees', 'user_id', 'project_id');
 }
+
+
+public function hasPermission($permissionName)
+{
+    // Assuming there's a many-to-many relationship between users and permissions
+    return $this->permissions()->where('name', $permissionName)->exists();
+}
+
+public function permissions()
+{
+    // Define the relationship with the Permission model
+    return $this->belongsToMany(Permission::class);
+}   
 }
