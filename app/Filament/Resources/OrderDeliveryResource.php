@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Filament\Developer\Resources;
+namespace App\Filament\Resources;
 
-use App\Filament\Developer\Resources\OrderDeliveryResource\Pages;
-use App\Filament\Developer\Resources\OrderDeliveryResource\RelationManagers;
+use App\Filament\Resources\OrderDeliveryResource\Pages;
+use App\Filament\Resources\OrderDeliveryResource\RelationManagers;
 use App\Models\OrderDelivery;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Config;
 use App\Models\Order;
 use ZipArchive;
 use Illuminate\Support\Facades\Storage;
-use App\Filament\Developer\Resources\OrderResource;
+use App\Filament\Resources\OrderResource;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Grid;
 use Filament\Forms\Components\Select;
@@ -27,14 +27,14 @@ use Filament\Forms\Components\Select;
 class OrderDeliveryResource extends Resource
 {
 
+    protected static ?string $model = OrderDelivery::class;
+
     public static string $parentResource = OrderResource::class;
 
     public static function getRecordTitle(?Model $record): string|null|Htmlable
     {
         return $record->order->order_id;
     }
-
-    protected static ?string $model = OrderDelivery::class;
 
     protected static bool $shouldRegisterNavigation = false;
 
@@ -120,7 +120,7 @@ class OrderDeliveryResource extends Resource
                                                 return response()->download($zipFilePath)->deleteFileAfterSend(true);
                                             })
                                             ->icon('heroicon-o-arrow-down-tray')
-                                            ->visible(fn () => !request()->routeIs('filament.developer.resources.orders.order-deliveries.create'))
+                                            ->visible(fn () => !request()->routeIs('filament.admin.resources.orders.order-deliveries.create'))
                                         ),
 
                             ])->columnSpan(1),
@@ -163,9 +163,13 @@ class OrderDeliveryResource extends Resource
                     fn (Model $record): string => static::$parentResource::getUrl('order-deliveries.view', [
                         'record' => $record,
                         'parent' => request()->route('parent'),
-                    ])
-                )->button()->color('success'),
+                        ])
+                       
+                )
+                ->visible(fn () => auth()->user()->hasPermissionTo('view-order-deliveries'))
+                ->button()->color('success'),
                 Tables\Actions\EditAction::make()->button()->color('warning')
+                ->visible(fn () => auth()->user()->hasPermissionTo('edit-order-deliveries'))
                 ->url(
                     fn (Model $record): string => static::$parentResource::getUrl('order-deliveries.edit', [
                         'record' => $record,

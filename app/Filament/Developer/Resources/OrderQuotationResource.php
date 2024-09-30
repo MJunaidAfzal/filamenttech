@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Filament\Client\Resources;
+namespace App\Filament\Developer\Resources;
 
-use App\Filament\Client\Resources\OrderQuotationResource\Pages;
-use App\Filament\Client\Resources\OrderQuotationResource\RelationManagers;
+use App\Filament\Developer\Resources\OrderQuotationResource\Pages;
+use App\Filament\Developer\Resources\OrderQuotationResource\RelationManagers;
 use App\Models\OrderQuotation;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -12,15 +12,15 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
-use App\Filament\Client\Resources\OrderResource;
+use App\Filament\Developer\Resources\OrderResource;
 use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\Database\Eloquent\Model;
-use App\Filament\Client\Resources\OrderQuotationResource\Pages\CreateOrderQuotation;
-use App\Filament\Client\Resources\OrderQuotationResource\Pages\EditOrderQuotation;
-use App\Filament\Client\Resources\OrderQuotationResource\Pages\ListOrderQuotations;
+use App\Filament\Developer\Resources\OrderQuotationResource\Pages\CreateOrderQuotation;
+use App\Filament\Developer\Resources\OrderQuotationResource\Pages\EditOrderQuotation;
+use App\Filament\Developer\Resources\OrderQuotationResource\Pages\ListOrderQuotations;
 use App\Models\Permission;
 use Filament\Support\Enums\IconPosition;
-// use App\Filament\Client\Resources\OrderQuotationResource\Pages\ViewOrderDelivery;
+// use App\Filament\Developer\Resources\OrderQuotationResource\Pages\ViewOrderDelivery;
 use Filament\Support\Enums\ActionSize;
 use Parallax\FilamentComments\Tables\Actions\CommentsAction;
 use Stripe\Stripe;
@@ -43,7 +43,6 @@ class OrderQuotationResource extends Resource
         $parentId = request()->route('parent');
 
         return parent::getEloquentQuery()
-            ->where('approved_by', auth()->user()->id)
             ->where('order_id', $parentId);
     }
 
@@ -79,14 +78,12 @@ class OrderQuotationResource extends Resource
                 Forms\Components\TextInput::make('estimated_cost')
                     ->label('Estimated Cost')
                     ->numeric()
-                    ->disabled()
                     ->required(),
 
 
 
                 Forms\Components\DatePicker::make('deadline')
                     ->label('Deadline')
-                    ->disabled()
                     ->nullable(),
 
                 Forms\Components\Select::make('status')
@@ -103,8 +100,7 @@ class OrderQuotationResource extends Resource
                     Forms\Components\Select::make('approved_by')
                     ->label('Approved Quotation')
                     ->relationship('approver', 'name')
-                    ->visible(fn () => auth()->user()->hasPermissionTo('can-approve-quotation'))
-                    ->disabled()
+                    // ->visible(fn () => auth()->user()->hasPermissionTo('can-approve-quotation'))
                     ->nullable(),
 
                     Forms\Components\RichEditor::make('notes')
@@ -153,7 +149,7 @@ class OrderQuotationResource extends Resource
             ])
             ->actions([
                 Tables\Actions\ViewAction::make()
-                ->visible(fn () => auth()->user()->hasPermissionTo('view-order-quotation'))
+                // ->visible(fn () => auth()->user()->hasPermissionTo('view-order-quotation'))
                 ->url(
                     fn (Model $record): string => static::$parentResource::getUrl('order-quotations.view', [
                         'record' => $record,
@@ -162,7 +158,7 @@ class OrderQuotationResource extends Resource
                 )->button()->color('primary'),
 
                 Tables\Actions\EditAction::make()->button()->color('warning')
-                ->visible(fn () => auth()->user()->hasPermissionTo('edit-order-quotation'))
+                // ->visible(fn () => auth()->user()->hasPermissionTo('edit-order-quotation'))
                 ->url(
                     fn (Model $record): string => static::$parentResource::getUrl('order-quotations.edit', [
                         'record' => $record,
@@ -183,12 +179,12 @@ class OrderQuotationResource extends Resource
     }
 
 
-    public static function getPages(): array
-    {
-        return [
-            'index' => ListOrderQuotations::route('/'),
-            'create' => CreateOrderQuotation::route('/create'),
-            'edit' => EditOrderQuotation::route('/{record}/edit'),
-        ];
-    }
+    // public static function getPages(): array
+    // {
+    //     return [
+    //         'index' => ListOrderQuotations::route('/'),
+    //         'create' => CreateOrderQuotation::route('/create'),
+    //         'edit' => EditOrderQuotation::route('/{record}/edit'),
+    //     ];
+    // }
 }

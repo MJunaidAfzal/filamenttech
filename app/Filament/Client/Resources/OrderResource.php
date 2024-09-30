@@ -23,6 +23,10 @@ use App\Filament\Client\Resources\OrderQuotationResource\Pages\CreateOrderQuotat
 use App\Filament\Client\Resources\OrderQuotationResource\Pages\EditOrderQuotation;
 use App\Filament\Client\Resources\OrderQuotationResource\Pages\ListOrderQuotations;
 use App\Filament\Resources\OrderQuotationResource\Pages\ViewOrderQuotation;
+use App\Filament\Client\Resources\OrderDeliveryResource\Pages\CreateOrderDelivery;
+use App\Filament\Client\Resources\OrderDeliveryResource\Pages\EditOrderDelivery;
+use App\Filament\Client\Resources\OrderDeliveryResource\Pages\ListOrderDeliveries;
+use App\Filament\Client\Resources\OrderDeliveryResource\Pages\ViewOrderDelivery;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\Database\Eloquent\Model;
@@ -37,7 +41,7 @@ class OrderResource extends Resource
 
     public static function getRecordTitle(?Model $record): string|null|Htmlable
     {
-        return $record->name;
+        return $record->order_id;
     }
 
     protected static ?string $navigationGroup = 'Order Management';
@@ -47,6 +51,11 @@ class OrderResource extends Resource
     public static function getEloquentQuery(): Builder
     {
         return parent::getEloquentQuery()->where('user_id', auth()->user()->id);
+    }
+
+    public static function shouldRegisterNavigation(): bool
+    {
+        return auth()->check() && auth()->user()->hasPermissionTo('order-all');
     }
 
     public static function form(Form $form): Form
@@ -84,6 +93,11 @@ class OrderResource extends Resource
                                         $set('service_type', null);
                                     }
                                 }),
+                                
+                            Forms\Components\Select::make('assignees')
+                            ->multiple()
+                            ->visible(fn () => auth()->user()->hasPermissionTo('assign_orders_to_developers'))
+                            ->relationship('assignees', 'name'),
                         ])->columns(2),
 
                     Wizard\Step::make('Service')
@@ -212,11 +226,25 @@ class OrderResource extends Resource
                 //
             ])
                 ->actions([
+                    Action::make('Manage Delivery')
+                    ->visible(fn () => auth()->user()->hasPermissionTo('manage-order-deliveries'))
+                    ->label('')
+                    ->size(ActionSize::Medium)
+                    ->badge(fn (Order $record) => $record->orderDeliveries()->count())
+                    ->badgeColor('warning')
+                    ->color('success')
+                    ->outlined()
+                    ->icon('heroicon-o-archive-box-arrow-down')
+                    ->url(
+                        fn (Order $record): string => static::getUrl('order-deliveries.index', [
+                            'parent' => $record->id,
+                        ])
+                    )->button(),
                     Action::make('Manage Quotation')
                     ->outlined()
                       ->badge(fn (Order $record) => $record->quotations()->where('approved_by',auth()->user()->id)->count())
                       ->badgeColor('success')
-                    ->visible(fn () => Permission::where('name','create-order-quotation')->first())
+                      ->visible(fn () => auth()->user()->hasPermissionTo('manage-order-quotations'))
                     ->label('Order Quotations')
                     ->size(ActionSize::Small)
                     ->color('warning')
@@ -240,15 +268,18 @@ class OrderResource extends Resource
                     //     ->size(ActionSize::Small),
                     // ])->button()->color('primary')->label('')
                     Tables\Actions\ViewAction::make()
+                    ->visible(fn () => auth()->user()->hasPermissionTo('view_own_order'))
                     ->button()
                     ->color('info')
                     ->size(ActionSize::Medium)
                     ->label(''),
                 Tables\Actions\EditAction::make()
+                ->visible(fn () => auth()->user()->hasPermissionTo('edit_own_order'))
                     ->button()->color('warning')
                     ->size(ActionSize::Medium)
                     ->label(''),
                 Tables\Actions\DeleteAction::make()
+                ->visible(fn () => auth()->user()->hasPermissionTo('delete_own_order'))
                     ->button()
                     ->size(ActionSize::Medium)
                     ->label(''),
@@ -275,6 +306,13 @@ class OrderResource extends Resource
             'create' => Pages\CreateOrder::route('/create'),
             'edit' => Pages\EditOrder::route('/{record}/edit'),
             'view' => Pages\ViewOrder::route('/{record}/view'),
+
+
+
+            'order-deliveries.index' => ListOrderDeliveries::route('/{parent}/order-deliveries'),
+            'order-deliveries.create' => CreateOrderDelivery::route('/{parent}/order-deliveries/create'),
+            'order-deliveries.edit' => EditOrderDelivery::route('/{parent}/order-deliveries/{record}/edit'),
+            'order-deliveries.view' => ViewOrderDelivery::route('/{parent}/order-deliveries/{record}'),
 
             'order-quotations.index' => ListOrderQuotations::route('/{parent}/order-quotations'),
             'order-quotations.create' => CreateOrderQuotation::route('/{parent}/order-quotations/create'),

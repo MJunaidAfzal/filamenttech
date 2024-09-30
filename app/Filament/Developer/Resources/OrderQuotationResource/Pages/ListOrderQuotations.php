@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Filament\Resources\OrderQuotationResource\Pages;
+namespace App\Filament\Developer\Resources\OrderQuotationResource\Pages;
 
-use App\Filament\Resources\OrderQuotationResource;
+use App\Filament\Developer\Resources\OrderQuotationResource;
 use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
 use App\Filament\Resources\OrderResource;
@@ -18,7 +18,7 @@ class ListOrderQuotations extends ListRecords
     {
         return [
             Actions\CreateAction::make()
-            ->visible(fn () => auth()->user()->hasPermissionTo('create-order-quotation'))
+            // ->visible(fn () => auth()->user()->hasPermissionTo('create-order-quotation'))
             ->url(
                 fn (): string => static::getParentResource()::getUrl('order-quotations.create', [
                     'parent' => $this->parent,

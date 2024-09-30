@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Filament\Developer\Resources\OrderDeliveryResource\Pages;
+namespace App\Filament\Client\Resources\OrderDeliveryResource\Pages;
 
-use App\Filament\Developer\Resources\OrderDeliveryResource;
+use App\Filament\Client\Resources\OrderDeliveryResource;
 use Filament\Actions;
 use Filament\Resources\Pages\CreateRecord;
 use App\Filament\Resources\OrderResource;
@@ -26,6 +26,7 @@ class CreateOrderDelivery extends CreateRecord
 
     protected function getRedirectUrl(): string
     {
+
         $permissionIds = Permission::whereIn('name', ['order-all', 'view-order-deliveries'])->pluck('id');
         $roleIdsWithPermission = RoleHasPermission::whereIn('permission_id', $permissionIds)->pluck('role_id');
         $usersWithPermission = User::whereIn('role_id', $roleIdsWithPermission)->get();
@@ -79,7 +80,7 @@ class CreateOrderDelivery extends CreateRecord
                 'user_id'    =>   1,
                 'subject_type'     =>  'App\Models\Order',
                 'subject_id'     =>   2,
-                'comment'     =>    $order_number.' order has been delivered',
+                'comment'     =>    $this->parent->order_id.' order has been delivered',
                 'created_at'     =>   '2024-09-02 15:14:00',
                 'updated_at'   =>   '2024-09-02 15:14:00'
             ]

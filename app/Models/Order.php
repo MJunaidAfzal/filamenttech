@@ -78,7 +78,7 @@ class Order extends Model
         return $this->hasMany(OrderQuotation::class);
     }
 
-    
+
 
     // public function permissions(): BelongsToMany
     // {
@@ -87,6 +87,12 @@ class Order extends Model
     public function category()
     {
         return $this->belongsTo(Category::class);
+    }
+
+
+    public function orderDeliveries()
+    {
+        return $this->hasMany(OrderDelivery::class);
     }
 
 }

@@ -26,14 +26,25 @@ use App\Filament\Resources\OrderQuotationResource\Pages\CreateOrderQuotation;
 use App\Filament\Resources\OrderQuotationResource\Pages\EditOrderQuotation;
 use App\Filament\Resources\OrderQuotationResource\Pages\ListOrderQuotations;
 use App\Filament\Resources\OrderQuotationResource\Pages\ViewOrderQuotation;
+use App\Filament\Resources\OrderDeliveryResource\Pages\CreateOrderDelivery;
+use App\Filament\Resources\OrderDeliveryResource\Pages\EditOrderDelivery;
+use App\Filament\Resources\OrderDeliveryResource\Pages\ListOrderDeliveries;
+use App\Filament\Resources\OrderDeliveryResource\Pages\ViewOrderDelivery;
 use App\Models\Permission;
 use Filament\Support\Enums\ActionSize;
+use Illuminate\Contracts\Support\Htmlable;
+use Illuminate\Database\Eloquent\Model;
 
 
 
 class OrderResource extends Resource
 {
     protected static ?string $model = Order::class;
+
+    public static function getRecordTitle(?Model $record): string|null|Htmlable
+    {
+        return $record->order_id;
+    }
 
     protected static ?string $navigationGroup = 'Order Management';
 
@@ -42,6 +53,11 @@ class OrderResource extends Resource
     public static function getNavigationBadge(): ?string
     {
         return static::getModel()::count();
+    }
+
+    public static function shouldRegisterNavigation(): bool
+    {
+        return auth()->check() && auth()->user()->hasPermissionTo('order-all');
     }
 
     public static function form(Form $form): Form
@@ -82,6 +98,7 @@ class OrderResource extends Resource
 
                             Forms\Components\Select::make('assignees')
                                 ->multiple()
+                                ->visible(fn () => auth()->user()->hasPermissionTo('assign_orders_to_developers'))
                                 ->relationship('assignees', 'name'),
                         ])->columns(2),
 
@@ -213,11 +230,25 @@ class OrderResource extends Resource
                 //
             ])
             ->actions([
+                Action::make('Manage Delivery')
+                ->visible(fn () => auth()->user()->hasPermissionTo('manage-order-deliveries'))
+                    ->label('')
+                    ->size(ActionSize::Medium)
+                    ->badge(fn (Order $record) => $record->orderDeliveries()->count())
+                    ->badgeColor('info')
+                    ->color('primary')
+                    ->outlined()
+                    ->icon('heroicon-o-archive-box-arrow-down')
+                    ->url(
+                        fn (Order $record): string => static::getUrl('order-deliveries.index', [
+                            'parent' => $record->id,
+                        ])
+                    )->button(),
                 Action::make('Manage Quotation')
+                ->visible(fn () => auth()->user()->hasPermissionTo('manage-order-quotations'))
                 ->outlined()
                   ->badge(fn (Order $record) => $record->quotations()->count())
                   ->badgeColor('primary')
-                ->visible(fn () => Permission::where('name','create-order-quotation')->first())
                 ->label('Order Quotations')
                 ->size(ActionSize::Small)
                 ->color('success')
@@ -228,22 +259,26 @@ class OrderResource extends Resource
                     ])
                 )->button(),
                 Tables\Actions\ViewAction::make()
+                ->visible(fn () => auth()->user()->hasPermissionTo('view-order'))
                     ->button()
                     ->label("")
                     ->color('info')
                     ->size(ActionSize::Medium),
                 Tables\Actions\EditAction::make()
+                ->visible(fn () => auth()->user()->hasPermissionTo('edit-order'))
                     ->button()
                     ->label("")
                     ->size(ActionSize::Medium),
                 Tables\Actions\DeleteAction::make()
+                ->visible(fn () => auth()->user()->hasPermissionTo('delete-order'))
                     ->button()
                     ->label("")
                     ->size(ActionSize::Medium),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
+                    Tables\Actions\DeleteBulkAction::make()
+                ,
                 ]),
             ]);
     }
@@ -262,6 +297,11 @@ class OrderResource extends Resource
             'create' => Pages\CreateOrder::route('/create'),
             'edit' => Pages\EditOrder::route('/{record}/edit'),
             'view' => Pages\ViewOrder::route('/{record}/view'),
+
+            'order-deliveries.index' => ListOrderDeliveries::route('/{parent}/order-deliveries'),
+            'order-deliveries.create' => CreateOrderDelivery::route('/{parent}/order-deliveries/create'),
+            'order-deliveries.edit' => EditOrderDelivery::route('/{parent}/order-deliveries/{record}/edit'),
+            'order-deliveries.view' => ViewOrderDelivery::route('/{parent}/order-deliveries/{record}'),
 
             'order-quotations.index' => ListOrderQuotations::route('/{parent}/order-quotations'),
             'order-quotations.create' => CreateOrderQuotation::route('/{parent}/order-quotations/create'),

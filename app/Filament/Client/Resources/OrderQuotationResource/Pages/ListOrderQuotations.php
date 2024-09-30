@@ -18,6 +18,7 @@ class ListOrderQuotations extends ListRecords
     {
         return [
             Actions\CreateAction::make()
+            ->visible(fn () => auth()->user()->hasPermissionTo('create-order-quotation'))
             ->url(
                 fn (): string => static::getParentResource()::getUrl('order-quotations.create', [
                     'parent' => $this->parent,

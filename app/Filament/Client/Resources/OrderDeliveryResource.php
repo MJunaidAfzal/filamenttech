@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Filament\Developer\Resources;
+namespace App\Filament\Client\Resources;
 
-use App\Filament\Developer\Resources\OrderDeliveryResource\Pages;
-use App\Filament\Developer\Resources\OrderDeliveryResource\RelationManagers;
+use App\Filament\Client\Resources\OrderDeliveryResource\Pages;
+use App\Filament\Client\Resources\OrderDeliveryResource\RelationManagers;
 use App\Models\OrderDelivery;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -19,14 +19,13 @@ use Illuminate\Support\Facades\Config;
 use App\Models\Order;
 use ZipArchive;
 use Illuminate\Support\Facades\Storage;
-use App\Filament\Developer\Resources\OrderResource;
+use App\Filament\Client\Resources\OrderResource;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Grid;
 use Filament\Forms\Components\Select;
 
 class OrderDeliveryResource extends Resource
 {
-
     public static string $parentResource = OrderResource::class;
 
     public static function getRecordTitle(?Model $record): string|null|Htmlable
@@ -48,7 +47,6 @@ class OrderDeliveryResource extends Resource
 
         return parent::getEloquentQuery()->where('order_id', $parentId);
     }
-
 
     public static function form(Form $form): Form
     {
@@ -120,7 +118,7 @@ class OrderDeliveryResource extends Resource
                                                 return response()->download($zipFilePath)->deleteFileAfterSend(true);
                                             })
                                             ->icon('heroicon-o-arrow-down-tray')
-                                            ->visible(fn () => !request()->routeIs('filament.developer.resources.orders.order-deliveries.create'))
+                                            ->visible(fn () => !request()->routeIs('filament.client.resources.orders.order-deliveries.create'))
                                         ),
 
                             ])->columnSpan(1),
@@ -159,13 +157,16 @@ class OrderDeliveryResource extends Resource
             ->filters([
             ])
             ->actions([
-                Tables\Actions\ViewAction::make()->url(
+                Tables\Actions\ViewAction::make()
+                ->visible(fn () => auth()->user()->hasPermissionTo('view-order-deliveries'))
+                ->url(
                     fn (Model $record): string => static::$parentResource::getUrl('order-deliveries.view', [
                         'record' => $record,
                         'parent' => request()->route('parent'),
                     ])
                 )->button()->color('success'),
                 Tables\Actions\EditAction::make()->button()->color('warning')
+                ->visible(fn () => auth()->user()->hasPermissionTo('edit-order-deliveries'))
                 ->url(
                     fn (Model $record): string => static::$parentResource::getUrl('order-deliveries.edit', [
                         'record' => $record,
@@ -199,5 +200,4 @@ class OrderDeliveryResource extends Resource
     //         'edit' => Pages\EditOrderDelivery::route('/{record}/edit'),
     //     ];
     // }
-
 }

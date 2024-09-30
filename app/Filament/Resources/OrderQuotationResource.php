@@ -94,6 +94,7 @@ class OrderQuotationResource extends Resource
                     Forms\Components\Select::make('approved_by')
                     ->label('Approved Quotation')
                     ->relationship('approver', 'name')
+                    ->visible(fn () => auth()->user()->hasPermissionTo('can-approve-quotation'))
                     ->nullable(),
 
                     Forms\Components\RichEditor::make('notes')
@@ -142,13 +143,16 @@ class OrderQuotationResource extends Resource
             ])
             ->actions([
 
-                Tables\Actions\ViewAction::make()->url(
+                Tables\Actions\ViewAction::make()
+                ->visible(fn () => auth()->user()->hasPermissionTo('view-order-quotation'))
+            ->url(
                     fn (Model $record): string => static::$parentResource::getUrl('order-quotations.view', [
                         'record' => $record,
                         'parent' => request()->route('parent'),
                     ])
                 )->button()->color('success'),
                 Tables\Actions\EditAction::make()->button()
+                ->visible(fn () => auth()->user()->hasPermissionTo('edit-order-quotation'))
                 ->url(
                     fn (Model $record): string => static::$parentResource::getUrl('order-quotations.edit', [
                         'record' => $record,

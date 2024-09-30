@@ -14,6 +14,7 @@ use App\Models\RoleHasPermission;
 use Filament\Notifications\Actions\Action;
 use App\Models\OrderAssignee;
 use Illuminate\Support\Facades\DB;
+use App\Models\Permission;
 
 class EditOrderDelivery extends EditRecord
 {
@@ -32,30 +33,53 @@ class EditOrderDelivery extends EditRecord
     protected function getRedirectUrl(): string
     {
 
-        // $order = $this->parent;
-        // $filteredAssignees = $order->assignees->filter(function ($user) {
-        //     return $user->can('manage-order-deliveries');
-        // });
+        $permissionIds = Permission::whereIn('name', ['order-all', 'view-order-deliveries'])->pluck('id');
+        $roleIdsWithPermission = RoleHasPermission::whereIn('permission_id', $permissionIds)->pluck('role_id');
+        $usersWithPermission = User::whereIn('role_id', $roleIdsWithPermission)->get();
+        $order_number = $this->parent->order_id;
+        foreach ($usersWithPermission as $user) {
+            if ($user->role_id == 1) {
+                $url = route('filament.admin.resources.orders.order-deliveries.view', [
+                    'parent' => $this->parent->id,
+                    'record' => $this->record->id,
+                ]);
+            }
+            elseif ($user->role_id == 2) {
+                $url = route('filament.developer.resources.orders.order-deliveries.view', [
+                    'parent' => $this->parent->id,
+                    'record' => $this->record->id,
+                ]);
+            }
+            elseif ($user->role_id == 4) {
+                $url = route('filament.client.resources.orders.order-deliveries.view', [
+                    'parent' => $this->parent->id,
+                    'record' => $this->record->id,
+                ]);
+            }
+            $notification = Notification::make()
+            ->title('Order delivery updated! ' . $order_number)
+            ->body(Auth::user()->name . ' has updated order delivery ' . $order_number)
+            ->actions([
+                Action::make('View Order Delivery')
+                    ->button()
+                    ->icon('heroicon-s-folder')
+                    ->color('primary')
+                    ->url($url)
+                    ->label('View Order Delivery'),
+            ]);
 
-        // $orderAllUsers = User::permission('order-all')->get();
-
-        // $combinedUsers = $filteredAssignees->merge($orderAllUsers);
-
-        // $notified_users = $combinedUsers->unique('id');
-
-        // $order_number = $this->parent->order_number;
-        // $user = Auth::user()->name;
-        // $notification = Notification::make()
-        // ->title('Delivery update! '.$order_number)
-        // ->body($user.' update a delivery '.$order_number)
-        // ->actions([
-        //     Action::make('View')
-        //         ->button()
-        //         ->color('primary')
-        //         ->url(route('filament.admin.resources.orders.order-deliveries.edit', ['parent' => $this->parent, 'record' => $this->record]))
-        //         ->label('View Order Delivery'),
-        // ])
-        // ->sendToDatabase($notified_users);
+            if ($user->role_id == 1) {
+                $notification->sendToDatabase($user);
+            }
+            elseif ($user->role_id == 2) {
+                if ($this->parent->assignees()->where('user_id', $user->id)->exists()) {
+                    $notification->sendToDatabase($user);
+                }
+            }
+            elseif ($user->role_id == 4 && $this->parent->user_id == $user->id) {
+                $notification->sendToDatabase($user);
+            }
+        }
 
         $commentId = DB::table('filament_comments')->insertGetId(
             [

@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Filament\Developer\Resources\OrderDeliveryResource\Pages;
+namespace App\Filament\Resources\OrderDeliveryResource\Pages;
 
-use App\Filament\Developer\Resources\OrderDeliveryResource;
+use App\Filament\Resources\OrderDeliveryResource;
 use Filament\Actions;
 use Filament\Resources\Pages\CreateRecord;
 use App\Filament\Resources\OrderResource;
@@ -63,13 +63,14 @@ class CreateOrderDelivery extends CreateRecord
 
             if ($user->role_id == 1) {
                 $notification->sendToDatabase($user);
+
             }
             elseif ($user->role_id == 2) {
                 if ($this->parent->assignees()->where('user_id', $user->id)->exists()) {
                     $notification->sendToDatabase($user);
                 }
             }
-            elseif ($user->role_id == 4 && $this->parent->user_id == $user->id) {
+             elseif ($user->role_id == 4 && $this->parent->user_id == $user->id) {
                 $notification->sendToDatabase($user);
             }
         }

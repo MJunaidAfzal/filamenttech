@@ -8,6 +8,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
 
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+
 class User extends Authenticatable
 {
     use HasRoles;
@@ -92,15 +94,13 @@ public function isSupport()
 }
 
 
-public function hasPermission($permissionName)
-{
-    // Assuming there's a many-to-many relationship between users and permissions
-    return $this->permissions()->where('name', $permissionName)->exists();
-}
-
 public function permissions()
 {
-    // Define the relationship with the Permission model
-    return $this->belongsToMany(Permission::class);
-}   
+    return $this->belongsToMany(Permission::class, 'role_has_permissions', 'role_id', 'permission_id');
+}
+
+public function hasPermissionTo($permission)
+{
+    return $this->permissions()->where('name', $permission)->exists();
+}
 }

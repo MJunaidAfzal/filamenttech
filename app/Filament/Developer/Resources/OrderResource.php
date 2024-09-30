@@ -8,6 +8,10 @@ use App\Filament\Developer\Resources\OrderDeliveryResource\Pages\CreateOrderDeli
 use App\Filament\Developer\Resources\OrderDeliveryResource\Pages\EditOrderDelivery;
 use App\Filament\Developer\Resources\OrderDeliveryResource\Pages\ListOrderDeliveries;
 use App\Filament\Developer\Resources\OrderDeliveryResource\Pages\ViewOrderDelivery;
+use App\Filament\Developer\Resources\OrderQuotationResource\Pages\CreateOrderQuotation;
+use App\Filament\Developer\Resources\OrderQuotationResource\Pages\EditOrderQuotation;
+use App\Filament\Developer\Resources\OrderQuotationResource\Pages\ListOrderQuotations;
+use App\Filament\Resources\OrderQuotationResource\Pages\ViewOrderQuotation;
 use App\Models\Order;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -27,6 +31,8 @@ use Illuminate\Database\Eloquent\Model;
 use DB;
 use App\Models\Permission;
 use Filament\Tables\Actions\Action;
+use Filament\Support\Enums\ActionSize;
+
 
 
 
@@ -225,16 +231,37 @@ class OrderResource extends Resource
                 Action::make('Manage Delivery')
                 ->visible(fn () => Permission::where('name','manage-order-deliveries')->first())
                     ->label('')
+                    ->size(ActionSize::Medium)
+                    ->badge(fn (Order $record) => $record->orderDeliveries()->count())
+                    ->badgeColor('warning')
                     ->color('success')
+                    ->outlined()
                     ->icon('heroicon-o-archive-box-arrow-down')
                     ->url(
                         fn (Order $record): string => static::getUrl('order-deliveries.index', [
                             'parent' => $record->id,
                         ])
                     )->button(),
-                Tables\Actions\ViewAction::make()->button()->color('info'),
-                Tables\Actions\EditAction::make()->button()->color('warning')
-                ->visible(fn () => Permission::where('name','edit_project')->first()),
+                    Action::make('Manage Quotation')
+                    ->outlined()
+                      ->badge(fn (Order $record) => $record->quotations()->count())
+                      ->badgeColor('success')
+                    //   ->visible(fn () => auth()->user()->hasPermissionTo('manage-order-quotations'))
+                    ->label('Order Quotations')
+                    ->size(ActionSize::Small)
+                    ->color('warning')
+                    ->icon('heroicon-s-document-text')
+                    ->url(
+                        fn (Order $record): string => static::getUrl('order-quotations.index', [
+                            'parent' => $record->id,
+                        ])
+                    )->button(),
+                Tables\Actions\ViewAction::make()->button()->label('')->color('info')
+                ->size(ActionSize::Medium),
+                Tables\Actions\EditAction::make()->button()->label('')->color('warning')
+                ->size(ActionSize::Medium),
+                Tables\Actions\DeleteAction::make()->button()->label('')
+                ->size(ActionSize::Medium)
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -264,12 +291,14 @@ class OrderResource extends Resource
             'order-deliveries.create' => CreateOrderDelivery::route('/{parent}/order-deliveries/create'),
             'order-deliveries.edit' => EditOrderDelivery::route('/{parent}/order-deliveries/{record}/edit'),
             'order-deliveries.view' => ViewOrderDelivery::route('/{parent}/order-deliveries/{record}'),
+
+            'order-quotations.index' => ListOrderQuotations::route('/{parent}/order-quotations'),
+            'order-quotations.create' => CreateOrderQuotation::route('/{parent}/order-quotations/create'),
+            'order-quotations.edit' => EditOrderQuotation::route('/{parent}/order-quotations/{record}/edit'),
+            'order-quotations.view' => ViewOrderQuotation::route('/{parent}/order-quotations/{record}/view'),
         ];
     }
 
 
-    public static function canCreate(): bool
-{
-    return false;
-}
+
 }
