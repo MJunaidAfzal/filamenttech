@@ -63,7 +63,7 @@ class EditOrderDelivery extends EditRecord
                 Action::make('View Order Delivery')
                     ->button()
                     ->icon('heroicon-s-folder')
-                    ->color('primary')
+                    ->color('brown')
                     ->url($url)
                     ->label('View Order Delivery'),
             ]);

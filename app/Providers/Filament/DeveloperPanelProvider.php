@@ -26,9 +26,9 @@ class DeveloperPanelProvider extends PanelProvider
         return $panel
             ->id('developer')
             ->path('developer')
-            // ->login()
             ->colors([
                 'primary' => Color::Blue,
+                'brown' => Color::hex('#3b818a'),
             ])
             ->discoverResources(in: app_path('Filament/Developer/Resources'), for: 'App\\Filament\\Developer\\Resources')
             ->discoverPages(in: app_path('Filament/Developer/Pages'), for: 'App\\Filament\\Developer\\Pages')

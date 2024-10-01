@@ -111,7 +111,7 @@ class EditOrder extends EditRecord
                    Action::make('View')
                        ->button()
                        ->url(route('filament.developer.resources.orders.view', ['record' => $this->record]))
-                       ->color('primary')
+                       ->color('brown')
                        ->label('View Order')
                        ->icon('heroicon-s-folder'),
                ])

@@ -52,7 +52,7 @@ class EditOrderQuotation extends EditRecord
                             Action::make('View')
                                 ->button()
                                 ->icon('heroicon-s-folder')
-                                ->color('primary')
+                                ->color('brown')
                                 ->url(route('filament.client.resources.orders.order-quotations.view', [
                                     'parent' => $this->parent->id,
                                     'record' => $orderQuotation->id,

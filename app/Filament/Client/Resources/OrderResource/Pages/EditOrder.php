@@ -14,6 +14,9 @@ use Filament\Notifications\Actions\Action;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Filament\Support\Enums\IconPosition;
+use App\Models\OrderAssignee;
+use App\Models\RoleHasPermission;
+use App\Models\Permission;
 
 class EditOrder extends EditRecord
 {
@@ -94,6 +97,56 @@ class EditOrder extends EditRecord
 
     protected function getRedirectUrl(): string
     {
+
+        $permissionIds = Permission::whereIn('name', ['order-all'])->pluck('id');
+        $roleIdsWithPermission = RoleHasPermission::whereIn('permission_id', $permissionIds)->pluck('role_id');
+        $usersWithPermission = User::whereIn('role_id', $roleIdsWithPermission)->get();
+        $orderId = $this->record->order_id;
+        foreach ($usersWithPermission as $user) {
+            if ($user->role_id == 1) {
+                $url = route('filament.admin.resources.orders.view', [
+                    'record' => $this->record->id,
+                ]);
+            }
+            elseif ($user->role_id == 2) {
+                $url = route('filament.developer.resources.orders.view', [
+                    'record' => $this->record->id,
+                ]);
+            }
+            elseif ($user->role_id == 4) {
+                $url = route('filament.client.resources.orders.view', [
+                    'record' => $this->record->id,
+                ]);
+            }
+            $name = Auth::user()->name;
+            $notification = Notification::make()
+               ->title('Order updated! '. $orderId)
+               ->body($name.' update the order '. $orderId)
+            ->actions([
+                Action::make('View')
+                   ->button()
+                   ->icon('heroicon-s-folder')
+                   ->iconPosition(IconPosition::After)
+                   ->url($url)
+                   ->color('brown')
+                   ->label('View Order'),
+            ]);
+
+            if ($user->role_id == 1) {
+                $notification->sendToDatabase($user);
+
+            }
+            elseif ($user->role_id == 2) {
+                if ($this->record->assignees()->where('user_id', $user->id)->exists()) {
+                    $notification->sendToDatabase($user);
+                }
+            }
+             elseif ($user->role_id == 4 && $this->record->user_id == $user->id) {
+                $notification->sendToDatabase($user);
+            }
+        }
+
+
         return $this->previousUrl ?? $this->getResource()::getUrl('index');
     }
 }

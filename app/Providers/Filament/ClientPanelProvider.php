@@ -35,6 +35,7 @@ class ClientPanelProvider extends PanelProvider
             // ->registerRoute(route('register'))
             ->colors([
                 'primary' => Color::Lime,
+                'brown' => Color::hex('#4f6e2f'),
             ])
             // ->navigation(function (NavigationBuilder $builder): NavigationBuilder {
             //     return $builder->groups([
@@ -51,7 +52,7 @@ class ClientPanelProvider extends PanelProvider
                 Pages\Dashboard::class,
             ])
             ->discoverWidgets(in: app_path('Filament/Client/Widgets'), for: 'App\\Filament\\Client\\Widgets')
-            ->widgets([ 
+            ->widgets([
                 Widgets\AccountWidget::class,
                 Widgets\FilamentInfoWidget::class,
             ])

@@ -15,7 +15,6 @@ use App\Models\OrderAssignee;
 use Illuminate\Support\Facades\Auth;
 use Filament\Support\Enums\IconPosition;
 use Filament\Actions;
-use App\Filament\Traits\HasParentResource;
 use App\Models\RoleHasPermission;
 use App\Models\Permission;
 
@@ -60,32 +59,27 @@ class CreateOrder extends CreateRecord
         $permissionIds = Permission::whereIn('name', ['order-all'])->pluck('id');
         $roleIdsWithPermission = RoleHasPermission::whereIn('permission_id', $permissionIds)->pluck('role_id');
         $usersWithPermission = User::whereIn('role_id', $roleIdsWithPermission)->get();
-        $order_number = $this->parent->order_id;
+        $orderId = $this->record->order_id;
         foreach ($usersWithPermission as $user) {
             if ($user->role_id == 1) {
-                $url = route('filament.admin.resources.orders.order-deliveries.view', [
-                    'parent' => $this->parent->id,
+                $url = route('filament.admin.resources.orders.view', [
                     'record' => $this->record->id,
                 ]);
             }
             elseif ($user->role_id == 2) {
-                $url = route('filament.developer.resources.orders.order-deliveries.view', [
-                    'parent' => $this->parent->id,
+                $url = route('filament.developer.resources.orders.view', [
                     'record' => $this->record->id,
                 ]);
             }
             elseif ($user->role_id == 4) {
-                $url = route('filament.client.resources.orders.order-deliveries.view', [
-                    'parent' => $this->parent->id,
+                $url = route('filament.client.resources.orders.view', [
                     'record' => $this->record->id,
                 ]);
             }
             $name = Auth::user()->name;
             $notification = Notification::make()
                ->title('New Order!')
-               ->body($name.' create a new order.')
-            ->title('Order delivery! ' . $order_number)
-            ->body(Auth::user()->name . ' has delivered order ' . $order_number)
+               ->body($name.' create a new order '. $orderId)
             ->actions([
                 Action::make('View')
                    ->button()
@@ -101,29 +95,15 @@ class CreateOrder extends CreateRecord
 
             }
             elseif ($user->role_id == 2) {
-                if ($this->parent->assignees()->where('user_id', $user->id)->exists()) {
+                if ($this->record->assignees()->where('user_id', $user->id)->exists()) {
                     $notification->sendToDatabase($user);
                 }
             }
-             elseif ($user->role_id == 4 && $this->parent->user_id == $user->id) {
+             elseif ($user->role_id == 4 && $this->record->user_id == $user->id) {
                 $notification->sendToDatabase($user);
             }
         }
 
-        // $name = Auth::user()->name;
-        // Notification::make()
-        //    ->title('New Order!')
-        //    ->body($name.' create a new order.')
-        //    ->actions([
-        //        Action::make('View')
-        //            ->button()
-        //            ->icon('heroicon-s-folder')
-        //            ->iconPosition(IconPosition::After)
-        //            ->url(route('filament.admin.resources.orders.view', ['record' => $this->record]))
-        //            ->color('brown')
-        //            ->label('View Order'),
-        //    ])
-        //    ->sendToDatabase(User::hasPermission('order-all')->first());
 
            $orderId = $this->record->id;
            $orderAssignees = OrderAssignee::where('order_id', $orderId)->pluck('user_id');
@@ -136,6 +116,7 @@ class CreateOrder extends CreateRecord
                ->actions([
                    Action::make('View')
                        ->button()
+                       ->color('brown')
                        ->url(route('filament.developer.resources.orders.view', ['record' => $this->record]))
                        ->color('primary')
                        ->label('View Order')

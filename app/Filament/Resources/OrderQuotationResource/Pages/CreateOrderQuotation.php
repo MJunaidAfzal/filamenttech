@@ -45,7 +45,7 @@ class CreateOrderQuotation extends CreateRecord
                     Action::make('View')
                         ->button()
                         ->icon('heroicon-s-folder')
-                        ->color('primary')
+                        ->color('brown')
                         ->url($url)
                         ->label('View Quotation'),
                 ]);
