@@ -20,6 +20,7 @@ use Illuminate\View\Middleware\ShareErrorsFromSession;
 use App\Http\Middleware\IsAdmin;
 use Filament\Enums\ThemeMode;
 use Filament\Support\Facades\FilamentColor;
+use Filament\FontProviders\SpatieGoogleFontProvider;
 
 class AdminPanelProvider extends PanelProvider
 {
@@ -35,9 +36,7 @@ class AdminPanelProvider extends PanelProvider
                 'primary' => Color::Amber,
                 'brown' => Color::hex('#8f6232'),
             ])
-
-
-
+            ->font('Inter', provider: SpatieGoogleFontProvider::class)
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')
             ->pages([
