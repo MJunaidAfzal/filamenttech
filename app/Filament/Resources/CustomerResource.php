@@ -12,6 +12,8 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use TangoDevIt\FilamentEmojiPicker\EmojiPickerAction;
+
 
 class CustomerResource extends Resource
 {
@@ -33,7 +35,8 @@ class CustomerResource extends Resource
             ->schema([
                 Forms\Components\TextInput::make('name')
                     ->required()
-                    ->maxLength(255),
+                    ->maxLength(255)
+                    ->suffixAction(EmojiPickerAction::make('emoji-title')),
                 Forms\Components\TextInput::make('email')
                     ->email()
                     ->required()
