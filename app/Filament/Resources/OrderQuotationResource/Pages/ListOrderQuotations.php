@@ -18,6 +18,8 @@ class ListOrderQuotations extends ListRecords
     {
         return [
             Actions\CreateAction::make()
+            ->color('brown')
+            ->icon('heroicon-s-document-text')
             ->visible(fn () => auth()->user()->hasPermissionTo('create-order-quotation'))
             ->url(
                 fn (): string => static::getParentResource()::getUrl('order-quotations.create', [

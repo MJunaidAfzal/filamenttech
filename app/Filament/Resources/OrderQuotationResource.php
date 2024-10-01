@@ -150,7 +150,7 @@ class OrderQuotationResource extends Resource
                         'record' => $record,
                         'parent' => request()->route('parent'),
                     ])
-                )->button()->color('success'),
+                )->button()->color('info'),
                 Tables\Actions\EditAction::make()->button()
                 ->visible(fn () => auth()->user()->hasPermissionTo('edit-order-quotation'))
                 ->url(

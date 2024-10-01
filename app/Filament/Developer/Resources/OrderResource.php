@@ -61,6 +61,11 @@ class OrderResource extends Resource
             });
     }
 
+    public static function shouldRegisterNavigation(): bool
+    {
+        return auth()->check() && auth()->user()->hasPermissionTo('order-all');
+    }
+
     public static function form(Form $form): Form
     {
         return $form
@@ -86,7 +91,6 @@ class OrderResource extends Resource
                                 ->relationship('service', 'name')
                                 ->required()
                                 ->label('Service')
-                                ->disabled()
                                 ->reactive()
                                 ->afterStateUpdated(function ($set, $state) {
                                     if ($state == 1) {
@@ -100,7 +104,7 @@ class OrderResource extends Resource
 
                             Forms\Components\Select::make('assignees')
                                 ->multiple()
-                                ->disabled()
+                                ->visible(fn () => auth()->user()->hasPermissionTo('assign_orders_to_developers'))
                                 ->relationship('assignees', 'name'),
                         ])->columns(2),
 
@@ -229,7 +233,7 @@ class OrderResource extends Resource
             ])
             ->actions([
                 Action::make('Manage Delivery')
-                ->visible(fn () => Permission::where('name','manage-order-deliveries')->first())
+                ->visible(fn () => auth()->user()->hasPermissionTo('manage-order-deliveries'))
                     ->label('')
                     ->size(ActionSize::Medium)
                     ->badge(fn (Order $record) => $record->orderDeliveries()->count())
@@ -246,7 +250,7 @@ class OrderResource extends Resource
                     ->outlined()
                       ->badge(fn (Order $record) => $record->quotations()->count())
                       ->badgeColor('success')
-                    //   ->visible(fn () => auth()->user()->hasPermissionTo('manage-order-quotations'))
+                      ->visible(fn () => auth()->user()->hasPermissionTo('manage-order-quotations'))
                     ->label('Order Quotations')
                     ->size(ActionSize::Small)
                     ->color('warning')
@@ -257,11 +261,14 @@ class OrderResource extends Resource
                         ])
                     )->button(),
                 Tables\Actions\ViewAction::make()->button()->label('')->color('info')
-                ->size(ActionSize::Medium),
+                ->size(ActionSize::Medium)
+                ->visible(fn () => auth()->user()->hasPermissionTo('view-order')),
                 Tables\Actions\EditAction::make()->button()->label('')->color('warning')
-                ->size(ActionSize::Medium),
+                ->size(ActionSize::Medium)
+                ->visible(fn () => auth()->user()->hasPermissionTo('edit-order')),
                 Tables\Actions\DeleteAction::make()->button()->label('')
                 ->size(ActionSize::Medium)
+                ->visible(fn () => auth()->user()->hasPermissionTo('delete-order'))
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

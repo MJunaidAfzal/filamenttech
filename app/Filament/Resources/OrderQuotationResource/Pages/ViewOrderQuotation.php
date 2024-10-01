@@ -36,7 +36,7 @@ class ViewOrderQuotation extends ViewRecord
 
 
         Actions\Action::make('Start Order')
-        ->visible(fn () => ! request()->routeIs('filament.admin.resources.orders.order-quotations.view'))
+            ->visible(fn () => auth()->user()->hasPermissionTo('start-order-payment'))
             ->button()
             ->color('warning')
             ->icon('heroicon-s-arrow-right-start-on-rectangle')
@@ -64,7 +64,7 @@ class ViewOrderQuotation extends ViewRecord
                 $checkoutSession->save();
 
                 $record->update(['status' => 'Approved']);
-                
+
                 if ($record->order->service_id == 1) {
                     $design = $record->order->design;
                     $design->update(['status' => 'In Progress']);
@@ -103,7 +103,8 @@ class ViewOrderQuotation extends ViewRecord
             }),
 
 
-        CommentsAction::make()->label('Comments')->color('info'),
+        CommentsAction::make()->label('Comments')->color('info')
+        ->visible(fn () => auth()->user()->hasPermissionTo('can-comment-on-order-quotation')),
     ];
 }
 

@@ -164,10 +164,10 @@ class OrderDeliveryResource extends Resource
                         'record' => $record,
                         'parent' => request()->route('parent'),
                         ])
-                       
+
                 )
                 ->visible(fn () => auth()->user()->hasPermissionTo('view-order-deliveries'))
-                ->button()->color('success'),
+                ->button()->color('info'),
                 Tables\Actions\EditAction::make()->button()->color('warning')
                 ->visible(fn () => auth()->user()->hasPermissionTo('edit-order-deliveries'))
                 ->url(

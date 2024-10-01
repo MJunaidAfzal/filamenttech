@@ -79,14 +79,12 @@ class OrderQuotationResource extends Resource
                 Forms\Components\TextInput::make('estimated_cost')
                     ->label('Estimated Cost')
                     ->numeric()
-                    ->disabled()
                     ->required(),
 
 
 
                 Forms\Components\DatePicker::make('deadline')
                     ->label('Deadline')
-                    ->disabled()
                     ->nullable(),
 
                 Forms\Components\Select::make('status')
@@ -104,7 +102,6 @@ class OrderQuotationResource extends Resource
                     ->label('Approved Quotation')
                     ->relationship('approver', 'name')
                     ->visible(fn () => auth()->user()->hasPermissionTo('can-approve-quotation'))
-                    ->disabled()
                     ->nullable(),
 
                     Forms\Components\RichEditor::make('notes')

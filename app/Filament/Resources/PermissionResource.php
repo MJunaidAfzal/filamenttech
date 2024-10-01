@@ -41,7 +41,7 @@ class PermissionResource extends Resource
                 Forms\Components\TextInput::make('name')
                     ->required()
                     ->maxLength(255),
-             
+
             ]);
     }
 
@@ -65,9 +65,9 @@ class PermissionResource extends Resource
                 //
             ])
             ->actions([
+                Tables\Actions\ViewAction::make()->button()->color('info'),
                 Tables\Actions\EditAction::make()->button(),
                 Tables\Actions\DeleteAction::make()->button(),
-                Tables\Actions\ViewAction::make()->button(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

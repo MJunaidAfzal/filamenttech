@@ -238,7 +238,7 @@ class OrderResource extends Resource
                     ->badgeColor('info')
                     ->color('primary')
                     ->outlined()
-                    ->icon('heroicon-o-archive-box-arrow-down')
+                    ->icon('heroicon-s-archive-box-arrow-down')
                     ->url(
                         fn (Order $record): string => static::getUrl('order-deliveries.index', [
                             'parent' => $record->id,

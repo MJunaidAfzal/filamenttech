@@ -35,35 +35,44 @@ class DevelopmentResource extends Resource
         return $form
             ->schema([
                 Forms\Components\Select::make('developer_id')
-                    ->label('Developer Name')
-                    ->relationship('developer','name')
-                    ->options([
-                        Auth::user()->id => Auth::user()->name,
-                    ])
-                    ->default(Auth::id())
-                    ->disabled()
-                    ->hidden()
-                    ->required(),
+                ->label('Development Created By')
+                ->relationship('developer','name')
+                // ->options([
+                //     Auth::user()->id => Auth::user()->name,
+                // ])
+                // ->default(Auth::id())
+                // ->disabled()
+                // // ->hidden()
+                ->required(),
+            Forms\Components\Select::make('project_id')
+                ->label('Order Number')
+                ->relationship('order','order_id')
+                ->required(),
                 Forms\Components\TextInput::make('title')
+                ->label('Project Title')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\Select::make('status')
+                    Forms\Components\Select::make('status')
+                    ->label('Status')
+                    ->default('Pending')
                     ->options([
-                       'In Progress' => 'In Progress',
-                       'Completed' => 'Completed',
-                    ])
-                    ->required(),
-                Forms\Components\TextInput::make('version')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('feedback')
-                    ->required()
-                    ->maxLength(255),
+                        'Pending' => 'Pending',
+                        'In Progress' => 'In Progress',
+                        'Completed' => 'Completed',
+                    ]),
                 Forms\Components\DatePicker::make('deadline')
+                ->label('Expented Daytime Date')
                     ->required(),
                 Forms\Components\TextInput::make('code_repository_url')
                     ->required(),
+                    Forms\Components\FileUpload::make('file')
+                    ->label('Reference File')
+                    ->required()
+                    ->lazy()
+                    ->downloadable()
+                    ->columnSpanFull(),
                 Forms\Components\RichEditor::make('description')
+                ->label('Project Description')
                     ->required()
                     ->columnSpanFull(),
             ]);
@@ -74,16 +83,17 @@ class DevelopmentResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('title')
+                    ->label('Project Title')
                     ->searchable(),
-                    Tables\Columns\BadgeColumn::make('status')
+                Tables\Columns\BadgeColumn::make('status')
                     ->label('Status')
                     ->colors([
                         'primary' => 'In Progress',
                         'success' => 'Completed',
+                        'info' => 'Pending',
                     ]),
-                Tables\Columns\TextColumn::make('version')
-                    ->searchable(),
                 Tables\Columns\TextColumn::make('deadline')
+                ->label('Expented Daytime Date')
                     ->date()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')
@@ -99,9 +109,9 @@ class DevelopmentResource extends Resource
                 //
             ])
             ->actions([
-                Tables\Actions\ViewAction::make()->button(),
-                Tables\Actions\EditAction::make()->button(),
-                Tables\Actions\DeleteAction::make()->button(),
+                Tables\Actions\ViewAction::make()->button()->color('info'),
+                // Tables\Actions\EditAction::make()->button(),
+                // Tables\Actions\DeleteAction::make()->button(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

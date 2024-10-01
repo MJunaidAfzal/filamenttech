@@ -66,7 +66,7 @@ class RoleResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('id')->sortable(),
                 Tables\Columns\TextColumn::make('name')->sortable()->searchable(),
-                Tables\Columns\TextColumn::make('permissions_count')
+                Tables\Columns\BadgeColumn::make('permissions_count')
                     ->counts('permissions')
                     ->label('Permissions Count'),
                 Tables\Columns\TextColumn::make('created_at')
@@ -82,9 +82,9 @@ class RoleResource extends Resource
                 //
             ])
             ->actions([
+                Tables\Actions\ViewAction::make()->button()->color('info'),
                 Tables\Actions\EditAction::make()->button(),
                 Tables\Actions\DeleteAction::make()->button(),
-                Tables\Actions\ViewAction::make()->button(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

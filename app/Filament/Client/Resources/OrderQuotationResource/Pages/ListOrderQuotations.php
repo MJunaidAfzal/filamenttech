@@ -27,5 +27,5 @@ class ListOrderQuotations extends ListRecords
         ];
     }
 
-    
+
 }

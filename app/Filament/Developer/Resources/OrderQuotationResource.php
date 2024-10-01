@@ -149,7 +149,7 @@ class OrderQuotationResource extends Resource
             ])
             ->actions([
                 Tables\Actions\ViewAction::make()
-                // ->visible(fn () => auth()->user()->hasPermissionTo('view-order-quotation'))
+                ->visible(fn () => auth()->user()->hasPermissionTo('view-order-quotation'))
                 ->url(
                     fn (Model $record): string => static::$parentResource::getUrl('order-quotations.view', [
                         'record' => $record,
@@ -158,7 +158,7 @@ class OrderQuotationResource extends Resource
                 )->button()->color('primary'),
 
                 Tables\Actions\EditAction::make()->button()->color('warning')
-                // ->visible(fn () => auth()->user()->hasPermissionTo('edit-order-quotation'))
+                ->visible(fn () => auth()->user()->hasPermissionTo('edit-order-quotation'))
                 ->url(
                     fn (Model $record): string => static::$parentResource::getUrl('order-quotations.edit', [
                         'record' => $record,

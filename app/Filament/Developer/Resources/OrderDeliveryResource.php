@@ -159,13 +159,16 @@ class OrderDeliveryResource extends Resource
             ->filters([
             ])
             ->actions([
-                Tables\Actions\ViewAction::make()->url(
+                Tables\Actions\ViewAction::make()
+                ->visible(fn () => auth()->user()->hasPermissionTo('view-order-deliveries'))
+                ->url(
                     fn (Model $record): string => static::$parentResource::getUrl('order-deliveries.view', [
                         'record' => $record,
                         'parent' => request()->route('parent'),
                     ])
                 )->button()->color('success'),
                 Tables\Actions\EditAction::make()->button()->color('warning')
+                ->visible(fn () => auth()->user()->hasPermissionTo('edit-order-deliveries'))
                 ->url(
                     fn (Model $record): string => static::$parentResource::getUrl('order-deliveries.edit', [
                         'record' => $record,

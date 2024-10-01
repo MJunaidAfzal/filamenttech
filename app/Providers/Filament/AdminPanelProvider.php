@@ -19,6 +19,7 @@ use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 use App\Http\Middleware\IsAdmin;
 use Filament\Enums\ThemeMode;
+use Filament\Support\Facades\FilamentColor;
 
 class AdminPanelProvider extends PanelProvider
 {
@@ -31,8 +32,10 @@ class AdminPanelProvider extends PanelProvider
             ->path('admin')
             // ->login()
             ->colors([
-                'primary' => Color::Yellow,
+                'primary' => Color::Amber,
+                'brown' => Color::hex('#8f6232'),
             ])
+
 
 
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')

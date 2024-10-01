@@ -19,7 +19,8 @@ class ViewOrderDelivery extends ViewRecord
     protected function getHeaderActions(): array
     {
         return [
-            CommentsAction::make()->label('Comments')->color('info'),
+            CommentsAction::make()->label('Comments')->color('info')
+            ->visible(fn () => auth()->user()->hasPermissionTo('can-comment-on-order-delivery')),
         ];
     }
 }

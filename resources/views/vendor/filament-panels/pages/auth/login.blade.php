@@ -13,21 +13,21 @@
     </div>
 @endif --}}
 
-@if ($errors->has('admin'))
+{{-- @if ($errors->has('admin'))
     <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" style="border-color: orange" role="alert">
         <strong class="font-bold" style="color: orange;">Unauthorized Access</strong>
         <span class="block sm:inline">For Client access <a style="color: orange" href="{{ route('filament.client.auth.login') }}">Login Here</a></span>
       </div>
-    @endif
+    @endif --}}
 
     @if ($errors->has('client'))
     <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" style="border-color:#84CC16" role="alert">
         <strong class="font-bold" style="color:#84CC16;">Unauthorized Access</strong>
-        <span class="block sm:inline">You are not a Client</span>
+        <span class="block sm:inline">You are not a Client please <a style="color:#84CC16;text-decoration:none" href="{{ route('login') }}">Login here </a></span>
       </div>
     @endif
 
-    @if ($errors->has('developer'))
+    {{-- @if ($errors->has('developer'))
     <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" style="border-color:#C084FC" role="alert">
         <strong class="font-bold" style="color:#C084FC;">Unauthorized Access</strong>
         <span class="block sm:inline">You are not a Developer</span>
@@ -39,7 +39,7 @@
         <strong class="font-bold" style="color:#60A5FA;">Unauthorized Access</strong>
         <span class="block sm:inline">You are not a Support</span>
       </div>
-    @endif
+    @endif --}}
 
 
     {{ \Filament\Support\Facades\FilamentView::renderHook(\Filament\View\PanelsRenderHook::AUTH_LOGIN_FORM_BEFORE, scopes: $this->getRenderHookScopes()) }}

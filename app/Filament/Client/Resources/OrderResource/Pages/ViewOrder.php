@@ -30,7 +30,8 @@ class ViewOrder extends ViewRecord
     protected function getHeaderActions(): array
     {
         return [
-            CommentsAction::make()->label('Comments')->color('info'),
+            CommentsAction::make()->label('Comments')->color('info')
+            ->visible(fn () => auth()->user()->hasPermissionTo('can-comment-on-order')),
         ];
     }
 
@@ -60,7 +61,7 @@ class ViewOrder extends ViewRecord
                 }),
 
                 Infolists\Components\TextEntry::make('user.name')
-                ->label('User Name')
+                ->label('Order Created By')
                 ->formatStateUsing(function ($state) {
                     return new \Illuminate\Support\HtmlString("
                         <span style='color:#99cc00' class='font-semibold'>
@@ -155,7 +156,7 @@ class ViewOrder extends ViewRecord
                             ->formatStateUsing(function ($state) {
                                 return new \Illuminate\Support\HtmlString("
                                     <span style='color:#99cc00' class='font-semibold'>
-                                        $state
+                                         <ins><a target='_blank' href='$state'>$state</a></ins>
                                     </span>
                                 ");
                             }),
