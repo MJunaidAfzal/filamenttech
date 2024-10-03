@@ -19,7 +19,6 @@ return new class extends Migration
             $table->string('server_credential');
             $table->enum('status', ['Pending','In Progress', 'Completed'])->default('Pending');
             $table->string('file');
-            $table->string('feedback');
             $table->date('deadline');
             $table->string('code_repository_url')->nullable();
             $table->text('description');

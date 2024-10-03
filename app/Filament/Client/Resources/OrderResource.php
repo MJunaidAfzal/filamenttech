@@ -58,7 +58,7 @@ class OrderResource extends Resource
         return auth()->check() && auth()->user()->hasPermissionTo('order-all');
     }
 
-    public static function form(Form $form): Form
+    public static function form(Form $form): Form   
     {
         return $form
             ->schema([
@@ -277,18 +277,18 @@ class OrderResource extends Resource
                     //     ->size(ActionSize::Small),
                     // ])->button()->color('primary')->label('')
                     Tables\Actions\ViewAction::make()
-                    ->visible(fn () => auth()->user()->hasPermissionTo('view_own_order'))
+                    ->visible(fn () => auth()->user()->hasPermissionTo('view-order'))
                     ->button()
                     ->color('info')
                     ->size(ActionSize::Medium)
                     ->label(''),
                 Tables\Actions\EditAction::make()
-                ->visible(fn () => auth()->user()->hasPermissionTo('edit_own_order'))
+                    ->visible(fn () => auth()->user()->hasPermissionTo('edit-order'))
                     ->button()->color('warning')
                     ->size(ActionSize::Medium)
                     ->label(''),
                 Tables\Actions\DeleteAction::make()
-                ->visible(fn () => auth()->user()->hasPermissionTo('delete_own_order'))
+                        ->visible(fn () => auth()->user()->hasPermissionTo('delete-order'))
                     ->button()
                     ->size(ActionSize::Medium)
                     ->label(''),

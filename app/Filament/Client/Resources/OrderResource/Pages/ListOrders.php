@@ -14,7 +14,7 @@ class ListOrders extends ListRecords
     {
         return [
             Actions\CreateAction::make()->color('brown')->icon('heroicon-s-archive-box')
-            ->visible(fn () => auth()->user()->hasPermissionTo('create_own_order'))
+            ->visible(fn () => auth()->user()->hasPermissionTo('create-order'))
             ,
         ];
     }

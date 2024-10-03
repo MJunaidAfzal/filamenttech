@@ -139,6 +139,8 @@ class OrderDeliveryResource extends Resource
                     ->label('Order')
                     ->sortable(),
 
+                // Tables\Columns\ImageColumn::make('delivery_files'),
+
                 // Tables\Columns\TextColumn::make('delivery_note')
                 //     ->label('Delivery Note')
                 //     ->sortable(),

@@ -19,7 +19,6 @@ return new class extends Migration
             $table->string('category_id');
             $table->enum('status', ['Pending','In Progress','Completed'])->default('Pending');
             $table->string('file');
-            $table->string('feedback');
             $table->date('deadline');
             $table->text('description');
             $table->timestamps();

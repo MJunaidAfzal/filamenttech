@@ -40,7 +40,7 @@ class EditOrder extends EditRecord
             if ($design) {
                 $this->form->fill([
                     'title' => $design->title,
-                    'category_id' => $design->category->name,
+                    'design.category_id' => $this->record->design->category->id,
                     'status' => $design->status,
                     'file' => $design->file,
                     'deadline' => $design->deadline,
