@@ -21,6 +21,7 @@ class Development extends Model
         'deadline',
         'code_repository_url',
         'description',
+        'server_credential',
     ];
 
     public function developer()

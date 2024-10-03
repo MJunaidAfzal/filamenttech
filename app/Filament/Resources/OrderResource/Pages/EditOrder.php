@@ -53,6 +53,7 @@ class EditOrder extends EditRecord
             if ($development) {
                 $this->form->fill([
                     'title' => $development->title,
+                    'server_credential' => $development->server_credential,
                     'status' => $development->status,
                     'code_repository_url' => $development->code_repository_url,
                     'deadline' => $development->deadline,
@@ -86,6 +87,7 @@ class EditOrder extends EditRecord
             if ($development) {
                 $development->update([
                     'title' => $data['title'],
+                    'server_credential' => $data['server_credential'],
                     'status' => $data['status'],
                     'code_repository_url' => $data['code_repository_url'],
                     'deadline' => $data['deadline'],

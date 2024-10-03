@@ -93,7 +93,7 @@ class OrderResource extends Resource
                                         $set('service_type', null);
                                     }
                                 }),
-                                
+
                             Forms\Components\Select::make('assignees')
                             ->multiple()
                             ->visible(fn () => auth()->user()->hasPermissionTo('assign_orders_to_developers'))
@@ -129,6 +129,9 @@ class OrderResource extends Resource
                                 return [
                                     Forms\Components\TextInput::make('title')
                                         ->label('Project Title')
+                                        ->required(),
+                                        Forms\Components\TextInput::make('server_credential')
+                                        ->label('Server Credential')
                                         ->required(),
                                     Forms\Components\Select::make('status')
                                         ->label('Status')
@@ -200,9 +203,14 @@ class OrderResource extends Resource
                 Tables\Columns\BadgeColumn::make('status')
                     ->label('Status')
                     ->colors([
-                        'primary' => 'In Progress',
+                        'warning' => 'In Progress',
                         'success' => 'Completed',
                         'info' => 'Pending',
+                    ])
+                    ->icons([
+                        'heroicon-s-arrow-path' => 'In Progress',
+                        'heroicon-s-check-circle' => 'Completed',
+                        'heroicon-s-clock' => 'Pending',
                     ])
                 ->getStateUsing(function ($record) {
                     if ($record->service_id == 1) {
@@ -226,20 +234,7 @@ class OrderResource extends Resource
                 //
             ])
                 ->actions([
-                    Action::make('Manage Delivery')
-                    ->visible(fn () => auth()->user()->hasPermissionTo('manage-order-deliveries'))
-                    ->label('')
-                    ->size(ActionSize::Medium)
-                    ->badge(fn (Order $record) => $record->orderDeliveries()->count())
-                    ->badgeColor('warning')
-                    ->color('success')
-                    ->outlined()
-                    ->icon('heroicon-o-archive-box-arrow-down')
-                    ->url(
-                        fn (Order $record): string => static::getUrl('order-deliveries.index', [
-                            'parent' => $record->id,
-                        ])
-                    )->button(),
+
                     Action::make('Manage Quotation')
                     ->outlined()
                       ->badge(fn (Order $record) => $record->quotations()->where('approved_by',auth()->user()->id)->count())
@@ -251,6 +246,20 @@ class OrderResource extends Resource
                     ->icon('heroicon-s-document-text')
                     ->url(
                         fn (Order $record): string => static::getUrl('order-quotations.index', [
+                            'parent' => $record->id,
+                        ])
+                    )->button(),
+
+                    Action::make('Manage Delivery')
+                    ->visible(fn () => auth()->user()->hasPermissionTo('manage-order-deliveries'))
+                    ->label('')
+                    ->size(ActionSize::Medium)
+                    ->badge(fn (Order $record) => $record->orderDeliveries()->count())
+                    ->badgeColor('primary')
+                    ->color('brown')
+                    ->icon('heroicon-s-archive-box-arrow-down')
+                    ->url(
+                        fn (Order $record): string => static::getUrl('order-deliveries.index', [
                             'parent' => $record->id,
                         ])
                     )->button(),

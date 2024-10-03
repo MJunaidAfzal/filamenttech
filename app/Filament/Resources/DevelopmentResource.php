@@ -52,6 +52,10 @@ class DevelopmentResource extends Resource
                 ->label('Project Title')
                     ->required()
                     ->maxLength(255),
+                    Forms\Components\TextInput::make('server_credential')
+                ->label('Server Credential')
+                    ->required()
+                    ->maxLength(255),
                     Forms\Components\Select::make('status')
                     ->label('Status')
                     ->default('Pending')

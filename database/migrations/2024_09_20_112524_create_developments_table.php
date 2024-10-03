@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('developer_id')->constrained('users')->onDelete('cascade');
             $table->foreignId('project_id')->constrained('orders')->onDelete('cascade');
             $table->string('title');
+            $table->string('server_credential');
             $table->enum('status', ['Pending','In Progress', 'Completed'])->default('Pending');
             $table->string('file');
             $table->string('feedback');

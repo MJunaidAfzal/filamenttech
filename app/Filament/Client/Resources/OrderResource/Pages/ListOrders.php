@@ -13,7 +13,7 @@ class ListOrders extends ListRecords
     protected function getHeaderActions(): array
     {
         return [
-            Actions\CreateAction::make()
+            Actions\CreateAction::make()->color('brown')->icon('heroicon-s-archive-box')
             ->visible(fn () => auth()->user()->hasPermissionTo('create_own_order'))
             ,
         ];

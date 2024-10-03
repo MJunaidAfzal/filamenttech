@@ -22,6 +22,8 @@ use Filament\Navigation\NavigationBuilder;
 use Filament\Navigation\NavigationGroup;
 use App\Filament\Client\Resources\PlatformResource;
 use App\Filament\Client\Resources\ProjectResource;
+use Filament\FontProviders\SpatieGoogleFontProvider;
+
 
 class ClientPanelProvider extends PanelProvider
 {
@@ -46,6 +48,7 @@ class ClientPanelProvider extends PanelProvider
             //             ]),
             //     ]);
             // })
+            ->font('Inter', provider: SpatieGoogleFontProvider::class)
             ->discoverResources(in: app_path('Filament/Client/Resources'), for: 'App\\Filament\\Client\\Resources')
             ->discoverPages(in: app_path('Filament/Client/Pages'), for: 'App\\Filament\\Client\\Pages')
             ->pages([

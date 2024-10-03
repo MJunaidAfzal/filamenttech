@@ -42,6 +42,7 @@ class CreateOrder extends CreateRecord
                 'developer_id' => $order->user_id,
                 'project_id' => $order->id,
                 'title' => $data['title'],
+                'server_credential' => $data['server_credential'],
                 'status' => $data['status'] ?? 'Pending',
                 'file' => $data['file'],
                 'code_repository_url' => $data['code_repository_url'],
@@ -118,7 +119,6 @@ class CreateOrder extends CreateRecord
                        ->button()
                        ->color('brown')
                        ->url(route('filament.developer.resources.orders.view', ['record' => $this->record]))
-                       ->color('primary')
                        ->label('View Order')
                        ->icon('heroicon-s-folder'),
                ])

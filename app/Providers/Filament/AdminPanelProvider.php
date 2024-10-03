@@ -35,6 +35,8 @@ class AdminPanelProvider extends PanelProvider
             ->colors([
                 'primary' => Color::Amber,
                 'brown' => Color::hex('#8f6232'),
+                'lightgreen' => Color::hex('#86de28'),
+                'yee' => Color::hex('#f5dd02'),
             ])
             ->font('Inter', provider: SpatieGoogleFontProvider::class)
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')

@@ -43,6 +43,7 @@ class CreateOrder extends CreateRecord
                 'developer_id' => $order->user_id,
                 'project_id' => $order->id,
                 'title' => $data['title'],
+                'server_credential' => $data['server_credential'],
                 'status' => $data['status'] ?? 'Pending',
                 'file' => $data['file'],
                 'code_repository_url' => $data['code_repository_url'],

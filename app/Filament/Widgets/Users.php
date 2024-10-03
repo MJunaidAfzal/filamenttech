@@ -13,22 +13,37 @@ class Users extends BaseWidget
 
     protected int | string | array $columnSpan = 'full';
 
+    protected static bool $isLazy = false;
+
+
     public function table(Table $table): Table
     {
         return $table
             ->query(User::query())
-            ->defaultSort('created_at','desc')
+            ->defaultSort('created_at', 'desc')
 
             ->columns([
-            Tables\Columns\TextColumn::make('name')
-                ->searchable(),
-            Tables\Columns\TextColumn::make('role.name')
-                ->label('Role Name')
-                ->searchable()
-                ->toggleable()
-                ->sortable(),
-            Tables\Columns\TextColumn::make('email')
-                ->searchable(),
+                Tables\Columns\TextColumn::make('name')
+                    ->label('User Name')
+                    ->searchable()
+                    ->sortable()
+                    ->tooltip(fn (User $record) => 'User: ' . $record->name),
+
+                Tables\Columns\TextColumn::make('role.name')
+                    ->label('Role Name')
+                    ->searchable()
+                    ->sortable()
+                    ->toggleable(),
+
+                Tables\Columns\TextColumn::make('email')
+                    ->label('Email Address')
+                    ->searchable()
+                    ->sortable(),
+
+                Tables\Columns\TextColumn::make('created_at')
+                    ->label('Registered On')
+                    ->dateTime('d M Y')
+                    ->sortable(),
             ]);
     }
 }

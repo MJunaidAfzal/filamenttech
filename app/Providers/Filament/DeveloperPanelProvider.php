@@ -18,6 +18,7 @@ use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 use App\Http\Middleware\IsDeveloper;
+use Filament\FontProviders\SpatieGoogleFontProvider;
 
 class DeveloperPanelProvider extends PanelProvider
 {
@@ -35,6 +36,7 @@ class DeveloperPanelProvider extends PanelProvider
             ->pages([
                 Pages\Dashboard::class,
             ])
+            ->font('Inter', provider: SpatieGoogleFontProvider::class)
             ->discoverWidgets(in: app_path('Filament/Developer/Widgets'), for: 'App\\Filament\\Developer\\Widgets')
             ->widgets([
                 Widgets\AccountWidget::class,

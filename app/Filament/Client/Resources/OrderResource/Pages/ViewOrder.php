@@ -151,6 +151,16 @@ class ViewOrder extends ViewRecord
                                 ");
                             }),
 
+                            Infolists\Components\TextEntry::make('development.server_credential')
+                            ->label('Server Credential')
+                            ->formatStateUsing(function ($state) {
+                                return new \Illuminate\Support\HtmlString("
+                                    <span style='color:#99cc00' class='font-semibold'>
+                                        $state
+                                    </span>
+                                ");
+                            }),
+
                             Infolists\Components\TextEntry::make('development.code_repository_url')
                             ->label('Code Repository URL')
                             ->formatStateUsing(function ($state) {

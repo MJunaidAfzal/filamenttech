@@ -92,7 +92,7 @@ class ViewOrderQuotation extends ViewRecord
                             ->button()
                             ->icon('heroicon-s-folder')
                             ->url($url)
-                            ->color('primary')
+                            ->color('brown')
                             ->label('View Order Quotation'),
                     ])
                     ->success()
