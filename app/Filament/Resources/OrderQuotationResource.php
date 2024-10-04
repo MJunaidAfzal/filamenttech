@@ -20,6 +20,7 @@ use App\Models\Order;
 use Filament\Notifications\Notification;
 use Filament\Tables\Actions\DeleteAction;
 use Filament\Support\Enums\ActionSize;
+use App\Models\User;
 
 
 
@@ -93,8 +94,8 @@ class OrderQuotationResource extends Resource
 
                     Forms\Components\Select::make('approved_by')
                     ->label('Approved Quotation')
-                    ->relationship('approver', 'name')
                     ->visible(fn () => auth()->user()->role->hasPermissionTo('can-approve-quotation'))
+                    ->options(User::whereIn('id', Order::where('id', request()->route('parent'))->pluck('user_id'))->pluck('name', 'id')->all())
                     ->nullable(),
 
                     Forms\Components\RichEditor::make('notes')

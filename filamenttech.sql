@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 20, 2024 at 03:46 PM
+-- Generation Time: Oct 04, 2024 at 02:47 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -38,18 +38,11 @@ CREATE TABLE `cache` (
 --
 
 INSERT INTO `cache` (`key`, `value`, `expiration`) VALUES
-('laravel_cache_1b6453892473a467d07372d45eb05abc2031647a', 'i:1;', 1726839120),
-('laravel_cache_1b6453892473a467d07372d45eb05abc2031647a:timer', 'i:1726839120;', 1726839120),
-('laravel_cache_356a192b7913b04c54574d18c28d46e6395428ab', 'i:1;', 1726838305),
-('laravel_cache_356a192b7913b04c54574d18c28d46e6395428ab:timer', 'i:1726838305;', 1726838305),
-('laravel_cache_a17961fa74e9275d529f489537f179c05d50c2f3', 'i:2;', 1726838697),
-('laravel_cache_a17961fa74e9275d529f489537f179c05d50c2f3:timer', 'i:1726838697;', 1726838697),
-('laravel_cache_jobahy@mailinator.com|127.0.0.1', 'i:1;', 1726235636),
-('laravel_cache_jobahy@mailinator.com|127.0.0.1:timer', 'i:1726235636;', 1726235636),
-('laravel_cache_mugi@mailinator.com|127.0.0.1', 'i:1;', 1726235762),
-('laravel_cache_mugi@mailinator.com|127.0.0.1:timer', 'i:1726235762;', 1726235762),
-('laravel_cache_qofecyhu@mailinator.com|127.0.0.1', 'i:1;', 1726235717),
-('laravel_cache_qofecyhu@mailinator.com|127.0.0.1:timer', 'i:1726235717;', 1726235717);
+('laravel_cache_a17961fa74e9275d529f489537f179c05d50c2f3', 'i:1;', 1728045646),
+('laravel_cache_a17961fa74e9275d529f489537f179c05d50c2f3:timer', 'i:1728045646;', 1728045646),
+('laravel_cache_ac3478d69a3c81fa62e60f5c3696165a4e5e6ac4', 'i:1;', 1728040353),
+('laravel_cache_ac3478d69a3c81fa62e60f5c3696165a4e5e6ac4:timer', 'i:1728040353;', 1728040353),
+('laravel_cache_spatie.permission.cache', 'a:3:{s:5:\"alias\";a:4:{s:1:\"a\";s:2:\"id\";s:1:\"b\";s:4:\"name\";s:1:\"c\";s:10:\"guard_name\";s:1:\"r\";s:5:\"roles\";}s:11:\"permissions\";a:21:{i:0;a:4:{s:1:\"a\";i:1;s:1:\"b\";s:9:\"order-all\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:3:{i:0;i:1;i:1;i:2;i:2;i:4;}}i:1;a:4:{s:1:\"a\";i:2;s:1:\"b\";s:12:\"create-order\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:2:{i:0;i:1;i:1;i:4;}}i:2;a:4:{s:1:\"a\";i:3;s:1:\"b\";s:10:\"view-order\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:3:{i:0;i:1;i:1;i:2;i:2;i:4;}}i:3;a:4:{s:1:\"a\";i:4;s:1:\"b\";s:10:\"edit-order\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:2:{i:0;i:1;i:1;i:4;}}i:4;a:4:{s:1:\"a\";i:5;s:1:\"b\";s:12:\"delete-order\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:2:{i:0;i:1;i:1;i:4;}}i:5;a:4:{s:1:\"a\";i:6;s:1:\"b\";s:27:\"assign_orders_to_developers\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:1:{i:0;i:1;}}i:6;a:4:{s:1:\"a\";i:7;s:1:\"b\";s:23:\"manage-order-quotations\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:2:{i:0;i:1;i:1;i:4;}}i:7;a:4:{s:1:\"a\";i:8;s:1:\"b\";s:20:\"view-order-quotation\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:2:{i:0;i:1;i:1;i:4;}}i:8;a:4:{s:1:\"a\";i:9;s:1:\"b\";s:20:\"edit-order-quotation\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:1:{i:0;i:1;}}i:9;a:4:{s:1:\"a\";i:10;s:1:\"b\";s:22:\"create-order-quotation\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:1:{i:0;i:1;}}i:10;a:4:{s:1:\"a\";i:11;s:1:\"b\";s:21:\"can-approve-quotation\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:1:{i:0;i:1;}}i:11;a:4:{s:1:\"a\";i:12;s:1:\"b\";s:30:\"can-comment-on-order-quotation\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:2:{i:0;i:1;i:1;i:4;}}i:12;a:4:{s:1:\"a\";i:13;s:1:\"b\";s:23:\"manage-order-deliveries\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:3:{i:0;i:1;i:1;i:2;i:2;i:4;}}i:13;a:4:{s:1:\"a\";i:14;s:1:\"b\";s:21:\"view-order-deliveries\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:3:{i:0;i:1;i:1;i:2;i:2;i:4;}}i:14;a:4:{s:1:\"a\";i:15;s:1:\"b\";s:21:\"edit-order-deliveries\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:3:{i:0;i:1;i:1;i:2;i:2;i:4;}}i:15;a:4:{s:1:\"a\";i:16;s:1:\"b\";s:23:\"create-order-deliveries\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:3:{i:0;i:1;i:1;i:2;i:2;i:4;}}i:16;a:4:{s:1:\"a\";i:17;s:1:\"b\";s:29:\"can-comment-on-order-delivery\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:3:{i:0;i:1;i:1;i:2;i:2;i:4;}}i:17;a:4:{s:1:\"a\";i:18;s:1:\"b\";s:20:\"can-comment-on-order\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:3:{i:0;i:1;i:1;i:2;i:2;i:4;}}i:18;a:4:{s:1:\"a\";i:23;s:1:\"b\";s:19:\"start-order-payment\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:1:{i:0;i:4;}}i:19;a:4:{s:1:\"a\";i:24;s:1:\"b\";s:23:\"approve-order-quotation\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:1:{i:0;i:4;}}i:20;a:4:{s:1:\"a\";i:25;s:1:\"b\";s:15:\"view-own-orders\";s:1:\"c\";s:3:\"web\";s:1:\"r\";a:1:{i:0;i:4;}}}s:5:\"roles\";a:3:{i:0;a:3:{s:1:\"a\";i:1;s:1:\"b\";s:5:\"admin\";s:1:\"c\";s:3:\"web\";}i:1;a:3:{s:1:\"a\";i:2;s:1:\"b\";s:9:\"developer\";s:1:\"c\";s:3:\"web\";}i:2;a:3:{s:1:\"a\";i:4;s:1:\"b\";s:6:\"client\";s:1:\"c\";s:3:\"web\";}}}', 1728126232);
 
 -- --------------------------------------------------------
 
@@ -62,6 +55,40 @@ CREATE TABLE `cache_locks` (
   `owner` varchar(255) NOT NULL,
   `expiration` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `categories`
+--
+
+CREATE TABLE `categories` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `categories`
+--
+
+INSERT INTO `categories` (`id`, `name`, `created_at`, `updated_at`) VALUES
+(1, 'Innovation Hub', NULL, NULL),
+(2, 'Sustainability Solutions', NULL, NULL),
+(3, 'Community Connect', NULL, NULL),
+(4, 'Artistry & Expression', NULL, NULL),
+(5, 'Tech Trends', NULL, NULL),
+(6, 'Health & Wellness', NULL, NULL),
+(7, 'Education Evolution', NULL, NULL),
+(8, 'Cultural Heritage', NULL, NULL),
+(9, 'Business & Entrepreneurship', NULL, NULL),
+(10, 'Lifestyle & Leisure', NULL, NULL),
+(11, 'Digital Transformation', NULL, NULL),
+(12, 'Social Impact', NULL, NULL),
+(13, 'Urban Development', NULL, NULL),
+(14, 'Research & Discovery', NULL, NULL),
+(15, 'Youth Empowerment', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -352,17 +379,6 @@ CREATE TABLE `customers` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `customers`
---
-
-INSERT INTO `customers` (`id`, `name`, `email`, `phone`, `address`, `company_name`, `created_at`, `updated_at`) VALUES
-(1, 'Rafael Harper', 'dydu@mailinator.com', '0384935892', 'Animi est alias est', 'Malone and Coleman Traders', '2024-09-07 06:16:18', '2024-09-07 06:16:18'),
-(2, 'Philip Burt', 'xytage@mailinator.com', '03789457936', 'Laborum Numquam aut', 'Barton and Meadows LLC', '2024-09-07 06:21:12', '2024-09-07 06:21:12'),
-(3, 'Dai Arnold', 'fefymeki@mailinator.com', '0394589569', 'Doloribus omnis est ', 'Roman Juarez Associates', '2024-09-07 06:21:55', '2024-09-07 06:21:55'),
-(4, 'Olivia Burns', 'jogogopi@mailinator.com', '0384695645', 'Culpa numquam et qu', 'Mcdaniel and Roman Co', '2024-09-07 06:23:02', '2024-09-07 06:23:02'),
-(5, 'Candice Woodard', 'tewakyqok@mailinator.com', '038967946', 'Sint dolorem maxime ', 'Frank and Schneider Inc', '2024-09-07 06:23:22', '2024-09-07 06:23:22');
-
 -- --------------------------------------------------------
 
 --
@@ -372,27 +388,23 @@ INSERT INTO `customers` (`id`, `name`, `email`, `phone`, `address`, `company_nam
 CREATE TABLE `designs` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `designer_id` bigint(20) UNSIGNED NOT NULL,
+  `project_id` bigint(20) UNSIGNED NOT NULL,
   `title` varchar(255) NOT NULL,
-  `category` varchar(255) NOT NULL,
-  `status` enum('In Progress','Completed') NOT NULL,
+  `category_id` varchar(255) NOT NULL,
+  `status` enum('Pending','In Progress','Completed') NOT NULL DEFAULT 'Pending',
   `file` varchar(255) NOT NULL,
-  `feedback` varchar(255) NOT NULL,
   `deadline` date NOT NULL,
   `description` text NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  `project_id` bigint(20) UNSIGNED NOT NULL
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `designs`
 --
 
-INSERT INTO `designs` (`id`, `designer_id`, `title`, `category`, `status`, `file`, `feedback`, `deadline`, `description`, `created_at`, `updated_at`, `project_id`) VALUES
-(5, 1, 'Id voluptas voluptat', 'Minus ut minus adipi', 'In Progress', '01J87J58EC50ZHHBFN9G836ER0.jpg', 'Omnis mollitia rerum', '2013-07-14', '<p>Ipsum exercitationem.</p>', '2024-09-20 06:13:00', '2024-09-20 07:15:11', 65),
-(6, 1, 'Sunt eu reprehender', 'Deleniti dolore cill', 'Completed', '01J87R7THKMTCH1CJEEDF9C0SK.jpeg', 'Sunt nihil nostrud ', '1983-01-27', '<p>Tempore, obcaecati m.</p>', '2024-09-20 07:59:16', '2024-09-20 07:59:16', 75),
-(7, 1, 'Dignissimos illum u', 'Adipisci nulla conse', 'Completed', '01J87SA1X4QS9FXRMATS1EF5HB.jpg', 'Quis et eius ut libe', '1980-07-12', '<p>Quos vel dolore volu.</p>', '2024-09-20 08:17:58', '2024-09-20 08:17:58', 76),
-(8, 4, 'Velit ex recusandae', 'Logossfdasf', 'Completed', '01J87T2CR30MVCHBS04WSD9WEN.jpg', 'dsfsdafasfdafaf', '2024-10-02', '<p>asfasfdcasfasfd</p>', '2024-09-20 08:31:15', '2024-09-20 08:34:18', 77);
+INSERT INTO `designs` (`id`, `designer_id`, `project_id`, `title`, `category_id`, `status`, `file`, `deadline`, `description`, `created_at`, `updated_at`) VALUES
+(1, 4, 6, 'Aliquid nihil tempor', '11', 'In Progress', '01J9B92R1E126M79Z3762VJ7FN.png', '1980-05-28', '<p>Tempore, quasi simil.</p>', '2024-10-04 03:07:00', '2024-10-04 04:02:26');
 
 -- --------------------------------------------------------
 
@@ -405,12 +417,11 @@ CREATE TABLE `developments` (
   `developer_id` bigint(20) UNSIGNED NOT NULL,
   `project_id` bigint(20) UNSIGNED NOT NULL,
   `title` varchar(255) NOT NULL,
-  `status` enum('In Progress','Completed') NOT NULL,
-  `version` varchar(255) NOT NULL,
+  `server_credential` varchar(255) NOT NULL,
+  `status` enum('Pending','In Progress','Completed') NOT NULL DEFAULT 'Pending',
   `file` varchar(255) NOT NULL,
-  `feedback` varchar(255) NOT NULL,
   `deadline` date NOT NULL,
-  `code_repository_url` varchar(255) NOT NULL,
+  `code_repository_url` varchar(255) DEFAULT NULL,
   `description` text NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -420,9 +431,9 @@ CREATE TABLE `developments` (
 -- Dumping data for table `developments`
 --
 
-INSERT INTO `developments` (`id`, `developer_id`, `project_id`, `title`, `status`, `version`, `file`, `feedback`, `deadline`, `code_repository_url`, `description`, `created_at`, `updated_at`) VALUES
-(1, 1, 72, 'Deserunt qui nihil a', 'In Progress', 'Cillum esse enim ex ', '01J87JYXEQVCC3B8A3XB43XDHP.png', 'Saepe quasi error qu', '1989-11-14', 'Facere in sit veniam', '<p>Non sed itaque aut s.</p>', '2024-09-20 06:27:01', '2024-09-20 06:27:01'),
-(3, 1, 74, 'Cumque facere dolore', 'In Progress', 'Eos doloribus repel', '01J87KMED0T6GZ1NJPAHG6J04F.jpg', 'Doloribus quo accusa', '2001-07-13', 'Ullamco nisi amet e', '<p>Et quibusdam volupta.</p>', '2024-09-20 06:38:47', '2024-09-20 06:38:47');
+INSERT INTO `developments` (`id`, `developer_id`, `project_id`, `title`, `server_credential`, `status`, `file`, `deadline`, `code_repository_url`, `description`, `created_at`, `updated_at`) VALUES
+(1, 1, 7, 'Totam incididunt mol', 'server credential', 'Pending', '01J9BD9J36D8GFKZDNQ1NJTS2V.png', '2024-10-25', 'https://github.com/example/project-api-integration', '<p>fggggggggggggggggggggfg</p>', '2024-10-04 04:20:38', '2024-10-04 04:20:38'),
+(2, 5, 8, 'Iusto aliquid dolore', 'Id et eum ipsum inci', 'In Progress', '01J9BKN196YBE4BSGJY6VX4CW6.jpg', '1983-10-06', 'Explicabo Sed proid', '<p>Vel explicabo. Eu ac.</p>', '2024-10-04 06:11:45', '2024-10-04 06:43:38');
 
 -- --------------------------------------------------------
 
@@ -474,6 +485,37 @@ CREATE TABLE `failed_jobs` (
   `exception` longtext NOT NULL,
   `failed_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `filament_comments`
+--
+
+CREATE TABLE `filament_comments` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` bigint(20) UNSIGNED NOT NULL,
+  `subject_type` varchar(255) NOT NULL,
+  `subject_id` bigint(20) UNSIGNED NOT NULL,
+  `comment` longtext NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `filament_comments`
+--
+
+INSERT INTO `filament_comments` (`id`, `user_id`, `subject_type`, `subject_id`, `comment`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 1, 'App\\Models\\OrderQuotation', 1, '<p>hi users</p>', '2024-10-03 07:27:33', '2024-10-03 07:27:33', NULL),
+(2, 1, 'App\\Models\\Order', 2, 'ODR-YGKN5R order has been delivered', '2024-09-02 10:14:00', '2024-09-02 10:14:00', NULL),
+(3, 1, 'App\\Models\\OrderDelivery', 1, '<p>hey users</p>', '2024-10-03 07:42:53', '2024-10-03 07:42:53', NULL),
+(4, 1, 'App\\Models\\Order', 2, 'ODR-YGKN5R order delivery has been updated', '2024-09-02 10:14:00', '2024-09-02 10:14:00', NULL),
+(5, 1, 'App\\Models\\Order', 4, '<p>nice order</p>', '2024-10-03 08:01:52', '2024-10-03 08:01:52', NULL),
+(6, 1, 'App\\Models\\Order', 2, 'ODR-E30YA7 order has been delivered', '2024-09-02 10:14:00', '2024-09-02 10:14:00', NULL),
+(7, 1, 'App\\Models\\Order', 2, 'ODR-E30YA7 order delivery has been updated', '2024-09-02 10:14:00', '2024-09-02 10:14:00', NULL),
+(8, 1, 'App\\Models\\Order', 2, 'ODR-7G79XX order has been delivered', '2024-09-02 10:14:00', '2024-09-02 10:14:00', NULL);
 
 -- --------------------------------------------------------
 
@@ -550,37 +592,59 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (1, '0001_01_01_000000_create_users_table', 1),
 (2, '0001_01_01_000001_create_cache_table', 1),
 (3, '0001_01_01_000002_create_jobs_table', 1),
-(4, '2024_08_09_074752_create_permission_table', 1),
-(5, '2024_08_09_075453_create_roles_table', 1),
-(6, '2024_08_09_105635_add_column_to_users_table', 1),
-(7, '2024_08_09_115701_add_column_to_roles', 1),
-(8, '2024_08_13_123536_create_project_types_table', 1),
-(9, '2024_08_13_125506_create_projects_table', 1),
-(10, '2024_08_13_140823_create_imports_table', 1),
-(11, '2024_08_13_140824_create_exports_table', 1),
-(12, '2024_08_13_140825_create_failed_import_rows_table', 1),
-(13, '2024_08_14_083731_create_notifications_table', 1),
-(15, '2024_08_29_111756_create_countries_table', 2),
-(18, '2024_08_29_111941_add_columns_to_users_table', 3),
-(19, '2024_08_29_134110_create_services_table', 4),
-(20, '2024_08_30_080011_create_attachments_table', 5),
-(24, '2024_09_04_133340_create_platforms_table', 6),
-(26, '2024_09_05_114935_create_graphic_designs_table', 8),
-(27, '2024_09_06_102358_create_designs_table', 9),
-(29, '2024_09_06_154322_create_menus_table', 11),
-(31, '2024_09_07_094539_create_permission_role_table', 13),
-(32, '2024_09_07_105556_create_customers_table', 14),
-(33, '2024_09_13_123701_create_project_assignees_table', 15),
-(34, '2024_09_13_125105_create_project_assignees_table', 16),
-(35, '2024_09_14_135614_create_services_table', 17),
-(36, '2024_09_14_140703_add_columns_to_projects_table', 18),
-(37, '2024_09_16_102349_create_orders_table', 19),
-(38, '2024_09_16_121048_add_column_to_designs_table', 20),
-(39, '2024_09_16_121111_add_column_to_developments_table', 20),
-(40, '2024_09_06_115155_create_developments_table', 21),
-(41, '2024_09_20_112524_create_developments_table', 22),
-(42, '2024_09_20_113013_create_order_assignees_table', 23),
-(43, '2024_09_20_113711_create_order_assignees_table', 24);
+(4, '2024_08_09_105635_add_column_to_users_table', 1),
+(5, '2024_08_13_140823_create_imports_table', 1),
+(6, '2024_08_13_140824_create_exports_table', 1),
+(7, '2024_08_13_140825_create_failed_import_rows_table', 1),
+(8, '2024_08_14_083731_create_notifications_table', 1),
+(9, '2024_08_29_111756_create_countries_table', 1),
+(10, '2024_08_29_111941_add_columns_to_users_table', 1),
+(11, '2024_09_07_105556_create_customers_table', 1),
+(12, '2024_09_14_135614_create_services_table', 1),
+(13, '2024_09_16_102349_create_orders_table', 1),
+(14, '2024_09_20_113711_create_order_assignees_table', 1),
+(15, '2024_09_24_081504_create_order_quotations_table', 1),
+(16, '2024_09_06_102358_create_designs_table', 2),
+(17, '2024_09_20_112524_create_developments_table', 2),
+(18, '2024_09_27_110803_create_categories_table', 3),
+(19, '2024_09_27_132108_create_filament_comments_table', 3),
+(20, '2024_09_27_132109_add_index_to_subject', 3),
+(21, '2024_09_28_133955_create_order_deliveries_table', 3),
+(22, '2024_09_24_091115_create_permission_tables', 4),
+(23, '2024_10_04_075712_create_developments_table', 5),
+(24, '2024_10_04_075740_create_designs_table', 5),
+(25, '2024_10_04_094139_create_permission_tables', 6);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `model_has_permissions`
+--
+
+CREATE TABLE `model_has_permissions` (
+  `permission_id` bigint(20) UNSIGNED NOT NULL,
+  `model_type` varchar(255) NOT NULL,
+  `model_id` bigint(20) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `model_has_permissions`
+--
+
+INSERT INTO `model_has_permissions` (`permission_id`, `model_type`, `model_id`) VALUES
+(1, 'App\\Models\\User', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `model_has_roles`
+--
+
+CREATE TABLE `model_has_roles` (
+  `role_id` bigint(20) UNSIGNED NOT NULL,
+  `model_type` varchar(255) NOT NULL,
+  `model_id` bigint(20) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -604,12 +668,20 @@ CREATE TABLE `notifications` (
 --
 
 INSERT INTO `notifications` (`id`, `type`, `notifiable_type`, `notifiable_id`, `data`, `read_at`, `created_at`, `updated_at`) VALUES
-('679bd6e6-2ea9-463e-b534-7d1ddb0bfe6b', 'Filament\\Notifications\\DatabaseNotification', 'App\\Models\\User', 1, '{\"actions\":[{\"name\":\"View\",\"color\":\"primary\",\"event\":null,\"eventData\":[],\"dispatchDirection\":false,\"dispatchToComponent\":null,\"extraAttributes\":[],\"icon\":\"heroicon-s-folder\",\"iconPosition\":\"after\",\"iconSize\":null,\"isOutlined\":false,\"isDisabled\":false,\"label\":\"View Order\",\"shouldClose\":false,\"shouldMarkAsRead\":false,\"shouldMarkAsUnread\":false,\"shouldOpenUrlInNewTab\":false,\"size\":\"sm\",\"tooltip\":null,\"url\":\"http:\\/\\/127.0.0.1:8000\\/admin\\/orders\\/77\\/view\",\"view\":\"filament-actions::button-action\"}],\"body\":\"client create a new order.\",\"color\":null,\"duration\":\"persistent\",\"icon\":null,\"iconColor\":null,\"status\":null,\"title\":\"New Order!\",\"view\":\"filament-notifications::notification\",\"viewData\":[],\"format\":\"filament\"}', NULL, '2024-09-20 08:31:15', '2024-09-20 08:31:15'),
-('8ec1aec4-d64a-4a78-bb04-df332f3fcf6d', 'Filament\\Notifications\\DatabaseNotification', 'App\\Models\\User', 1, '{\"actions\":[{\"name\":\"View\",\"color\":\"primary\",\"event\":null,\"eventData\":[],\"dispatchDirection\":false,\"dispatchToComponent\":null,\"extraAttributes\":[],\"icon\":\"heroicon-s-folder\",\"iconPosition\":\"after\",\"iconSize\":null,\"isOutlined\":false,\"isDisabled\":false,\"label\":\"View Order\",\"shouldClose\":false,\"shouldMarkAsRead\":false,\"shouldMarkAsUnread\":false,\"shouldOpenUrlInNewTab\":false,\"size\":\"sm\",\"tooltip\":null,\"url\":\"http:\\/\\/127.0.0.1:8000\\/admin\\/orders\\/76\\/view\",\"view\":\"filament-actions::button-action\"}],\"body\":\"admin create a new order.\",\"color\":null,\"duration\":\"persistent\",\"icon\":null,\"iconColor\":null,\"status\":null,\"title\":\"New Order!\",\"view\":\"filament-notifications::notification\",\"viewData\":[],\"format\":\"filament\"}', NULL, '2024-09-20 08:17:58', '2024-09-20 08:17:58'),
-('afb10c61-1db5-44a9-85f7-d51e51ea1026', 'Filament\\Notifications\\DatabaseNotification', 'App\\Models\\User', 19, '{\"actions\":[{\"name\":\"markAsUnread\",\"color\":null,\"event\":null,\"eventData\":[],\"dispatchDirection\":false,\"dispatchToComponent\":null,\"extraAttributes\":[],\"icon\":null,\"iconPosition\":\"before\",\"iconSize\":null,\"isOutlined\":false,\"isDisabled\":false,\"label\":\"Mark as unread\",\"shouldClose\":false,\"shouldMarkAsRead\":false,\"shouldMarkAsUnread\":true,\"shouldOpenUrlInNewTab\":false,\"size\":\"sm\",\"tooltip\":null,\"url\":null,\"view\":\"filament-actions::button-action\"}],\"body\":\"Admin asign you for this Project\",\"color\":null,\"duration\":\"persistent\",\"icon\":null,\"iconColor\":null,\"status\":null,\"title\":\"You are Asign By admin\",\"view\":\"filament-notifications::notification\",\"viewData\":[],\"format\":\"filament\"}', NULL, '2024-09-05 10:28:14', '2024-09-05 10:28:14'),
-('bddf2cc9-a215-43ea-a877-8bebee6d0f3a', 'Filament\\Notifications\\DatabaseNotification', 'App\\Models\\User', 5, '{\"actions\":[{\"name\":\"View\",\"color\":\"primary\",\"event\":null,\"eventData\":[],\"dispatchDirection\":false,\"dispatchToComponent\":null,\"extraAttributes\":[],\"icon\":\"heroicon-s-folder\",\"iconPosition\":\"before\",\"iconSize\":null,\"isOutlined\":false,\"isDisabled\":false,\"label\":\"View Order\",\"shouldClose\":false,\"shouldMarkAsRead\":false,\"shouldMarkAsUnread\":false,\"shouldOpenUrlInNewTab\":false,\"size\":\"sm\",\"tooltip\":null,\"url\":\"http:\\/\\/127.0.0.1:8000\\/developer\\/orders\\/65\\/view\",\"view\":\"filament-actions::button-action\"}],\"body\":\"admin assigned a order to you\",\"color\":null,\"duration\":\"persistent\",\"icon\":null,\"iconColor\":null,\"status\":null,\"title\":\"Order assigned!\",\"view\":\"filament-notifications::notification\",\"viewData\":[],\"format\":\"filament\"}', NULL, '2024-09-20 08:21:44', '2024-09-20 08:21:44'),
-('c80f687b-9c8b-43d6-86c4-37faabb5fb87', 'Filament\\Notifications\\DatabaseNotification', 'App\\Models\\User', 19, '{\"actions\":[{\"name\":\"markAsUnread\",\"color\":null,\"event\":null,\"eventData\":[],\"dispatchDirection\":false,\"dispatchToComponent\":null,\"extraAttributes\":[],\"icon\":null,\"iconPosition\":\"before\",\"iconSize\":null,\"isOutlined\":false,\"isDisabled\":false,\"label\":\"Mark as unread\",\"shouldClose\":false,\"shouldMarkAsRead\":false,\"shouldMarkAsUnread\":true,\"shouldOpenUrlInNewTab\":false,\"size\":\"sm\",\"tooltip\":null,\"url\":null,\"view\":\"filament-actions::button-action\"}],\"body\":\"Admin asign you for this Project\",\"color\":null,\"duration\":\"persistent\",\"icon\":null,\"iconColor\":null,\"status\":null,\"title\":\"You are Asign By admin\",\"view\":\"filament-notifications::notification\",\"viewData\":[],\"format\":\"filament\"}', NULL, '2024-09-05 09:14:27', '2024-09-05 09:14:27'),
-('dff3ff16-b735-4004-8546-760aa649b2ce', 'Filament\\Notifications\\DatabaseNotification', 'App\\Models\\User', 2, '{\"actions\":[{\"name\":\"View\",\"color\":\"primary\",\"event\":null,\"eventData\":[],\"dispatchDirection\":false,\"dispatchToComponent\":null,\"extraAttributes\":[],\"icon\":\"heroicon-s-folder\",\"iconPosition\":\"before\",\"iconSize\":null,\"isOutlined\":false,\"isDisabled\":false,\"label\":\"View Order\",\"shouldClose\":false,\"shouldMarkAsRead\":false,\"shouldMarkAsUnread\":false,\"shouldOpenUrlInNewTab\":false,\"size\":\"sm\",\"tooltip\":null,\"url\":\"http:\\/\\/127.0.0.1:8000\\/developer\\/orders\\/65\\/view\",\"view\":\"filament-actions::button-action\"}],\"body\":\"admin assigned a order to you\",\"color\":null,\"duration\":\"persistent\",\"icon\":null,\"iconColor\":null,\"status\":null,\"title\":\"Order assigned!\",\"view\":\"filament-notifications::notification\",\"viewData\":[],\"format\":\"filament\"}', NULL, '2024-09-20 08:21:44', '2024-09-20 08:21:44');
+('0d7c54cb-74c0-492e-8c0d-39f317b55720', 'Filament\\Notifications\\DatabaseNotification', 'App\\Models\\User', 5, '{\"actions\":[{\"name\":\"View\",\"color\":\"brown\",\"event\":null,\"eventData\":[],\"dispatchDirection\":false,\"dispatchToComponent\":null,\"extraAttributes\":[],\"icon\":\"heroicon-s-folder\",\"iconPosition\":\"before\",\"iconSize\":null,\"isOutlined\":false,\"isDisabled\":false,\"label\":\"View Quotation\",\"shouldClose\":false,\"shouldMarkAsRead\":false,\"shouldMarkAsUnread\":false,\"shouldOpenUrlInNewTab\":false,\"size\":\"sm\",\"tooltip\":null,\"url\":\"http:\\/\\/127.0.0.1:8000\\/client\\/orders\\/8\\/order-quotations\\/4\\/view\",\"view\":\"filament-actions::button-action\"}],\"body\":\"super admin create a new quotation for this order ODR-LHELPY.\",\"color\":null,\"duration\":\"persistent\",\"icon\":null,\"iconColor\":null,\"status\":null,\"title\":\"New Quotation Created!\",\"view\":\"filament-notifications::notification\",\"viewData\":[],\"format\":\"filament\"}', NULL, '2024-10-04 06:42:26', '2024-10-04 06:42:26'),
+('0f83d03c-437a-4878-9bb8-79351abf1d1d', 'Filament\\Notifications\\DatabaseNotification', 'App\\Models\\User', 1, '{\"actions\":[{\"name\":\"View Order\",\"color\":\"brown\",\"event\":null,\"eventData\":[],\"dispatchDirection\":false,\"dispatchToComponent\":null,\"extraAttributes\":[],\"icon\":\"heroicon-s-folder\",\"iconPosition\":\"before\",\"iconSize\":null,\"isOutlined\":false,\"isDisabled\":false,\"label\":\"View Order\",\"shouldClose\":false,\"shouldMarkAsRead\":false,\"shouldMarkAsUnread\":false,\"shouldOpenUrlInNewTab\":false,\"size\":\"sm\",\"tooltip\":null,\"url\":\"http:\\/\\/127.0.0.1:8000\\/admin\\/orders\\/6\\/view\",\"view\":\"filament-actions::button-action\"}],\"body\":\"admin has updated your order ODR-7G79XX\",\"color\":null,\"duration\":\"persistent\",\"icon\":null,\"iconColor\":null,\"status\":null,\"title\":\"Your Order updated! ODR-7G79XX\",\"view\":\"filament-notifications::notification\",\"viewData\":[],\"format\":\"filament\"}', NULL, '2024-10-04 04:14:02', '2024-10-04 04:14:02'),
+('22bae37a-1a8c-4d44-9117-bd5b64673044', 'Filament\\Notifications\\DatabaseNotification', 'App\\Models\\User', 5, '{\"actions\":[{\"name\":\"View\",\"color\":\"brown\",\"event\":null,\"eventData\":[],\"dispatchDirection\":false,\"dispatchToComponent\":null,\"extraAttributes\":[],\"icon\":\"heroicon-s-folder\",\"iconPosition\":\"after\",\"iconSize\":null,\"isOutlined\":false,\"isDisabled\":false,\"label\":\"View Order\",\"shouldClose\":false,\"shouldMarkAsRead\":false,\"shouldMarkAsUnread\":false,\"shouldOpenUrlInNewTab\":false,\"size\":\"sm\",\"tooltip\":null,\"url\":\"http:\\/\\/127.0.0.1:8000\\/client\\/orders\\/8\\/view\",\"view\":\"filament-actions::button-action\"}],\"body\":\"Alexa client create a new order ODR-LHELPY\",\"color\":null,\"duration\":\"persistent\",\"icon\":null,\"iconColor\":null,\"status\":null,\"title\":\"New Order!\",\"view\":\"filament-notifications::notification\",\"viewData\":[],\"format\":\"filament\"}', NULL, '2024-10-04 06:11:46', '2024-10-04 06:11:46'),
+('2f1bf708-a0fa-4059-bf4c-539b9dcc7071', 'Filament\\Notifications\\DatabaseNotification', 'App\\Models\\User', 4, '{\"actions\":[{\"name\":\"View\",\"color\":\"brown\",\"event\":null,\"eventData\":[],\"dispatchDirection\":false,\"dispatchToComponent\":null,\"extraAttributes\":[],\"icon\":\"heroicon-s-folder\",\"iconPosition\":\"before\",\"iconSize\":null,\"isOutlined\":false,\"isDisabled\":false,\"label\":\"View Quotation\",\"shouldClose\":false,\"shouldMarkAsRead\":false,\"shouldMarkAsUnread\":false,\"shouldOpenUrlInNewTab\":false,\"size\":\"sm\",\"tooltip\":null,\"url\":\"http:\\/\\/127.0.0.1:8000\\/client\\/orders\\/6\\/order-quotations\\/3\\/view\",\"view\":\"filament-actions::button-action\"}],\"body\":\"admin create a new quotation for this order ODR-7G79XX.\",\"color\":null,\"duration\":\"persistent\",\"icon\":null,\"iconColor\":null,\"status\":null,\"title\":\"New Quotation Created!\",\"view\":\"filament-notifications::notification\",\"viewData\":[],\"format\":\"filament\"}', NULL, '2024-10-04 03:09:54', '2024-10-04 03:09:54'),
+('3818911e-b1e9-420c-ab89-06e13f1a3653', 'Filament\\Notifications\\DatabaseNotification', 'App\\Models\\User', 1, '{\"actions\":[{\"name\":\"View\",\"color\":\"brown\",\"event\":null,\"eventData\":[],\"dispatchDirection\":false,\"dispatchToComponent\":null,\"extraAttributes\":[],\"icon\":\"heroicon-s-folder\",\"iconPosition\":\"after\",\"iconSize\":null,\"isOutlined\":false,\"isDisabled\":false,\"label\":\"View Order\",\"shouldClose\":false,\"shouldMarkAsRead\":false,\"shouldMarkAsUnread\":false,\"shouldOpenUrlInNewTab\":false,\"size\":\"sm\",\"tooltip\":null,\"url\":\"http:\\/\\/127.0.0.1:8000\\/admin\\/orders\\/8\\/view\",\"view\":\"filament-actions::button-action\"}],\"body\":\"Alexa client create a new order ODR-LHELPY\",\"color\":null,\"duration\":\"persistent\",\"icon\":null,\"iconColor\":null,\"status\":null,\"title\":\"New Order!\",\"view\":\"filament-notifications::notification\",\"viewData\":[],\"format\":\"filament\"}', NULL, '2024-10-04 06:11:46', '2024-10-04 06:11:46'),
+('6ee36c42-eaa0-4e91-86fa-30defe262aa1', 'Filament\\Notifications\\DatabaseNotification', 'App\\Models\\User', 1, '{\"actions\":[{\"name\":\"View Order\",\"color\":\"brown\",\"event\":null,\"eventData\":[],\"dispatchDirection\":false,\"dispatchToComponent\":null,\"extraAttributes\":[],\"icon\":\"heroicon-s-folder\",\"iconPosition\":\"before\",\"iconSize\":null,\"isOutlined\":false,\"isDisabled\":false,\"label\":\"View Order\",\"shouldClose\":false,\"shouldMarkAsRead\":false,\"shouldMarkAsUnread\":false,\"shouldOpenUrlInNewTab\":false,\"size\":\"sm\",\"tooltip\":null,\"url\":\"http:\\/\\/127.0.0.1:8000\\/admin\\/orders\\/7\\/view\",\"view\":\"filament-actions::button-action\"}],\"body\":\"admin has updated order ODR-OFQQCU\",\"color\":null,\"duration\":\"persistent\",\"icon\":null,\"iconColor\":null,\"status\":null,\"title\":\" Order updated! ODR-OFQQCU\",\"view\":\"filament-notifications::notification\",\"viewData\":[],\"format\":\"filament\"}', NULL, '2024-10-04 04:22:24', '2024-10-04 04:22:24'),
+('861e3429-e777-4581-aa3d-c66d1db75ac9', 'Filament\\Notifications\\DatabaseNotification', 'App\\Models\\User', 4, '{\"actions\":[{\"name\":\"View\",\"color\":\"brown\",\"event\":null,\"eventData\":[],\"dispatchDirection\":false,\"dispatchToComponent\":null,\"extraAttributes\":[],\"icon\":\"heroicon-s-folder\",\"iconPosition\":\"after\",\"iconSize\":null,\"isOutlined\":false,\"isDisabled\":false,\"label\":\"View Order\",\"shouldClose\":false,\"shouldMarkAsRead\":false,\"shouldMarkAsUnread\":false,\"shouldOpenUrlInNewTab\":false,\"size\":\"sm\",\"tooltip\":null,\"url\":\"http:\\/\\/127.0.0.1:8000\\/client\\/orders\\/6\\/view\",\"view\":\"filament-actions::button-action\"}],\"body\":\"client create a new order ODR-7G79XX\",\"color\":null,\"duration\":\"persistent\",\"icon\":null,\"iconColor\":null,\"status\":null,\"title\":\"New Order!\",\"view\":\"filament-notifications::notification\",\"viewData\":[],\"format\":\"filament\"}', NULL, '2024-10-04 03:07:01', '2024-10-04 03:07:01'),
+('861f09da-ce42-450f-8197-4f59e0f0dbf6', 'Filament\\Notifications\\DatabaseNotification', 'App\\Models\\User', 3, '{\"actions\":[{\"name\":\"View\",\"color\":\"brown\",\"event\":null,\"eventData\":[],\"dispatchDirection\":false,\"dispatchToComponent\":null,\"extraAttributes\":[],\"icon\":\"heroicon-s-folder\",\"iconPosition\":\"before\",\"iconSize\":null,\"isOutlined\":false,\"isDisabled\":false,\"label\":\"View Order\",\"shouldClose\":false,\"shouldMarkAsRead\":false,\"shouldMarkAsUnread\":false,\"shouldOpenUrlInNewTab\":false,\"size\":\"sm\",\"tooltip\":null,\"url\":\"http:\\/\\/127.0.0.1:8000\\/developer\\/orders\\/5\\/view\",\"view\":\"filament-actions::button-action\"}],\"body\":\"Admin assigned a order to you\",\"color\":null,\"duration\":\"persistent\",\"icon\":null,\"iconColor\":null,\"status\":null,\"title\":\"Order assigned!\",\"view\":\"filament-notifications::notification\",\"viewData\":[],\"format\":\"filament\"}', NULL, '2024-10-03 09:40:53', '2024-10-03 09:40:53'),
+('8e439811-9d3f-4488-bff8-e2cd5ff5e88d', 'Filament\\Notifications\\DatabaseNotification', 'App\\Models\\User', 4, '{\"actions\":[{\"name\":\"View Order\",\"color\":\"brown\",\"event\":null,\"eventData\":[],\"dispatchDirection\":false,\"dispatchToComponent\":null,\"extraAttributes\":[],\"icon\":\"heroicon-s-folder\",\"iconPosition\":\"before\",\"iconSize\":null,\"isOutlined\":false,\"isDisabled\":false,\"label\":\"View Order\",\"shouldClose\":false,\"shouldMarkAsRead\":false,\"shouldMarkAsUnread\":false,\"shouldOpenUrlInNewTab\":false,\"size\":\"sm\",\"tooltip\":null,\"url\":\"http:\\/\\/127.0.0.1:8000\\/client\\/orders\\/6\\/view\",\"view\":\"filament-actions::button-action\"}],\"body\":\"admin has updated your order ODR-7G79XX\",\"color\":null,\"duration\":\"persistent\",\"icon\":null,\"iconColor\":null,\"status\":null,\"title\":\"Your Order updated! ODR-7G79XX\",\"view\":\"filament-notifications::notification\",\"viewData\":[],\"format\":\"filament\"}', NULL, '2024-10-04 04:14:02', '2024-10-04 04:14:02'),
+('90ac2c7d-5c62-47cc-8aec-eeeb925069da', 'Filament\\Notifications\\DatabaseNotification', 'App\\Models\\User', 1, '{\"actions\":[{\"name\":\"View\",\"color\":\"brown\",\"event\":null,\"eventData\":[],\"dispatchDirection\":false,\"dispatchToComponent\":null,\"extraAttributes\":[],\"icon\":\"heroicon-s-folder\",\"iconPosition\":\"after\",\"iconSize\":null,\"isOutlined\":false,\"isDisabled\":false,\"label\":\"View Order\",\"shouldClose\":false,\"shouldMarkAsRead\":false,\"shouldMarkAsUnread\":false,\"shouldOpenUrlInNewTab\":false,\"size\":\"sm\",\"tooltip\":null,\"url\":\"http:\\/\\/127.0.0.1:8000\\/admin\\/orders\\/7\\/view\",\"view\":\"filament-actions::button-action\"}],\"body\":\"admin create a new order ODR-OFQQCU\",\"color\":null,\"duration\":\"persistent\",\"icon\":null,\"iconColor\":null,\"status\":null,\"title\":\"New Order!\",\"view\":\"filament-notifications::notification\",\"viewData\":[],\"format\":\"filament\"}', NULL, '2024-10-04 04:20:38', '2024-10-04 04:20:38'),
+('c3e74f81-f071-4ee0-bac4-e0f7c512513e', 'Filament\\Notifications\\DatabaseNotification', 'App\\Models\\User', 1, '{\"actions\":[{\"name\":\"View\",\"color\":\"brown\",\"event\":null,\"eventData\":[],\"dispatchDirection\":false,\"dispatchToComponent\":null,\"extraAttributes\":[],\"icon\":\"heroicon-s-folder\",\"iconPosition\":\"before\",\"iconSize\":null,\"isOutlined\":false,\"isDisabled\":false,\"label\":\"View Quotation\",\"shouldClose\":false,\"shouldMarkAsRead\":false,\"shouldMarkAsUnread\":false,\"shouldOpenUrlInNewTab\":false,\"size\":\"sm\",\"tooltip\":null,\"url\":\"http:\\/\\/127.0.0.1:8000\\/admin\\/orders\\/8\\/order-quotations\\/4\\/view\",\"view\":\"filament-actions::button-action\"}],\"body\":\"super admin create a new quotation for this order ODR-LHELPY.\",\"color\":null,\"duration\":\"persistent\",\"icon\":null,\"iconColor\":null,\"status\":null,\"title\":\"New Quotation Created!\",\"view\":\"filament-notifications::notification\",\"viewData\":[],\"format\":\"filament\"}', NULL, '2024-10-04 06:42:26', '2024-10-04 06:42:26'),
+('d1a2feff-27c5-4450-b144-12bb2550dc94', 'Filament\\Notifications\\DatabaseNotification', 'App\\Models\\User', 1, '{\"actions\":[{\"name\":\"View Order Quotation\",\"color\":\"brown\",\"event\":null,\"eventData\":[],\"dispatchDirection\":false,\"dispatchToComponent\":null,\"extraAttributes\":[],\"icon\":\"heroicon-s-folder\",\"iconPosition\":\"before\",\"iconSize\":null,\"isOutlined\":false,\"isDisabled\":false,\"label\":\"View Order Quotation\",\"shouldClose\":false,\"shouldMarkAsRead\":false,\"shouldMarkAsUnread\":false,\"shouldOpenUrlInNewTab\":false,\"size\":\"sm\",\"tooltip\":null,\"url\":\"http:\\/\\/127.0.0.1:8000\\/admin\\/orders\\/8\\/order-quotations\\/4\\/view\",\"view\":\"filament-actions::button-action\"}],\"body\":\"Payment was successfully completed for Quotation #QUO-OMBBFS.\",\"color\":null,\"duration\":\"persistent\",\"icon\":\"heroicon-o-check-circle\",\"iconColor\":\"success\",\"status\":\"success\",\"title\":\"Payment received for Order #ODR-LHELPY\",\"view\":\"filament-notifications::notification\",\"viewData\":[],\"format\":\"filament\"}', NULL, '2024-10-04 06:45:56', '2024-10-04 06:45:56'),
+('d2ec4971-0c91-4dfe-b82a-dfc48e1b04b3', 'Filament\\Notifications\\DatabaseNotification', 'App\\Models\\User', 4, '{\"actions\":[{\"name\":\"View Order Delivery\",\"color\":\"brown\",\"event\":null,\"eventData\":[],\"dispatchDirection\":false,\"dispatchToComponent\":null,\"extraAttributes\":[],\"icon\":\"heroicon-s-folder\",\"iconPosition\":\"before\",\"iconSize\":null,\"isOutlined\":false,\"isDisabled\":false,\"label\":\"View Order Delivery\",\"shouldClose\":false,\"shouldMarkAsRead\":false,\"shouldMarkAsUnread\":false,\"shouldOpenUrlInNewTab\":false,\"size\":\"sm\",\"tooltip\":null,\"url\":\"http:\\/\\/127.0.0.1:8000\\/client\\/orders\\/6\\/order-deliveries\\/3\",\"view\":\"filament-actions::button-action\"}],\"body\":\"client has delivered order ODR-7G79XX\",\"color\":null,\"duration\":\"persistent\",\"icon\":null,\"iconColor\":null,\"status\":null,\"title\":\"Order delivery! ODR-7G79XX\",\"view\":\"filament-notifications::notification\",\"viewData\":[],\"format\":\"filament\"}', NULL, '2024-10-04 03:07:49', '2024-10-04 03:07:49'),
+('e452e18c-fba6-4404-a295-d26bc3de2615', 'Filament\\Notifications\\DatabaseNotification', 'App\\Models\\User', 4, '{\"actions\":[{\"name\":\"View\",\"color\":\"brown\",\"event\":null,\"eventData\":[],\"dispatchDirection\":false,\"dispatchToComponent\":null,\"extraAttributes\":[],\"icon\":\"heroicon-s-folder\",\"iconPosition\":\"before\",\"iconSize\":null,\"isOutlined\":false,\"isDisabled\":false,\"label\":\"View Quotation\",\"shouldClose\":false,\"shouldMarkAsRead\":false,\"shouldMarkAsUnread\":false,\"shouldOpenUrlInNewTab\":false,\"size\":\"sm\",\"tooltip\":null,\"url\":\"http:\\/\\/127.0.0.1:8000\\/client\\/orders\\/6\\/order-quotations\\/3\\/view\",\"view\":\"filament-actions::button-action\"}],\"body\":\"Quotation #QUO-CXY4X6 has been approved by admin.\",\"color\":null,\"duration\":\"persistent\",\"icon\":null,\"iconColor\":null,\"status\":null,\"title\":\"Quotation Approved!\",\"view\":\"filament-notifications::notification\",\"viewData\":[],\"format\":\"filament\"}', NULL, '2024-10-04 03:10:21', '2024-10-04 03:10:21');
 
 -- --------------------------------------------------------
 
@@ -633,13 +705,9 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`id`, `user_id`, `order_id`, `service_id`, `service_type`, `notes`, `created_at`, `updated_at`) VALUES
-(65, 1, 'ODR-BR84SL', 1, 'App\\Models\\Design', NULL, '2024-09-20 06:13:00', '2024-09-20 08:21:44'),
-(72, 1, 'ODR-PC5LVT', 2, 'App\\Models\\Development', '<p>Non sed itaque aut s.</p>', '2024-09-20 06:27:01', '2024-09-20 07:08:00'),
-(73, 1, 'ODR-WTWRXN', 2, 'App\\Models\\Development', '<p>Quaerat ea quis dolo.</p>', '2024-09-20 06:35:59', '2024-09-20 06:35:59'),
-(74, 1, 'ODR-N9MATF', 2, 'App\\Models\\Development', '<p>hjgkjhk</p>', '2024-09-20 06:38:47', '2024-09-20 08:12:56'),
-(75, 1, 'ODR-BWHJNE', 1, 'App\\Models\\Design', '<p>Est est, quisquam es.</p>', '2024-09-20 07:59:16', '2024-09-20 07:59:16'),
-(76, 1, 'ODR-LPUIV4', 1, 'App\\Models\\Design', '<p>Labore ea doloribus .</p>', '2024-09-20 08:17:58', '2024-09-20 08:17:58'),
-(77, 4, 'ODR-FZPUAA', 1, 'App\\Models\\Design', NULL, '2024-09-20 08:31:15', '2024-09-20 08:34:18');
+(6, 4, 'ODR-7G79XX', 1, 'App\\Models\\Design', NULL, '2024-10-04 03:07:00', '2024-10-04 04:02:26'),
+(7, 1, 'ODR-OFQQCU', 2, 'App\\Models\\Development', NULL, '2024-10-04 04:20:38', '2024-10-04 04:22:24'),
+(8, 5, 'ODR-LHELPY', 2, 'App\\Models\\Development', '<p>Dolores esse sunt, e.</p>', '2024-10-04 06:11:45', '2024-10-04 06:11:45');
 
 -- --------------------------------------------------------
 
@@ -657,11 +725,60 @@ CREATE TABLE `order_assignees` (
 --
 
 INSERT INTO `order_assignees` (`order_id`, `user_id`) VALUES
-(65, 2),
-(65, 5),
-(74, 2),
-(74, 5),
-(75, 2);
+(6, 2);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `order_deliveries`
+--
+
+CREATE TABLE `order_deliveries` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `delivery_files` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL CHECK (json_valid(`delivery_files`)),
+  `delivery_note` text NOT NULL,
+  `status` enum('Pending','Approved','Rejected') NOT NULL DEFAULT 'Pending',
+  `user_id` bigint(20) UNSIGNED NOT NULL,
+  `order_id` bigint(20) UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `order_deliveries`
+--
+
+INSERT INTO `order_deliveries` (`id`, `delivery_files`, `delivery_note`, `status`, `user_id`, `order_id`, `created_at`, `updated_at`) VALUES
+(3, '[\"01J9B946Z30MR8B6TJ065FJGAY.png\"]', '<p>first delivery</p>', 'Pending', 4, 6, '2024-10-04 03:07:48', '2024-10-04 03:07:48');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `order_quotations`
+--
+
+CREATE TABLE `order_quotations` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `quotation_number` varchar(255) NOT NULL,
+  `created_by` bigint(20) UNSIGNED NOT NULL,
+  `order_id` bigint(20) UNSIGNED NOT NULL,
+  `estimated_cost` decimal(10,2) NOT NULL,
+  `description` text DEFAULT NULL,
+  `deadline` date DEFAULT NULL,
+  `status` enum('Pending','Approved','Rejected') NOT NULL DEFAULT 'Pending',
+  `notes` text DEFAULT NULL,
+  `approved_by` bigint(20) UNSIGNED DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `order_quotations`
+--
+
+INSERT INTO `order_quotations` (`id`, `quotation_number`, `created_by`, `order_id`, `estimated_cost`, `description`, `deadline`, `status`, `notes`, `approved_by`, `created_at`, `updated_at`) VALUES
+(3, 'QUO-CXY4X6', 1, 6, 500.00, '<p>sdafsdfsdfasdfasd</p>', '2024-10-19', 'Approved', '<p>asdfasdfasdf</p>', 4, '2024-10-04 03:09:54', '2024-10-04 03:14:45'),
+(4, 'QUO-OMBBFS', 1, 8, 45.00, '<p>Et est esse, reprehe.</p>', '2004-06-24', 'Approved', '<p>In dolore distinctio.</p>', 5, '2024-10-04 06:42:26', '2024-10-04 06:43:38');
 
 -- --------------------------------------------------------
 
@@ -684,7 +801,7 @@ CREATE TABLE `password_reset_tokens` (
 CREATE TABLE `permissions` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(255) NOT NULL,
-  `description` text DEFAULT NULL,
+  `guard_name` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -693,152 +810,28 @@ CREATE TABLE `permissions` (
 -- Dumping data for table `permissions`
 --
 
-INSERT INTO `permissions` (`id`, `name`, `description`, `created_at`, `updated_at`) VALUES
-(2, 'view_users', 'Permission to view users', NULL, NULL),
-(3, 'create_user', 'Permission to create a new user', NULL, NULL),
-(4, 'edit_user', 'Permission to edit user details', NULL, NULL),
-(5, 'delete_user', 'Permission to delete a user', NULL, NULL),
-(6, 'assign_roles', 'Permission to assign roles to users', NULL, NULL),
-(7, 'view_projects', 'Permission to view all projects', NULL, NULL),
-(8, 'create_project', 'Permission to create a new project', NULL, NULL),
-(9, 'edit_project', 'Permission to edit project details', NULL, NULL),
-(10, 'delete_project', 'Permission to delete a project', NULL, NULL),
-(11, 'assign_projects_to_developers', 'Permission to assign projects to developers', NULL, NULL),
-(12, 'view_customers', 'Permission to view customer details', NULL, NULL),
-(13, 'edit_customer', 'Permission to edit customer details', NULL, NULL),
-(14, 'delete_customer', 'Permission to delete a customer', NULL, NULL),
-(15, 'view_project_types', 'Permission to view project types', NULL, NULL),
-(16, 'edit_project_types', 'Permission to edit project types', NULL, NULL),
-(17, 'manage_roles', 'Permission to manage roles in the system', NULL, NULL),
-(18, 'view_reports', 'Permission to view system reports', NULL, NULL),
-(19, 'view_assigned_projects', 'Permission to view assigned projects (Developer)', NULL, NULL),
-(20, 'edit_project_status', 'Permission to edit project status (Developer)', NULL, NULL),
-(21, 'update_code_repository', 'Permission to update project code repository', NULL, NULL),
-(22, 'view_project_details', 'Permission to view project details', NULL, NULL),
-(23, 'view_designs', 'Permission to view design resources', NULL, NULL),
-(24, 'view_own_projects', 'Permission for clients to view their own projects', NULL, NULL),
-(25, 'edit_own_project', 'Permission for clients to edit their own projects', NULL, NULL),
-(26, 'upload_files_to_project', 'Permission to upload files to a project (Client)', NULL, NULL),
-(27, 'view_design_categories', 'Permission to view design categories in projects', NULL, NULL),
-(28, 'update_project', 'Permission to update projects.', '2024-09-07 10:13:53', '2024-09-07 10:13:53');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `permission_role`
---
-
-CREATE TABLE `permission_role` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `role_id` bigint(20) UNSIGNED NOT NULL,
-  `permission_id` bigint(20) UNSIGNED NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `permission_role`
---
-
-INSERT INTO `permission_role` (`id`, `role_id`, `permission_id`, `created_at`, `updated_at`) VALUES
-(1, 1, 10, NULL, NULL),
-(2, 1, 5, NULL, NULL),
-(3, 1, 13, NULL, NULL),
-(4, 1, 25, NULL, NULL),
-(5, 1, 14, NULL, NULL),
-(6, 1, 9, NULL, NULL),
-(8, 1, 3, NULL, NULL),
-(9, 1, 16, NULL, NULL),
-(10, 1, 4, NULL, NULL),
-(11, 1, 17, NULL, NULL),
-(12, 1, 26, NULL, NULL),
-(15, 1, 12, NULL, NULL),
-(16, 1, 8, NULL, NULL),
-(17, 1, 27, NULL, NULL),
-(18, 1, 24, NULL, NULL),
-(20, 1, 15, NULL, NULL),
-(21, 1, 7, NULL, NULL),
-(23, 1, 18, NULL, NULL),
-(24, 1, 2, NULL, NULL),
-(25, 1, 6, NULL, NULL),
-(26, 1, 11, NULL, NULL),
-(27, 2, 20, NULL, NULL),
-(28, 2, 21, NULL, NULL),
-(29, 2, 19, NULL, NULL),
-(30, 2, 22, NULL, NULL),
-(31, 2, 23, NULL, NULL),
-(32, 3, 19, NULL, NULL),
-(33, 3, 12, NULL, NULL),
-(34, 3, 7, NULL, NULL),
-(35, 3, 22, NULL, NULL),
-(36, 4, 8, NULL, NULL),
-(37, 4, 24, NULL, NULL),
-(38, 4, 28, NULL, NULL),
-(39, 4, 22, NULL, NULL),
-(40, 1, 28, NULL, NULL),
-(41, 1, 22, NULL, NULL),
-(42, 1, 23, NULL, NULL),
-(43, 1, 19, NULL, NULL),
-(44, 1, 20, NULL, NULL);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `projects`
---
-
-CREATE TABLE `projects` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `order_id` varchar(255) NOT NULL,
-  `title` varchar(255) NOT NULL,
-  `description` longtext NOT NULL,
-  `deadline` date NOT NULL,
-  `file` varchar(255) NOT NULL,
-  `no_of_pages` int(11) NOT NULL,
-  `status` tinyint(4) NOT NULL DEFAULT 1,
-  `price` varchar(255) NOT NULL,
-  `user_id` varchar(255) NOT NULL,
-  `notes` text NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  `payment_status` enum('pending','completed','failed','refunded') NOT NULL DEFAULT 'pending',
-  `service_id` varchar(255) NOT NULL,
-  `service_type` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `project_assignees`
---
-
-CREATE TABLE `project_assignees` (
-  `project_id` bigint(20) UNSIGNED NOT NULL,
-  `user_id` bigint(20) UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `project_types`
---
-
-CREATE TABLE `project_types` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `status` tinyint(4) NOT NULL,
-  `design` varchar(255) NOT NULL,
-  `website` varchar(255) NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `project_types`
---
-
-INSERT INTO `project_types` (`id`, `name`, `status`, `design`, `website`, `created_at`, `updated_at`) VALUES
-(1, 'Web Development:', 1, 'Web Development:', 'Web Development:', '2024-09-16 10:13:14', NULL);
+INSERT INTO `permissions` (`id`, `name`, `guard_name`, `created_at`, `updated_at`) VALUES
+(1, 'order-all', 'web', '2024-10-03 02:00:20', '2024-10-03 02:00:20'),
+(2, 'create-order', 'web', '2024-10-03 02:01:42', '2024-10-03 02:01:42'),
+(3, 'view-order', 'web', '2024-10-03 02:02:07', '2024-10-03 02:02:07'),
+(4, 'edit-order', 'web', '2024-10-03 02:02:15', '2024-10-03 02:02:15'),
+(5, 'delete-order', 'web', '2024-10-03 02:02:23', '2024-10-03 02:02:23'),
+(6, 'assign_orders_to_developers', 'web', '2024-10-03 02:11:03', '2024-10-03 02:11:03'),
+(7, 'manage-order-quotations', 'web', '2024-10-03 02:22:22', '2024-10-03 02:22:22'),
+(8, 'view-order-quotation', 'web', '2024-10-03 02:22:45', '2024-10-03 02:22:45'),
+(9, 'edit-order-quotation', 'web', '2024-10-03 02:22:55', '2024-10-03 02:22:55'),
+(10, 'create-order-quotation', 'web', '2024-10-03 02:23:18', '2024-10-03 02:23:18'),
+(11, 'can-approve-quotation', 'web', '2024-10-03 02:24:46', '2024-10-03 02:24:46'),
+(12, 'can-comment-on-order-quotation', 'web', '2024-10-03 02:26:42', '2024-10-03 02:26:42'),
+(13, 'manage-order-deliveries', 'web', '2024-10-03 02:37:15', '2024-10-03 02:37:15'),
+(14, 'view-order-deliveries', 'web', '2024-10-03 02:37:34', '2024-10-03 02:37:34'),
+(15, 'edit-order-deliveries', 'web', '2024-10-03 02:37:46', '2024-10-03 02:37:46'),
+(16, 'create-order-deliveries', 'web', '2024-10-03 02:38:04', '2024-10-03 02:38:04'),
+(17, 'can-comment-on-order-delivery', 'web', '2024-10-03 02:38:16', '2024-10-03 02:38:16'),
+(18, 'can-comment-on-order', 'web', '2024-10-03 02:59:56', '2024-10-03 02:59:56'),
+(23, 'start-order-payment', 'web', '2024-10-03 03:27:11', '2024-10-03 03:27:11'),
+(24, 'approve-order-quotation', 'web', '2024-10-03 03:29:21', '2024-10-03 03:29:21'),
+(25, 'view-own-orders', 'web', '2024-10-04 04:49:06', '2024-10-04 04:49:06');
 
 -- --------------------------------------------------------
 
@@ -849,7 +842,7 @@ INSERT INTO `project_types` (`id`, `name`, `status`, `design`, `website`, `creat
 CREATE TABLE `roles` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(255) NOT NULL,
-  `guard_name` varchar(255) DEFAULT NULL,
+  `guard_name` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -859,10 +852,70 @@ CREATE TABLE `roles` (
 --
 
 INSERT INTO `roles` (`id`, `name`, `guard_name`, `created_at`, `updated_at`) VALUES
-(1, 'Admin', 'admin', NULL, NULL),
-(2, 'Developer', 'developer', NULL, NULL),
-(3, 'Support', 'support', NULL, NULL),
-(4, 'Client', 'client', NULL, NULL);
+(1, 'admin', 'web', '2024-10-04 04:51:28', '2024-10-04 04:51:28'),
+(2, 'developer', 'web', '2024-10-04 04:56:42', '2024-10-04 04:56:42'),
+(3, 'support', 'web', '2024-10-04 05:12:54', '2024-10-04 05:12:54'),
+(4, 'client', 'web', '2024-10-04 10:17:23', '2024-10-04 10:17:23');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `role_has_permissions`
+--
+
+CREATE TABLE `role_has_permissions` (
+  `permission_id` bigint(20) UNSIGNED NOT NULL,
+  `role_id` bigint(20) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `role_has_permissions`
+--
+
+INSERT INTO `role_has_permissions` (`permission_id`, `role_id`) VALUES
+(1, 1),
+(1, 2),
+(1, 4),
+(2, 1),
+(2, 4),
+(3, 1),
+(3, 2),
+(3, 4),
+(4, 1),
+(4, 4),
+(5, 1),
+(5, 4),
+(6, 1),
+(7, 1),
+(7, 4),
+(8, 1),
+(8, 4),
+(9, 1),
+(10, 1),
+(11, 1),
+(12, 1),
+(12, 4),
+(13, 1),
+(13, 2),
+(13, 4),
+(14, 1),
+(14, 2),
+(14, 4),
+(15, 1),
+(15, 2),
+(15, 4),
+(16, 1),
+(16, 2),
+(16, 4),
+(17, 1),
+(17, 2),
+(17, 4),
+(18, 1),
+(18, 2),
+(18, 4),
+(23, 4),
+(24, 4),
+(25, 4);
 
 -- --------------------------------------------------------
 
@@ -883,8 +936,8 @@ CREATE TABLE `services` (
 --
 
 INSERT INTO `services` (`id`, `name`, `type`, `created_at`, `updated_at`) VALUES
-(1, 'design', 'App\\Models\\Design', '2024-09-14 13:58:26', '2024-09-14 13:58:26'),
-(2, 'development', 'App\\Models\\Development', '2024-09-14 13:58:26', '2024-09-14 13:58:26');
+(1, 'design', 'App\\Models\\Design', '2024-10-04 07:52:50', '2024-10-05 07:52:50'),
+(2, 'development', 'App\\Models\\Development', '2024-10-04 07:52:50', '2024-10-05 07:52:50');
 
 -- --------------------------------------------------------
 
@@ -900,13 +953,6 @@ CREATE TABLE `sessions` (
   `payload` longtext NOT NULL,
   `last_activity` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `sessions`
---
-
-INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('mcZ5P3ZaP2Yi7hEAWHas1hKEcGoWuNTc85p6Dffj', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36', 'YTo2OntzOjY6Il90b2tlbiI7czo0MDoia3hJb3EwOU54RzJjSllrcDdOZ1hyeWh3V0pxV3NlekFxRk1rVnhCSCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mjc6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hZG1pbiI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6MzoidXJsIjthOjA6e31zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToxO3M6MTc6InBhc3N3b3JkX2hhc2hfd2ViIjtzOjYwOiIkMnkkMTIkd2FOekhFeGlCM2VRM0tjYnlWbHZHLmcxd0gzOFpKOGxxcVNUODEyWmxlbjRJd0xKMHVMSEciO30=', 1725523367);
 
 -- --------------------------------------------------------
 
@@ -936,12 +982,12 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `is_admin`, `is_system_admin`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`, `role_id`, `phone_number`, `country_id`, `company_name`) VALUES
-(1, 'admin', 'admin@gmail.com', 1, 1, NULL, '$2y$12$waNzHExiB3eQ3KcbyVlvG.g1wH38ZJ8lqqST812Zlen4IwLJ0uLHG', NULL, NULL, '2024-08-27 08:52:28', 1, NULL, NULL, NULL),
-(2, 'developer', 'developer@gmail.com', 0, 0, NULL, '$2y$12$IAgUGAFXqRhXO.oayUImY.i4tsfC2S7/HFhxybyS2wYBJ9.F22cuK', NULL, NULL, '2024-08-27 09:55:32', 2, NULL, NULL, NULL),
-(3, 'support', 'support@gmail.com', 0, 0, NULL, '$2y$12$oxC6PphLOj2ZAQ8ReXmavOeZL3N3HTr7zRVJBPVrVSa/32qE5.fX2', NULL, NULL, '2024-08-27 10:11:41', 3, NULL, NULL, NULL),
-(4, 'client', 'client@gmail.com', 0, 0, NULL, '$2y$12$66NeEGyFYmL/sYhlTAsg9O0z4ET9TlMchHZdJB7MGvQyk1VUUvUJK', '1n020Ss1ldPiqs7HDa4hCQ4UONwX1MungQQ9TbzKiJcIkOAIU6TgUxiSRfF0', NULL, '2024-08-27 09:40:02', 4, NULL, NULL, NULL),
-(5, 'developer2', 'developer2@gmail.com', 0, 0, NULL, '$2y$12$3f2VzbKFHVcwCUnNUi8XoudFOA8uqVRQHbi.oeTX92qd4gKCX46Gq', 'u5fhp7NlUQE2PkIlByKRVGgieIB0bZ9ufUpTPs2eEsaGcQ3jGrLkzswd0WbX', '2024-09-05 09:12:20', '2024-09-14 04:04:16', 2, '03454645667', 15, 'vision tech'),
-(20, 'Hilel Smith', 'cyfop@mailinator.com', 0, 0, NULL, '$2y$12$Q7oG1OL8vZcGuXc2MJ2f7.mV0aomHTEPPTxdeEPhTw5gRpW8M8Miy', NULL, '2024-09-14 02:55:34', '2024-09-14 02:55:34', 4, '442', 76, 'Barrera Marshall LLC');
+(1, 'super admin', 'admin@gmail.com', 1, 1, NULL, '$2y$12$iAr47MzCV9obODVVgAKzPu0ySt5uQeKGH4UBM5Ds8zMPsbkVV3rDS', NULL, '2024-10-04 07:54:15', '2024-10-04 02:56:05', 1, NULL, NULL, NULL),
+(2, 'joe  developer', 'developer@gmail.com', 0, 0, NULL, '$2y$12$Y/iId6vbddWEES7aTRlw9uLnF7/Pwgx5lMjFtPHdf8mYqgHPZcMIy', NULL, '2024-10-04 08:00:03', '2024-10-04 03:01:14', 2, NULL, NULL, NULL),
+(3, 'elsa support', 'support@gmail.com', 0, 0, NULL, '$2y$10$bKdadIHndN34.eshF1oaS.XZM3ZlPeE6M6gw/Ce6L61VWMkbqr3Sq', NULL, '2024-10-04 08:02:49', '2024-10-04 08:02:49', 3, NULL, NULL, NULL),
+(4, 'harry client', 'client@gmail.com', 0, 0, NULL, '$2y$12$2Tw0cUgn9p5UiR4M3DndY.UxazjFn1GInYDpGs5xEM/YOXhUUX316', NULL, '2024-10-04 08:03:46', '2024-10-04 03:04:45', 4, NULL, NULL, NULL),
+(5, 'Alexa client', 'alexa@gmail.com', 0, 0, NULL, '$2y$12$Nc/EK/TYq7d3H.9hWXe1kuu1vxHCVzgxREegDH9ue4aQ4fI0/ses6', NULL, '2024-10-04 10:21:09', '2024-10-04 05:22:34', 4, NULL, NULL, NULL),
+(6, 'david developer', 'david@gmail.com', 0, 0, NULL, '$2y$12$vMzZO7kfTLuWjRjuAV4F.u2G8qMs4ZfU8pB5NMS.hVf4VpMIT8k0O', NULL, '2024-10-04 11:31:50', '2024-10-04 06:33:35', 2, NULL, NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -958,6 +1004,12 @@ ALTER TABLE `cache`
 --
 ALTER TABLE `cache_locks`
   ADD PRIMARY KEY (`key`);
+
+--
+-- Indexes for table `categories`
+--
+ALTER TABLE `categories`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `countries`
@@ -1010,6 +1062,13 @@ ALTER TABLE `failed_jobs`
   ADD UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`);
 
 --
+-- Indexes for table `filament_comments`
+--
+ALTER TABLE `filament_comments`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `filament_comments_subject_type_subject_id_index` (`subject_type`,`subject_id`);
+
+--
 -- Indexes for table `imports`
 --
 ALTER TABLE `imports`
@@ -1036,6 +1095,20 @@ ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `model_has_permissions`
+--
+ALTER TABLE `model_has_permissions`
+  ADD PRIMARY KEY (`permission_id`,`model_id`,`model_type`),
+  ADD KEY `model_has_permissions_model_id_model_type_index` (`model_id`,`model_type`);
+
+--
+-- Indexes for table `model_has_roles`
+--
+ALTER TABLE `model_has_roles`
+  ADD PRIMARY KEY (`role_id`,`model_id`,`model_type`),
+  ADD KEY `model_has_roles_model_id_model_type_index` (`model_id`,`model_type`);
+
+--
 -- Indexes for table `notifications`
 --
 ALTER TABLE `notifications`
@@ -1059,6 +1132,24 @@ ALTER TABLE `order_assignees`
   ADD KEY `order_assignees_user_id_foreign` (`user_id`);
 
 --
+-- Indexes for table `order_deliveries`
+--
+ALTER TABLE `order_deliveries`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `order_deliveries_user_id_foreign` (`user_id`),
+  ADD KEY `order_deliveries_order_id_foreign` (`order_id`);
+
+--
+-- Indexes for table `order_quotations`
+--
+ALTER TABLE `order_quotations`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `order_quotations_quotation_number_unique` (`quotation_number`),
+  ADD KEY `order_quotations_created_by_foreign` (`created_by`),
+  ADD KEY `order_quotations_order_id_foreign` (`order_id`),
+  ADD KEY `order_quotations_approved_by_foreign` (`approved_by`);
+
+--
 -- Indexes for table `password_reset_tokens`
 --
 ALTER TABLE `password_reset_tokens`
@@ -1069,40 +1160,21 @@ ALTER TABLE `password_reset_tokens`
 --
 ALTER TABLE `permissions`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `permissions_name_guard_name_unique` (`name`,`description`) USING HASH;
-
---
--- Indexes for table `permission_role`
---
-ALTER TABLE `permission_role`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `permission_role_role_id_foreign` (`role_id`),
-  ADD KEY `permission_role_permission_id_foreign` (`permission_id`);
-
---
--- Indexes for table `projects`
---
-ALTER TABLE `projects`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `project_assignees`
---
-ALTER TABLE `project_assignees`
-  ADD PRIMARY KEY (`project_id`,`user_id`),
-  ADD KEY `project_assignees_user_id_foreign` (`user_id`);
-
---
--- Indexes for table `project_types`
---
-ALTER TABLE `project_types`
-  ADD PRIMARY KEY (`id`);
+  ADD UNIQUE KEY `permissions_name_guard_name_unique` (`name`,`guard_name`);
 
 --
 -- Indexes for table `roles`
 --
 ALTER TABLE `roles`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `roles_name_guard_name_unique` (`name`,`guard_name`);
+
+--
+-- Indexes for table `role_has_permissions`
+--
+ALTER TABLE `role_has_permissions`
+  ADD PRIMARY KEY (`permission_id`,`role_id`),
+  ADD KEY `role_has_permissions_role_id_foreign` (`role_id`);
 
 --
 -- Indexes for table `services`
@@ -1130,6 +1202,12 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `categories`
+--
+ALTER TABLE `categories`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
+--
 -- AUTO_INCREMENT for table `countries`
 --
 ALTER TABLE `countries`
@@ -1139,19 +1217,19 @@ ALTER TABLE `countries`
 -- AUTO_INCREMENT for table `customers`
 --
 ALTER TABLE `customers`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `designs`
 --
 ALTER TABLE `designs`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `developments`
 --
 ALTER TABLE `developments`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `exports`
@@ -1172,6 +1250,12 @@ ALTER TABLE `failed_jobs`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `filament_comments`
+--
+ALTER TABLE `filament_comments`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
 -- AUTO_INCREMENT for table `imports`
 --
 ALTER TABLE `imports`
@@ -1187,43 +1271,37 @@ ALTER TABLE `jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `order_deliveries`
+--
+ALTER TABLE `order_deliveries`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `order_quotations`
+--
+ALTER TABLE `order_quotations`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `permissions`
 --
 ALTER TABLE `permissions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
-
---
--- AUTO_INCREMENT for table `permission_role`
---
-ALTER TABLE `permission_role`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
-
---
--- AUTO_INCREMENT for table `projects`
---
-ALTER TABLE `projects`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
-
---
--- AUTO_INCREMENT for table `project_types`
---
-ALTER TABLE `project_types`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `services`
@@ -1235,7 +1313,7 @@ ALTER TABLE `services`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Constraints for dumped tables
@@ -1274,6 +1352,18 @@ ALTER TABLE `imports`
   ADD CONSTRAINT `imports_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 
 --
+-- Constraints for table `model_has_permissions`
+--
+ALTER TABLE `model_has_permissions`
+  ADD CONSTRAINT `model_has_permissions_permission_id_foreign` FOREIGN KEY (`permission_id`) REFERENCES `permissions` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `model_has_roles`
+--
+ALTER TABLE `model_has_roles`
+  ADD CONSTRAINT `model_has_roles_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE;
+
+--
 -- Constraints for table `orders`
 --
 ALTER TABLE `orders`
@@ -1288,18 +1378,26 @@ ALTER TABLE `order_assignees`
   ADD CONSTRAINT `order_assignees_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 
 --
--- Constraints for table `permission_role`
+-- Constraints for table `order_deliveries`
 --
-ALTER TABLE `permission_role`
-  ADD CONSTRAINT `permission_role_permission_id_foreign` FOREIGN KEY (`permission_id`) REFERENCES `permissions` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `permission_role_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE;
+ALTER TABLE `order_deliveries`
+  ADD CONSTRAINT `order_deliveries_order_id_foreign` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `order_deliveries_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 
 --
--- Constraints for table `project_assignees`
+-- Constraints for table `order_quotations`
 --
-ALTER TABLE `project_assignees`
-  ADD CONSTRAINT `project_assignees_project_id_foreign` FOREIGN KEY (`project_id`) REFERENCES `projects` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `project_assignees_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
+ALTER TABLE `order_quotations`
+  ADD CONSTRAINT `order_quotations_approved_by_foreign` FOREIGN KEY (`approved_by`) REFERENCES `users` (`id`) ON DELETE SET NULL,
+  ADD CONSTRAINT `order_quotations_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `order_quotations_order_id_foreign` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `role_has_permissions`
+--
+ALTER TABLE `role_has_permissions`
+  ADD CONSTRAINT `role_has_permissions_permission_id_foreign` FOREIGN KEY (`permission_id`) REFERENCES `permissions` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `role_has_permissions_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

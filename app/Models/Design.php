@@ -38,7 +38,7 @@ class Design extends Model
     {
         return $this->belongsTo(Order::class);
     }
-
+    
     public function category()
     {
         return $this->belongsTo(Category::class);

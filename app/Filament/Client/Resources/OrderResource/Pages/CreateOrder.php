@@ -32,7 +32,7 @@ class CreateOrder extends CreateRecord
                 'designer_id' => $order->user_id,
                 'project_id' => $order->id,
                 'title' => $data['title'],
-                'category_id' => $data['design']['category_id'],
+                'category_id' => $data['category_id'],
                 'status' => $data['status'] ?? 'Pending',
                 'file' => $data['file'],
                 'deadline' => $data['deadline'],

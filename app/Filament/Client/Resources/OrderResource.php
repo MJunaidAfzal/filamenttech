@@ -109,7 +109,7 @@ class OrderResource extends Resource
                                     Forms\Components\TextInput::make('title')
                                         ->label('Project Title')
                                         ->required(),
-                                    Forms\Components\Select::make('design.category_id')
+                                    Forms\Components\Select::make('category_id')
                                         ->relationship('design.category', 'name')
                                         ->label('Project Category')
                                         ->required(),
