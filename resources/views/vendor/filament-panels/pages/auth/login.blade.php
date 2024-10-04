@@ -1,3 +1,9 @@
+<style>
+    body{
+        background: linear-gradient(90deg, #000000, #7ebc27, #000000);
+    }
+</style>
+
 <x-filament-panels::page.simple>
     @if (filament()->hasRegistration())
         <x-slot name="subheading">

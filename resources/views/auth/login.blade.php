@@ -48,13 +48,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            background: linear-gradient(135deg, #000000, #434343, #000000);
-            background-size: 400% 400%;
-            animation: gradient 15s ease infinite;
-            margin: 0;
-            font-family: 'Roboto', sans-serif;
-            animation: fadeIn 1s ease-in-out;
+            background: linear-gradient(90deg, #000000, #ffb406, #000000);
         }
 
         .login-container {
@@ -73,7 +67,7 @@
 
         .login-container:hover {
             transform: scale(1.05);
-            box-shadow: 0 0 30px #ffcc00;
+            box-shadow: 0 0 30px #000000;
         }
 
         .login-container::before {

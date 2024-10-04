@@ -16,12 +16,13 @@
 <body>
 
     <style>
+
         body {
-            background-color: #09090B;
+            background: linear-gradient(90deg, #000000, #7ebc27, #000000);
         }
 
         .card {
-            background-color: #18181B;
+            background-color: #18181b;
         }
 
         .input-container {
@@ -180,7 +181,7 @@
 
 
                                     <input
-                                        style="padding:23px;border: #99ff01 3px groove;background-color:#242427;color:white;border-radius:10px"
+                                        style="padding:23px;border: #99ff01 3px groove;background-color:#2424279e;color:white;border-radius:10px"
                                         id="company_name" type="text"
                                         class="form-control @error('company_name') is-invalid @enderror" name="company_name"
                                         value="{{ old('company_name') }}" required autocomplete="company_name">
