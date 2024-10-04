@@ -63,7 +63,7 @@ class OrderResource extends Resource
 
     public static function shouldRegisterNavigation(): bool
     {
-        return auth()->check() && auth()->user()->hasPermissionTo('order-all');
+        return auth()->user()->role->hasPermissionTo('order-all');
     }
 
     public static function form(Form $form): Form
@@ -104,7 +104,7 @@ class OrderResource extends Resource
 
                             Forms\Components\Select::make('assignees')
                                 ->multiple()
-                                ->visible(fn () => auth()->user()->hasPermissionTo('assign_orders_to_developers'))
+                                ->visible(fn () => auth()->user()->role->hasPermissionTo('assign_orders_to_developers'))
                                 ->relationship('assignees', 'name'),
                         ])->columns(2),
 
@@ -245,7 +245,7 @@ class OrderResource extends Resource
                     ->outlined()
                       ->badge(fn (Order $record) => $record->quotations()->count())
                       ->badgeColor('success')
-                      ->visible(fn () => auth()->user()->hasPermissionTo('manage-order-quotations'))
+                      ->visible(fn () => auth()->user()->role->hasPermissionTo('manage-order-quotations'))
                     ->label('Order Quotations')
                     ->size(ActionSize::Small)
                     ->color('warning')
@@ -256,7 +256,7 @@ class OrderResource extends Resource
                         ])
                     )->button(),
                     Action::make('Manage Delivery')
-                    ->visible(fn () => auth()->user()->hasPermissionTo('manage-order-deliveries'))
+                    ->visible(fn () => auth()->user()->role->hasPermissionTo('manage-order-deliveries'))
                         ->label('')
                         ->size(ActionSize::Medium)
                         ->badge(fn (Order $record) => $record->orderDeliveries()->count())
@@ -270,13 +270,13 @@ class OrderResource extends Resource
                         )->button(),
                 Tables\Actions\ViewAction::make()->button()->label('')->color('warning')
                 ->size(ActionSize::Medium)
-                ->visible(fn () => auth()->user()->hasPermissionTo('view-order')),
+                ->visible(fn () => auth()->user()->role->hasPermissionTo('view-order')),
                 Tables\Actions\EditAction::make()->button()->label('')->color('warning')
                 ->size(ActionSize::Medium)
-                ->visible(fn () => auth()->user()->hasPermissionTo('edit-order')),
+                ->visible(fn () => auth()->user()->role->hasPermissionTo('edit-order')),
                 Tables\Actions\DeleteAction::make()->button()->label('')
                 ->size(ActionSize::Medium)
-                ->visible(fn () => auth()->user()->hasPermissionTo('delete-order'))
+                ->visible(fn () => auth()->user()->role->hasPermissionTo('delete-order'))
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

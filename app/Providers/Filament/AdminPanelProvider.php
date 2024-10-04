@@ -21,6 +21,8 @@ use App\Http\Middleware\IsAdmin;
 use Filament\Enums\ThemeMode;
 use Filament\Support\Facades\FilamentColor;
 use Filament\FontProviders\SpatieGoogleFontProvider;
+use Filament\Navigation\MenuItem;
+
 
 class AdminPanelProvider extends PanelProvider
 {
@@ -31,7 +33,9 @@ class AdminPanelProvider extends PanelProvider
             ->default()
             ->id('admin')
             ->path('admin')
-            // ->login()
+            ->userMenuItems([
+                'logout' => MenuItem::make()->icon('heroicon-s-power')->label('Logout')->url('/logout'),
+            ])
             ->colors([
                 'primary' => Color::Amber,
                 'brown' => Color::hex('#8f6232'),

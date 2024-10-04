@@ -25,6 +25,7 @@ use App\Filament\Client\Resources\ProjectResource;
 use Filament\FontProviders\SpatieGoogleFontProvider;
 
 
+
 class ClientPanelProvider extends PanelProvider
 {
     public function panel(Panel $panel): Panel

@@ -15,6 +15,8 @@ use App\Models\User;
 use App\Models\OrderAssignee;
 use Illuminate\Support\Facades\Auth;
 use Filament\Support\Enums\IconPosition;
+use App\Models\RoleHasPermission;
+use App\Models\Permission;
 
 
 class EditOrder extends EditRecord
@@ -101,6 +103,53 @@ class EditOrder extends EditRecord
 
     protected function afterSave(): void
     {
+
+        $permissionIds = Permission::whereIn('name', ['view-own-orders', 'order-all'])->pluck('id');
+        $roleIdsWithPermission = RoleHasPermission::whereIn('permission_id', $permissionIds)->pluck('role_id');
+        $usersWithPermission = User::whereIn('role_id', $roleIdsWithPermission)->get();
+        $order_number = $this->record->order_id;
+        foreach ($usersWithPermission as $user) {
+            if ($user->role_id == 1) {
+                $url = route('filament.admin.resources.orders.view', [
+                    'record' => $this->record->id,
+                ]);
+            }
+            elseif ($user->role_id == 2) {
+                $url = route('filament.developer.resources.orders.view', [
+                    'record' => $this->record->id,
+                ]);
+            }
+            elseif ($user->role_id == 4) {
+                $url = route('filament.client.resources.orders.view', [
+                    'record' => $this->record->id,
+                ]);
+            }
+            $notification = Notification::make()
+            ->title(' Order updated! ' . $order_number)
+            ->body(Auth::user()->name . ' has updated order ' . $order_number)
+            ->actions([
+                Action::make('View Order')
+                    ->button()
+                    ->icon('heroicon-s-folder')
+                    ->color('brown')
+                    ->url($url)
+                    ->label('View Order'),
+            ]);
+
+            if ($user->role_id == 1) {
+                $notification->sendToDatabase($user);
+
+            }
+            elseif ($user->role_id == 2) {
+                if ($this->record->assignees()->where('user_id', $user->id)->exists()) {
+                    $notification->sendToDatabase($user);
+                }
+            }
+             elseif ($user->role_id == 4 && $this->record->user_id == $user->id) {
+                $notification->sendToDatabase($user);
+            }
+        }
+
         $orderId = $this->record->id;
            $orderAssignees = OrderAssignee::where('order_id', $orderId)->pluck('user_id');
            $usersWithOrderAssignee = User::whereIn('id', $orderAssignees)->get();

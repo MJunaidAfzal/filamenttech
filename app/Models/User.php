@@ -12,9 +12,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class User extends Authenticatable
 {
-    use HasRoles;
 
-    use HasFactory, Notifiable;
+    use HasRoles, HasFactory, Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -56,7 +55,7 @@ class User extends Authenticatable
 
     public function role()
     {
-        return $this->belongsTo(Role::class)->whereIn('name', ['developer', 'support', 'client']);
+        return $this->belongsTo(Role::class);
     }
 
     public function isRole()
@@ -99,8 +98,5 @@ public function permissions()
     return $this->belongsToMany(Permission::class, 'role_has_permissions', 'role_id', 'permission_id');
 }
 
-public function hasPermissionTo($permission)
-{
-    return $this->permissions()->where('name', $permission)->exists();
-}
+
 }

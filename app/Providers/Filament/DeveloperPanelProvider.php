@@ -19,6 +19,8 @@ use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 use App\Http\Middleware\IsDeveloper;
 use Filament\FontProviders\SpatieGoogleFontProvider;
+use Filament\Navigation\MenuItem;
+
 
 class DeveloperPanelProvider extends PanelProvider
 {
@@ -30,6 +32,9 @@ class DeveloperPanelProvider extends PanelProvider
             ->colors([
                 'primary' => Color::Blue,
                 'brown' => Color::hex('#3b818a'),
+            ])
+            ->userMenuItems([
+                'logout' => MenuItem::make()->icon('heroicon-s-power')->label('Logout')->url('/logout'),
             ])
             ->discoverResources(in: app_path('Filament/Developer/Resources'), for: 'App\\Filament\\Developer\\Resources')
             ->discoverPages(in: app_path('Filament/Developer/Pages'), for: 'App\\Filament\\Developer\\Pages')

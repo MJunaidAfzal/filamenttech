@@ -166,10 +166,10 @@ class OrderDeliveryResource extends Resource
                         ])
 
                 )
-                ->visible(fn () => auth()->user()->hasPermissionTo('view-order-deliveries'))
+                ->visible(fn () => auth()->user()->role->hasPermissionTo('view-order-deliveries'))
                 ->button()->color('info'),
                 Tables\Actions\EditAction::make()->button()->color('warning')
-                ->visible(fn () => auth()->user()->hasPermissionTo('edit-order-deliveries'))
+                ->visible(fn () => auth()->user()->role->hasPermissionTo('edit-order-deliveries'))
                 ->url(
                     fn (Model $record): string => static::$parentResource::getUrl('order-deliveries.edit', [
                         'record' => $record,

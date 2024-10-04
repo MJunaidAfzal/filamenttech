@@ -36,7 +36,7 @@ class ViewOrderQuotation extends ViewRecord
 
 
         Actions\Action::make('Start Order')
-            ->visible(fn () => auth()->user()->hasPermissionTo('start-order-payment'))
+        ->visible(fn () => auth()->user()->role->hasPermissionTo('start-order-payment'))
             ->button()
             ->color('warning')
             ->icon('heroicon-s-arrow-right-start-on-rectangle')
@@ -96,7 +96,7 @@ class ViewOrderQuotation extends ViewRecord
                             ->label('View Order Quotation'),
                     ])
                     ->success()
-                    ->sendToDatabase(User::where('name', 'admin')->first());
+                    ->sendToDatabase(User::where('role_id', 1)->first());
 
 
                 return redirect($checkoutSession->url);
@@ -104,7 +104,7 @@ class ViewOrderQuotation extends ViewRecord
 
 
         CommentsAction::make()->label('Comments')->color('info')
-        ->visible(fn () => auth()->user()->hasPermissionTo('can-comment-on-order-quotation')),
+        ->visible(fn () => auth()->user()->role->hasPermissionTo('can-comment-on-order-quotation'))
     ];
 }
 

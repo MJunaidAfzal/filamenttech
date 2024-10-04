@@ -31,7 +31,7 @@ class ViewOrder extends ViewRecord
     {
         return [
             CommentsAction::make()->label('Comments')->color('info')
-            ->visible(fn () => auth()->user()->hasPermissionTo('can-comment-on-order')),
+            ->visible(fn () => auth()->user()->role->hasPermissionTo('can-comment-on-order')),
         ];
     }
 

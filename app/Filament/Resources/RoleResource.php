@@ -40,12 +40,17 @@ class RoleResource extends Resource
                 ->required()
                 ->maxLength(255),
 
+                Forms\Components\TextInput::make('guard_name')
+                ->required()
+                ->maxLength(255),
+
             Forms\Components\Select::make('permissions')
                 ->multiple()
                 ->relationship('permissions', 'name')
                 ->preload()
                 ->required()
                 ->label('Permissions')
+                ->columnSpanFull()
 //                 ->hintAction(
 //                     Action::make('updateAuthor')
 //                     ->button()

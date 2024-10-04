@@ -20,7 +20,7 @@ class ViewOrderDelivery extends ViewRecord
     {
         return [
             CommentsAction::make()->label('Comments')->color('info')
-            ->visible(fn () => auth()->user()->hasPermissionTo('can-comment-on-order-delivery')),
+            ->visible(fn () => auth()->user()->role->hasPermissionTo('can-comment-on-order-delivery')),
         ];
     }
 }

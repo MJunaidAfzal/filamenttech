@@ -24,9 +24,14 @@ class Role extends Model
         return $this->hasMany(User::class);
     }
 
-    public function permissions()
-{
-    return $this->belongsToMany(Permission::class, 'role_has_permissions');
-}
+    public function permissions(): BelongsToMany
+    {
+        return $this->belongsToMany(Permission::class, 'role_has_permissions', 'role_id', 'permission_id');
+    }
+
+    public function hasPermissionTo($permission): bool
+    {
+        return $this->permissions()->where('name', $permission)->exists();
+    }
 
 }

@@ -22,7 +22,7 @@ class ListOrderDeliveries extends ListRecords
             Actions\CreateAction::make()
             ->color('brown')
             ->icon('heroicon-s-archive-box-arrow-down')
-            ->visible(fn () => auth()->user()->hasPermissionTo('create-order-deliveries'))
+            ->visible(fn () => auth()->user()->role->hasPermissionTo('create-order-deliveries'))
                 ->url(
                     fn (): string => static::getParentResource()::getUrl('order-deliveries.create', [
                         'parent' => $this->parent,

@@ -14,7 +14,7 @@ class ListOrders extends ListRecords
     {
         return [
             Actions\CreateAction::make()
-            ->visible(fn () => auth()->user()->hasPermissionTo('create-order')),
+            ->visible(fn () => auth()->user()->role->hasPermissionTo('create-order')),
         ];
     }
 }
