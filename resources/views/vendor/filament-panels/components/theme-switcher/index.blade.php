@@ -1,4 +1,4 @@
-<div
+{{-- <div
     x-data="{ theme: null }"
     x-init="
         $watch('theme', () => {
@@ -23,4 +23,4 @@
         icon="heroicon-m-computer-desktop"
         theme="system"
     />
-</div>
+</div> --}}

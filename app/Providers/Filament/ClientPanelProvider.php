@@ -31,24 +31,15 @@ class ClientPanelProvider extends PanelProvider
     public function panel(Panel $panel): Panel
     {
         return $panel
+            ->default()
             ->id('client')
             ->path('client')
             ->login()
             ->passwordReset()
-            // ->registerRoute(route('register'))
             ->colors([
                 'primary' => Color::Lime,
                 'brown' => Color::hex('#4f6e2f'),
             ])
-            // ->navigation(function (NavigationBuilder $builder): NavigationBuilder {
-            //     return $builder->groups([
-            //         NavigationGroup::make('Website')
-            //             ->items([
-            //                 ...PlatformResource::getNavigationItems(),
-            //                 ...ProjectResource::getNavigationItems(),
-            //             ]),
-            //     ]);
-            // })
             ->font('Inter', provider: SpatieGoogleFontProvider::class)
             ->discoverResources(in: app_path('Filament/Client/Resources'), for: 'App\\Filament\\Client\\Resources')
             ->discoverPages(in: app_path('Filament/Client/Pages'), for: 'App\\Filament\\Client\\Pages')

@@ -1,4 +1,10 @@
-
+<style>
+    body{
+        background: url('{{ asset('img/back1.png') }}');
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+</style>
 
 <x-filament-panels::page class="fi-dashboard-page">
     @if (method_exists($this, 'filtersForm'))

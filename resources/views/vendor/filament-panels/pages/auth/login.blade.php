@@ -1,9 +1,3 @@
-<style>
-    body{
-        background: linear-gradient(90deg, #000000, #7ebc27, #000000);
-    }
-</style>
-
 <x-filament-panels::page.simple>
     @if (filament()->hasRegistration())
         <x-slot name="subheading">
@@ -26,12 +20,21 @@
       </div>
     @endif --}}
 
+    <style>
+        body{
+            background: linear-gradient(90deg, #000000, #7ebc27, #000000);
+        }
+    </style>
+
     @if ($errors->has('client'))
     <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" style="border-color:#84CC16" role="alert">
         <strong class="font-bold" style="color:#84CC16;">Unauthorized Access</strong>
         <span class="block sm:inline">You are not a Client please <a style="color:#84CC16;text-decoration:none" href="{{ route('login') }}">Login here </a></span>
       </div>
     @endif
+
+
+
 
     {{-- @if ($errors->has('developer'))
     <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" style="border-color:#C084FC" role="alert">
@@ -63,5 +66,6 @@
 
     {{ \Filament\Support\Facades\FilamentView::renderHook(\Filament\View\PanelsRenderHook::AUTH_LOGIN_FORM_AFTER, scopes: $this->getRenderHookScopes()) }}
 </x-filament-panels::page.simple>
+
 
 

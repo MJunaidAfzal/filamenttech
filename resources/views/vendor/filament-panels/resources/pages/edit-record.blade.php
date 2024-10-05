@@ -1,3 +1,5 @@
+
+
 <x-filament-panels::page
     @class([
         'fi-resource-edit-record-page',
@@ -28,7 +30,13 @@
     @if ((! $hasCombinedRelationManagerTabsWithContent) || (! count($relationManagers)))
         {{ $form() }}
     @endif
-
+    <style>
+        body{
+        background: url('{{ asset('img/back6.jpg') }}');
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+    </style>
     @if (count($relationManagers))
         <x-filament-panels::resources.relation-managers
             :active-locale="isset($activeLocale) ? $activeLocale : null"
