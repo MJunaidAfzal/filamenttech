@@ -20,12 +20,6 @@
       </div>
     @endif --}}
 
-    <style>
-        body{
-            background: linear-gradient(90deg, #000000, #7ebc27, #000000);
-        }
-    </style>
-
     @if ($errors->has('client'))
     <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" style="border-color:#84CC16" role="alert">
         <strong class="font-bold" style="color:#84CC16;">Unauthorized Access</strong>

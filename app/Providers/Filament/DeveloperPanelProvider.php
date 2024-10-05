@@ -20,6 +20,8 @@ use Illuminate\View\Middleware\ShareErrorsFromSession;
 use App\Http\Middleware\IsDeveloper;
 use Filament\FontProviders\SpatieGoogleFontProvider;
 use Filament\Navigation\MenuItem;
+use Jeffgreco13\FilamentBreezy\BreezyCore;
+
 
 
 class DeveloperPanelProvider extends PanelProvider
@@ -36,6 +38,17 @@ class DeveloperPanelProvider extends PanelProvider
             ->userMenuItems([
                 'logout' => MenuItem::make()->icon('heroicon-s-power')->label('Logout')->url('/logout'),
             ])
+            ->darkMode(true)
+
+            ->plugin(
+                BreezyCore::make()->myProfile(
+                    shouldRegisterUserMenu: true, // Sets the 'account' link in the panel User Menu (default = true)
+                    shouldRegisterNavigation: false, // Adds a main navigation item for the My Profile page (default = false)
+                    navigationGroup: 'Settings', // Sets the navigation group for the My Profile page (default = null)
+                    hasAvatars: false, // Enables the avatar upload form component (default = false)
+                    slug: 'my-profile' // Sets the slug for the profile page (default = 'my-profile')
+                )
+            )
             ->discoverResources(in: app_path('Filament/Developer/Resources'), for: 'App\\Filament\\Developer\\Resources')
             ->discoverPages(in: app_path('Filament/Developer/Pages'), for: 'App\\Filament\\Developer\\Pages')
             ->pages([

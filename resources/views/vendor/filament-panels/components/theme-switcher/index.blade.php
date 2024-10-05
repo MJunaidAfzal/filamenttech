@@ -11,7 +11,7 @@
 >
     <x-filament-panels::theme-switcher.button
         icon="heroicon-m-sun"
-        theme="light"
+        theme="dark"
     />
 
     <x-filament-panels::theme-switcher.button
@@ -23,4 +23,5 @@
         icon="heroicon-m-computer-desktop"
         theme="system"
     />
-</div> --}}
+</div>
+ --}}

@@ -22,6 +22,8 @@ use Filament\Enums\ThemeMode;
 use Filament\Support\Facades\FilamentColor;
 use Filament\FontProviders\SpatieGoogleFontProvider;
 use Filament\Navigation\MenuItem;
+use Jeffgreco13\FilamentBreezy\BreezyCore;
+
 
 
 class AdminPanelProvider extends PanelProvider
@@ -33,6 +35,16 @@ class AdminPanelProvider extends PanelProvider
             ->default()
             ->id('admin')
             ->path('admin')
+            ->darkMode(true)
+            ->plugin(
+                BreezyCore::make()->myProfile(
+                    shouldRegisterUserMenu: true,
+                    shouldRegisterNavigation: false,
+                    navigationGroup: 'Settings',
+                    hasAvatars: false,
+                    slug: 'my-profile'
+                )
+            )
             ->userMenuItems([
                 'logout' => MenuItem::make()->icon('heroicon-s-power')->label('Logout')->url('/logout'),
             ])
