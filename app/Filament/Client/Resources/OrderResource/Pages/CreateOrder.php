@@ -46,7 +46,7 @@ class CreateOrder extends CreateRecord
                 'server_credential' => $data['server_credential'],
                 'status' => $data['status'] ?? 'Pending',
                 'file' => $data['file'],
-                'code_repository_url' => $data['code_repository_url'],
+                'code_repository_url' => $data['code_repository_url'] ?? '',
                 'deadline' => $data['deadline'],
                 'description' => $data['description'],
             ]);

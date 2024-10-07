@@ -57,13 +57,27 @@ class ViewOrderQuotation extends ViewRecord
                         'quantity' => 1,
                     ]],
                     'mode' => 'payment',
-                  'success_url' => route('filament.client.resources.orders.order-quotations.view', ['parent' => $record->order_id, 'record' => $record]),
-                  'cancel_url' => route('filament.client.resources.orders.order-quotations.view', ['parent' => $record->order_id, 'record' => $record]),
+                    'success_url' => route('payment.success', ['record' => $record->id]),
+                    'cancel_url' => route('payment.cancel', ['record' => $record->id]),
                 ]);
 
                 $checkoutSession->save();
 
-                $record->update(['status' => 'Approved']);
+
+
+
+                return redirect($checkoutSession->url);
+            }),
+
+
+        CommentsAction::make()->label('Comments')->color('info')
+        ->visible(fn () => auth()->user()->role->hasPermissionTo('can-comment-on-order-quotation'))
+    ];
+}
+
+public function success($record)
+{
+    $record->update(['status' => 'Approved']);
 
                 if ($record->order->service_id == 1) {
                     $design = $record->order->design;
@@ -78,36 +92,39 @@ class ViewOrderQuotation extends ViewRecord
                 ->success()
                 ->send();
 
-                $url = route('filament.admin.resources.orders.order-quotations.view', [
-                    'parent' => $this->parent->id,
-                    'record' => $this->record->id,
+                // $url = route('filament.admin.resources.orders.order-quotations.view', [
+                //     'parent' => $this->parent->id,
+                //     'record' => $this->record->id,
 
-                ]);
+                // ]);
 
                 Notification::make()
                     ->title('Payment received for Order #' . $record->order->order_id)
                     ->body('Payment was successfully completed for Quotation #' . $record->quotation_number . '.')
-                    ->actions([
-                        Action::make('View Order Quotation')
-                            ->button()
-                            ->icon('heroicon-s-folder')
-                            ->url($url)
-                            ->color('brown')
-                            ->label('View Order Quotation'),
-                    ])
+                    // ->actions([
+                    //     Action::make('View Order Quotation')
+                    //         ->button()
+                    //         ->icon('heroicon-s-folder')
+                    //         // ->url($url)
+                    //         ->color('brown')
+                    //         ->label('View Order Quotation'),
+                    // ])
                     ->success()
                     ->sendToDatabase(User::where('role_id', 1)->first());
 
+}
 
-                return redirect($checkoutSession->url);
-            }),
-
-
-        CommentsAction::make()->label('Comments')->color('info')
-        ->visible(fn () => auth()->user()->role->hasPermissionTo('can-comment-on-order-quotation'))
-    ];
+public function cancel($record)
+{
+    Notification::make()
+        ->title('Payment Canceled.')
+        ->color('danger')
+        ->send();
 }
 
 
 }
+
+
+
 

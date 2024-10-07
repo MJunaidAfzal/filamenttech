@@ -86,8 +86,8 @@ class EditOrder extends EditRecord
                 $development->update([
                     'title' => $data['title'],
                     'server_credential' => $data['server_credential'],
-                    'status' => $data['status'],
-                    'code_repository_url' => $data['code_repository_url'],
+                    // 'status' => $data['status'],
+                    // 'code_repository_url' => $data['code_repository_url'],
                     'deadline' => $data['deadline'],
                     'description' => $data['description'],
                 ]);

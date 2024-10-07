@@ -48,8 +48,8 @@ Route::post('/logout', function () {
     return redirect()->route('login');
 })->name('logout');
 
-Route::get('/payment/success/{order}', [PaymentController::class, 'success'])->name('payment.success');
-Route::get('/payment/cancel/{order}', [PaymentController::class, 'cancel'])->name('payment.cancel');
+Route::get('/payment/success/{record}', [PaymentController::class, 'handleSuccess'])->name('payment.success');
+Route::get('/payment/cancel/{record}', [PaymentController::class, 'handleCancel'])->name('payment.cancel');
 
 
 

@@ -98,6 +98,11 @@ class OrderResource extends Resource
                             ->multiple()
                             ->visible(fn () => auth()->user()->role->hasPermissionTo('assign_orders_to_developers'))
                             ->relationship('assignees', 'name'),
+
+
+                            Forms\Components\Select::make('customers')
+                            ->visible(fn () => auth()->user()->role->hasPermissionTo('manage_customers_order'))
+                            ->relationship('customers', 'name'),
                         ])->columns(2),
 
                     Wizard\Step::make('Service')
@@ -113,14 +118,7 @@ class OrderResource extends Resource
                                         ->relationship('design.category', 'name')
                                         ->label('Project Category')
                                         ->required(),
-                                        Forms\Components\Select::make('status')
-                                        ->label('Status')
-                                        ->default('Pending')
-                                        ->options([
-                                            'Pending' => 'Pending',
-                                            'In Progress' => 'In Progress',
-                                            'Completed' => 'Completed',
-                                        ]),
+
                                     Forms\Components\DatePicker::make('deadline')
                                         ->label('Expented Daytime Date')
                                         ->required(),
@@ -133,18 +131,6 @@ class OrderResource extends Resource
                                         Forms\Components\TextInput::make('server_credential')
                                         ->label('Server Credential')
                                         ->required(),
-                                    Forms\Components\Select::make('status')
-                                        ->label('Status')
-                                        ->default('Pending')
-                                        ->options([
-                                            'Pending' => 'Pending',
-                                            'In Progress' => 'In Progress',
-                                            'Completed' => 'Completed',
-                                        ]),
-                                    Forms\Components\TextInput::make('code_repository_url')
-                                        ->label('Code Repository URL')
-                                        ->required()
-                                        ->nullable(),
                                     Forms\Components\DatePicker::make('deadline')
                                         ->label('Expented Daytime Date')
                                         ->required(),

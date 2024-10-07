@@ -2,22 +2,26 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Order;
+use App\Models\OrderQuotation;
 use Illuminate\Http\Request;
 
 class PaymentController extends Controller
 {
-    public function success($orderId)
+    public function handleSuccess($recordId)
     {
-        $order = Order::findOrFail($orderId);
-        $order->status = 'paid'; 
-        $order->save();
+        $record = OrderQuotation::findOrFail($recordId);
 
-        return redirect()->route('orders.show', $orderId)->with('message', 'Payment Successful!');
+        (new \App\Filament\Resources\OrderQuotationResource\Pages\ViewOrderQuotation)->success($record);
+
+        return redirect()->route('filament.client.resources.orders.order-quotations.view', ['parent' => $record->order_id, 'record' => $record->id]);
     }
 
-    public function cancel($orderId)
+    public function handleCancel($recordId)
     {
-        return redirect()->route('orders.show', $orderId)->with('message', 'Payment Canceled.');
+        $record = OrderQuotation::findOrFail($recordId);
+
+        (new \App\Filament\Resources\OrderQuotationResource\Pages\ViewOrderQuotation)->cancel($record);
+
+        return redirect()->route('filament.client.resources.orders.order-quotations.view', ['parent' => $record->order_id, 'record' => $record->id]);
     }
 }

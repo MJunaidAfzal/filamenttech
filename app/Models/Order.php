@@ -55,6 +55,11 @@ class Order extends Model
             });
     }
 
+    public function customers()
+    {
+        return $this->belongsToMany(Customer::class, 'customer_orders', 'order_id', 'customer_id');
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class);

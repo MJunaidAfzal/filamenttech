@@ -1,4 +1,4 @@
-{{-- <div
+<div
     x-data="{ theme: null }"
     x-init="
         $watch('theme', () => {
@@ -24,4 +24,4 @@
         theme="system"
     />
 </div>
- --}}
+

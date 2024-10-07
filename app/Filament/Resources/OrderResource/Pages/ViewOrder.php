@@ -68,6 +68,17 @@ class ViewOrder extends ViewRecord
                         </span>
                     ");
                 }),
+
+                Infolists\Components\TextEntry::make('customers.name')
+                ->label('Customer Name')
+                ->formatStateUsing(function ($state) {
+                    return new \Illuminate\Support\HtmlString("
+                        <span style='color:orange' class='font-semibold'>
+                           $state
+                        </span>
+                    ");
+                }),
+
                 Infolists\Components\TextEntry::make('service.name')
                 ->label('Service Name')
                 ->formatStateUsing(function ($state) {
@@ -86,7 +97,7 @@ class ViewOrder extends ViewRecord
                         </span>
                     ");
                 }),
-            ])->columns(2),
+            ])->columns(3),
 
             Section::make('Service Details')
                 ->columnSpan(12)
