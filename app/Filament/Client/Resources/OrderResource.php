@@ -207,6 +207,24 @@ class OrderResource extends Resource
                     return '';
                 }),
 
+                Tables\Columns\BadgeColumn::make('quotations.status')
+                ->label('Quotation Status')
+                ->colors([
+                    'success' => 'Approved',
+                    'danger' => 'Rejected',
+                    'info' => 'Pending',
+                ])
+                ->icons([
+                    'heroicon-s-check-circle' => 'Approved',
+                    'heroicon-s-x-circle' => 'Rejected',
+                    'heroicon-s-clock' => 'Pending',
+                ])
+                ->getStateUsing(function ($record) {
+                    $latestQuotation = $record->quotations()->latest('created_at', 'desc')->first();
+                    return $latestQuotation ? $latestQuotation->status : 'No Quotations';
+                }),
+
+
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
